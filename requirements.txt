@@ -1,3 +1,4 @@
 PennyLane==0.20.0
 pennylane_qiskit==0.20.0
 quantuminspire==1.7.0
+qiskit>=0.25
