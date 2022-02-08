@@ -50,15 +50,7 @@ class QIDevice(QiskitDevice):
     author = "TNO"
     short_name = "quantuminspire.qidevice"
 
-    _state_backends = {
-        "QX single-node simulator",
-        "Spin-2",
-        "Starmon-5",
-        "QX-34-L",
-        "QX single-node simulator SurfSara",
-    }
-    """set[str]: Set of backend names that are supported by QI
-    """
+    _state_backends = {}
 
     def __init__(self, wires, shots=1024, backend="QX single-node simulator", **kwargs):
 
