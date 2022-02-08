@@ -51,7 +51,7 @@ The devices can be instantiated as follows:
 
 ```python
 import pennylane as qml
-dev1 = qml.device('quantuminspire.qidevice', wires=2)
+dev = qml.device('quantuminspire.qidevice', wires=2, backend = "QX single-node simulator")
 ```
 
 These devices can then be used just like other devices for the definition and evaluation of QNodes within the PennyLane framework.
