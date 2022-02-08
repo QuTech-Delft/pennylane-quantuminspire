@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 
 import pennylane as qml
-from pennylane_quantuminspire.basic_device import QIDevice
+from pennylane_quantuminspire.QI_device import QIDevice
 
 
 class TestProbabilities:
