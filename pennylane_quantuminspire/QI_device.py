@@ -28,17 +28,14 @@ class QIDevice(QiskitDevice):
             or iterable that contains unique labels for the subsystems as numbers (i.e., ``[-1, 0, 2]``)
             or strings (``['ancilla', 'q1', 'q2']``). Note that for some backends, the number
             of wires has to match the number of qubits accessible.
-        provider (Provider): The IBM Q provider you wish to use. If not provided,
-            then the default provider returned by ``IBMQ.get_provider()`` is used.
-        backend (str): the desired provider backend
+        backend (str): the desired backend
         shots (int): number of circuit evaluations/random samples used
             to estimate expectation values and variances of observables
 
     Keyword Args:
         qi_token (str): The QI API token. If not provided, the environment
             variable ``QI_TOKEN`` is used.
-
-        project (str): Name of the provider project.
+        project (str): Name of the project as stored by QI.
     """
 
     name = "Quantum Inspire PennyLane plugin"
