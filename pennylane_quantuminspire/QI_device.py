@@ -37,8 +37,6 @@ class QIDevice(QiskitDevice):
     Keyword Args:
         qi_token (str): The QI API token. If not provided, the environment
             variable ``QI_TOKEN`` is used.
-        qi_url (str): The QI URL. If not provided, the environment
-            variable ``QI_URL`` is used, followed by the default URL.
 
         project (str): Name of the provider project.
     """
