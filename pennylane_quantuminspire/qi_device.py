@@ -116,5 +116,3 @@ def backend_online(backend):
     backend_type = QI.get_api().get_backend_type_by_name(backend.name())
     status = backend_type["status"]
     return status != "OFFLINE"
-
-
