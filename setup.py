@@ -1,40 +1,99 @@
+# PennyLane-Quantum Inspire Plugin
+#
+# Copyright 2022 QuTech Delft
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-import pathlib
-from setuptools import setup, find_packages
+#!/usr/bin/env python3
+from setuptools import setup
 
-HERE = pathlib.Path(__file__).parent
+with open("pennylane_quantuminspire/_version.py", "r", encoding="utf-8") as f:
+    version = f.readlines()[-1].split()[-1].strip("\"'")
 
-with open("pennylane_quantuminspire/_version.py") as f:
-    VERSION = f.readlines()[-1].split()[-1].strip("\"'")
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
 
-PACKAGE_NAME = 'pennylane_quantuminspire'
-AUTHOR = 'Robert Wezeman'
-AUTHOR_EMAIL = 'robert.wezeman@tno.nl'
-
-
-DESCRIPTION = 'Pennylane plugin for QuantumInspire'
-LONG_DESCRIPTION = (HERE / "README.md").read_text()
-LONG_DESC_TYPE = "text/markdown"
-
-INSTALL_REQUIRES = [
-      "qiskit>=0.25",
-      "pennylane_qiskit>=0.20.0",
-      'quantuminspire>=1.7.0',
-      'numpy',
+requirements = [
+    "pennylane-qiskit>=0.23.0",
+    "quantuminspire>=2.0.0",
+    "qiskit>=0.32.0",
 ]
 
-DEVICES_LIST = [
-        'quantuminspire.qidevice = pennylane_quantuminspire:QIDevice'
-    ],
+extra_requirements = {
+    'dev': ['pytest>=3.3.1', 'pylint', 'mypy>=0.670'],
+    'rtd': ['sphinx', 'sphinx_rtd_theme', 'nbsphinx', 'sphinx-automodapi', 'recommonmark'],
+}
 
-setup(name=PACKAGE_NAME,
-      version=VERSION,
-      description=DESCRIPTION,
-      long_description=LONG_DESCRIPTION,
-      long_description_content_type=LONG_DESC_TYPE,
-      author=AUTHOR,
-      author_email=AUTHOR_EMAIL,
-      install_requires=INSTALL_REQUIRES,
-      packages=find_packages(),
-      entry_points = {'pennylane.plugins': DEVICES_LIST}
-      )
+devices_list = [
+    'quantuminspire.qi = pennylane_quantuminspire:QuantumInspireDevice',
+    'quantuminspire.qxsim = pennylane_quantuminspire:QXSimDevice',
+    'quantuminspire.qx34l = pennylane_quantuminspire:QX34LDevice',
+    'quantuminspire.spin2 = pennylane_quantuminspire:Spin2Device',
+    'quantuminspire.starmon5 = pennylane_quantuminspire:Starmon5Device',
+]
+
+convertors_list = [
+    # 'quantuminspire = pennylane_quantuminspire:load',
+    'cqasm = pennylane_quantuminspire:load_cqasm',
+    'cqasm_file = pennylane_quantuminspire:load_cqasm_from_file',
+]
+
+info = {
+    'name': 'PennyLane-QuantumInspire',
+    'version': version,
+    'author': 'QuTech',
+    'author_email': 'robert.wezeman@tno.nl',
+    'maintainer': 'QuTech SDST',
+    'maintainer_email': 'software@qutech.support',
+    'url': 'https://github.com/QuTech-Delft/pennylane-quantuminspire',
+    'license': 'Apache License 2.0',
+    'packages': [
+        'pennylane_quantuminspire'
+    ],
+    'entry_points': {
+        'pennylane.plugins': devices_list,
+        'pennylane.io': convertors_list
+    },
+    'description': 'PennyLane plugin for Quantum Inspire',
+    'long_description': long_description,
+    'long_description_content_type': 'text/markdown',
+    'provides': ["pennylane_quantuminspire"],
+    'install_requires': requirements,
+    'extras_require': extra_requirements,
+    'command_options': {
+        'build_sphinx': {
+            'version': ('setup.py', version),
+            'release': ('setup.py', version)}}
+}
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Natural Language :: English",
+    "Operating System :: POSIX",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python",
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3 :: Only',
+    "Topic :: Scientific/Engineering :: Physics"
+]
+
+setup(classifiers=classifiers, **info)

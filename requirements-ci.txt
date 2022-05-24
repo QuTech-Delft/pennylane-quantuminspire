@@ -1,0 +1,5 @@
+quantuminspire
+pennylane
+qiskit
+numpy
+sympy

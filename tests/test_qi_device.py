@@ -2,40 +2,62 @@ import numpy as np
 import pytest
 
 import pennylane as qml
-from pennylane_quantuminspire.QI_device import QIDevice
+import qiskit.providers.aer.noise as noise
 
 
 class TestProbabilities:
     """Tests for the probability function"""
 
-    def test_probability_no_results(self):
-        """Test that the probabilities function returns
-        None if no job has yet been run."""
-        dev = QIDevice(backend="QX single-node simulator", wires=1, shots=None)
+    def test_probability_no_results(self, hardware_backend):
+        """
+        Test that the probabilities function returns None if no job has yet been run.
+        """
+        dev = qml.device("quantuminspire.qi", backend=hardware_backend, wires=1, shots=None)
         assert dev.analytic_probability(wires=1) is None
 
 
-class TestCircuit:
-    """Test simple RY circuit"""
+class TestQuantumInspireBackendOptions:
+    """Test the backend options of QuantumInspire backends."""
 
-    dev = qml.device(
-        "quantuminspire.qidevice",
-        wires=2,
-        shots=1024,
-        backend="QX single-node simulator",
-    )
+    def test_backend_options_cleaned(self):
+        """Test that the backend memory options is reset upon new qxsim device
+        initialization."""
+        dev = qml.device("quantuminspire.qxsim", wires=2, memory=False)
+        assert dev.backend.options.get("memory") == True
 
-    @qml.qnode(dev)
-    def circuit(theta):
-        qml.RY(theta, wires=0)
-        return qml.probs(wires=[0, 1])
+        dev2 = qml.device("quantuminspire.qxsim", wires=2)
+        assert dev2.backend.options.get("memory") == True
 
-    @pytest.mark.parametrize("theta", [0.512, 0.124, 1.23, 1.534, 0.662, 0])
-    def test_circuit(self, theta):
-        """Test if circuit close to exact result"""
+    def test_backend_unsupported_options(self):
+        """Test that an unsupported backend options triggers an Exception."""
+        noise_model = noise.NoiseModel()
+        bit_flip = noise.pauli_error([("X", 1), ("I", 0)])
 
-        exact_outcome = np.array([np.cos(theta / 2) ** 2, 0, np.sin(theta / 2) ** 2, 0])
+        # Create a noise model where the RX operation always flips the bit
+        noise_model.add_all_qubit_quantum_error(bit_flip, ["rx"])
 
-        probabilities = self.circuit(theta)
+        with pytest.raises(AttributeError) as exc_info:
+            dev = qml.device("quantuminspire.qxsim", wires=2, noise_model=noise_model)
 
-        assert np.linalg.norm(probabilities - exact_outcome) <= 0.05
+        assert str(exc_info.value) == 'Options field noise_model is not valid for this backend'
+
+
+class TestAnalyticWarningHWSimulator:
+    """Tests the warnings for when the analytic attribute of a device is set to true"""
+
+    def test_warning_raised_for_hardware_backend_analytic_expval(self, hardware_backend, recorder):
+        """Tests that a warning is raised if the analytic attribute is true on
+        hardware simulators when calculating the expectation"""
+
+        with pytest.warns(UserWarning) as record:
+            dev = qml.device("quantuminspire.qi", backend=hardware_backend, wires=2, shots=None)
+
+        # check that only one warning was raised
+        assert len(record) == 1
+        # check that the message matches
+        assert (
+            record[0].message.args[0] == "The analytic calculation of "
+                                         "expectations, variances and probabilities is only supported on "
+                                         "statevector backends, not on the {}. Such statistics obtained from this "
+                                         "device are estimates based on samples.".format(dev.backend)
+        )
