@@ -19,21 +19,21 @@ This module contains the :class:`~.QuantumInspireDevice` class, a PennyLane devi
 evaluation and differentiation of Quantum Inspire's Quantum Processing Units (QPUs) using PennyLane.
 """
 
-import time
 from abc import ABC
+import time
+from typing import Any, Dict, Iterable, Set, Union
 
 from pennylane_qiskit.qiskit_device import QiskitDevice
 
 from qiskit.providers.backend import BackendV1 as Backend
 
 from quantuminspire.credentials import load_account, get_token_authentication
-from quantuminspire.exceptions import ApiError
 from quantuminspire.qiskit import QI
 
 from ._version import __version__
 
 
-class QuantumInspireDevice(QiskitDevice, ABC):
+class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
     """A PennyLane device for the QuantumInspire API (remote) backend.
 
     For more details, see the `Quantum Inspire documentation <https://github.com/QuTech-Delft/quantuminspire>`_
@@ -42,7 +42,7 @@ class QuantumInspireDevice(QiskitDevice, ABC):
     receive a token that is used for authentication using the API.
 
     Args:
-        wires (int or Iterable[Number, str]]): Number of subsystems represented by the device,
+        wires (int or Iterable[Number, str]): Number of subsystems represented by the device,
             or iterable that contains unique labels for the subsystems as numbers (i.e., ``[-1, 0, 2]``)
             or strings (``['ancilla', 'q1', 'q2']``). Note that for some backends, the number
             of wires has to match the number of qubits accessible.
@@ -58,12 +58,11 @@ class QuantumInspireDevice(QiskitDevice, ABC):
 
     name = "PennyLane Quantum Inspire plugin"
     short_name = "quantuminspire.qi"
-    # pennylane_requires = ">=0.23.0"  # use default from QiskitDevice
     version = __version__
     author = "QuTech"
 
     # Set of backend names that define the backends that support returning the underlying quantum statevector
-    _state_backends = {}
+    _state_backends: Set[str] = set()
 
     _capabilities = {
         "model": "qubit",
@@ -83,12 +82,12 @@ class QuantumInspireDevice(QiskitDevice, ABC):
     #     "Such statistics obtained from this device are estimates based on samples."
     # )
 
-    def __init__(self, wires, backend="QX single-node simulator", shots=1024, **kwargs):
+    def __init__(self, wires: Union[int, Iterable[int], Iterable[str]], backend: str = "QX single-node simulator",
+                 shots: int = 1024, **kwargs: Dict[str, Any]):
         # Connection to Quantum Inspire
         connect(kwargs)
 
-        super().__init__(wires=wires, provider=QI, backend=backend, shots=shots, **kwargs)
-
+        # Remove unsupported operations from base class
         unsupported_operations = []
         for operation in self.operations:
             if "QubitStateVector" in operation:
@@ -98,8 +97,11 @@ class QuantumInspireDevice(QiskitDevice, ABC):
             self.operations.remove(unsupported_operation)
             del self._operation_map[unsupported_operation]
 
+        # Initialize base class
+        super().__init__(wires=wires, provider=QI, backend=backend, shots=shots, **kwargs)
 
-def connect(kwargs):
+
+def connect(kwargs: Dict[str, Any]) -> None:
     """Function that allows connection to Quantum Inspire.
 
     Args:
@@ -112,7 +114,7 @@ def connect(kwargs):
     QI.set_authentication(qi_authentication, project_name=project_name)
 
 
-def backend_online(backend):
+def backend_online(backend: Backend) -> bool:
     backend_type = QI.get_api().get_backend_type_by_name(backend.name())
     status = backend_type["status"]
-    return status != "OFFLINE"
+    return bool(status != "OFFLINE")

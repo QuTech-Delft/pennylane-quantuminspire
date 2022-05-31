@@ -18,6 +18,7 @@
 This module contains the :class:`~.Spin2Device` class, a PennyLane device for the QuantumInspire Spin-2 hardware
 backend.
 """
+from typing import Any, Dict, Iterable, Union
 
 from pennylane_quantuminspire.qi_device import QuantumInspireDevice
 
@@ -31,7 +32,7 @@ class Spin2Device(QuantumInspireDevice):
     receive a token that is used for authentication using the API.
 
     Args:
-        wires (int or Iterable[Number, str]]): Number of subsystems represented by the device,
+        wires (int or Iterable[Number, str]): Number of subsystems represented by the device,
             or iterable that contains unique labels for the subsystems as numbers (i.e., ``[-1, 0, 2]``)
             or strings (``['ancilla', 'q1', 'q2']``). Note that for some backends, the number
             of wires has to match the number of qubits accessible.
@@ -48,5 +49,6 @@ class Spin2Device(QuantumInspireDevice):
 
     short_name = "quantuminspire.spin2"
 
-    def __init__(self, wires=2, shots=1024, **kwargs):
+    def __init__(self, wires: Union[int, Iterable[int], Iterable[str]] = 2, shots: int = 1024,
+                 **kwargs: Dict[str, Any]):
         super().__init__(wires=wires, backend="Spin-2", shots=shots, **kwargs)

@@ -18,15 +18,16 @@
 This module contains functions for converting QuantumInspire cQASM programs
 into PennyLane circuit templates.
 """
+from typing import Any
 from qiskit import QuantumCircuit
 from pennylane_qiskit import load
 
 
-def convert_cqasm_to_qasm(cqasm_string_or_file):
+def convert_cqasm_to_qasm(cqasm_string_or_file: str) -> Any:
     raise NotImplementedError
 
 
-def load_cqasm(cqasm_string: str):
+def load_cqasm(cqasm_string: str) -> Any:
     """Loads a PennyLane template from a cQASM string.
     Args:
         cqasm_string (str): the name of the cQASM string
@@ -39,7 +40,7 @@ def load_cqasm(cqasm_string: str):
     return load(QuantumCircuit.from_qasm_str(qasm_string))
 
 
-def load_cqasm_from_file(cqasm_file: str):
+def load_cqasm_from_file(cqasm_file: str) -> Any:
     """Loads a PennyLane template from a cQASM file.
     Args:
         cqasm_file (str): the name of the cQASM file

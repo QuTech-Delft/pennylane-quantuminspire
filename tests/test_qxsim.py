@@ -4,6 +4,7 @@ import pytest
 import pennylane as qml
 
 
+@pytest.mark.usefixtures("online")
 class TestDevice:
     """Tests for the pennylane device"""
 

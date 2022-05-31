@@ -20,7 +20,7 @@ from setuptools import setup
 with open("pennylane_quantuminspire/_version.py", "r", encoding="utf-8") as f:
     version = f.readlines()[-1].split()[-1].strip("\"'")
 
-with open("README.md", "r", encoding="utf-8") as fh:
+with open("README.rst", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 requirements = [
@@ -31,7 +31,9 @@ requirements = [
 
 extra_requirements = {
     'dev': ['pytest>=3.3.1', 'pylint', 'mypy>=0.670'],
-    'rtd': ['sphinx', 'sphinx_rtd_theme', 'nbsphinx', 'sphinx-automodapi', 'recommonmark'],
+    'rtd': ['docutils==0.16', 'ipykernel==6.13.0', 'jinja2==3.0.3', 'mthree==0.22.0', 'nbsphinx==0.8.8',
+            'pybind11==2.9.2', 'pygments==2.7.4', 'pygments-github-lexers==0.0.5', 'sphinxcontrib-bibtex==2.4.2',
+            'sphinx-automodapi==0.14.1', 'xanadu-sphinx-theme==0.1.0'],
 }
 
 devices_list = [
