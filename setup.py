@@ -23,6 +23,9 @@ with open("pennylane_quantuminspire/_version.py", "r", encoding="utf-8") as f:
 with open("README.rst", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+# with open("doc/requirements.txt", "r", encoding="utf-8") as fh:
+#     extra_requirements_rtd = fh.read().splitlines()
+
 requirements = [
     "pennylane-qiskit>=0.23.0",
     "quantuminspire>=2.0.0",
@@ -46,8 +49,8 @@ devices_list = [
 
 convertors_list = [
     # 'quantuminspire = pennylane_quantuminspire:load',
-    'cqasm = pennylane_quantuminspire:load_cqasm',
-    'cqasm_file = pennylane_quantuminspire:load_cqasm_from_file',
+    # 'cqasm = pennylane_quantuminspire:load_cqasm',
+    # 'cqasm_file = pennylane_quantuminspire:load_cqasm_from_file',
 ]
 
 info = {
