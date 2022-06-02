@@ -49,6 +49,10 @@ class Spin2Device(QuantumInspireDevice):
 
     short_name = "quantuminspire.spin2"
 
-    def __init__(self, wires: Union[int, Iterable[int], Iterable[str]] = 2, shots: int = 1024,
-                 **kwargs: Dict[str, Any]):
+    def __init__(
+        self,
+        wires: Union[int, Iterable[int], Iterable[str]] = 2,
+        shots: int = 1024,
+        **kwargs: Dict[str, Any]
+    ):
         super().__init__(wires=wires, backend="Spin-2", shots=shots, **kwargs)

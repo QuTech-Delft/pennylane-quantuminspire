@@ -48,5 +48,10 @@ class QX34LDevice(QuantumInspireDevice):
 
     short_name = "quantuminspire.qx34l"
 
-    def __init__(self, wires: Union[int, Iterable[int], Iterable[str]], shots: int = 1024, **kwargs: Dict[str, Any]):
+    def __init__(
+        self,
+        wires: Union[int, Iterable[int], Iterable[str]],
+        shots: int = 1024,
+        **kwargs: Dict[str, Any]
+    ):
         super().__init__(wires=wires, backend="QX-34-L", shots=shots, **kwargs)

@@ -49,6 +49,10 @@ class Starmon5Device(QuantumInspireDevice):
 
     short_name = "quantuminspire.starmon5"
 
-    def __init__(self, wires: Union[int, Iterable[int], Iterable[str]] = 5, shots: int = 1024,
-                 **kwargs: Dict[str, Any]):
+    def __init__(
+        self,
+        wires: Union[int, Iterable[int], Iterable[str]] = 5,
+        shots: int = 1024,
+        **kwargs: Dict[str, Any]
+    ):
         super().__init__(wires=wires, backend="Starmon-5", shots=shots, **kwargs)

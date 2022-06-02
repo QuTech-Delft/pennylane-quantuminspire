@@ -82,8 +82,13 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
     #     "Such statistics obtained from this device are estimates based on samples."
     # )
 
-    def __init__(self, wires: Union[int, Iterable[int], Iterable[str]], backend: str = "QX single-node simulator",
-                 shots: int = 1024, **kwargs: Dict[str, Any]):
+    def __init__(
+        self,
+        wires: Union[int, Iterable[int], Iterable[str]],
+        backend: str = "QX single-node simulator",
+        shots: int = 1024,
+        **kwargs: Dict[str, Any],
+    ):
         # Connection to Quantum Inspire
         connect(kwargs)
 

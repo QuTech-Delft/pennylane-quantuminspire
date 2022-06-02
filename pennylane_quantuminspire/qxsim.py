@@ -48,5 +48,10 @@ class QXSimDevice(QuantumInspireDevice):
 
     short_name = "quantuminspire.qxsim"
 
-    def __init__(self, wires: Union[int, Iterable[int], Iterable[str]], shots: int = 1024, **kwargs: Dict[str, Any]):
+    def __init__(
+        self,
+        wires: Union[int, Iterable[int], Iterable[str]],
+        shots: int = 1024,
+        **kwargs: Dict[str, Any]
+    ):
         super().__init__(wires=wires, backend="QX single-node simulator", shots=shots, **kwargs)
