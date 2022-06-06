@@ -1,0 +1,12 @@
+[pytest]
+# look into python files to look for individual test functions
+python_files = *.py
+python_classes =
+python_functions = test_*
+addopts = --pyargs tests
+
+# exclude some directories from searching to save time
+norecursedirs = .svn _build tmp* .git docs untitled* deprecated* build dist .cache *.egg-info __pycache__
+
+# ignore deprecation warnings from external packages
+filterwarnings =
