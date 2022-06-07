@@ -49,7 +49,7 @@ converters_list = [
 ]
 
 info = {
-    'name': 'PennyLane-QuantumInspire',
+    'name': 'pennylane-quantuminspire',
     'version': version,
     'author': 'QuTech',
     'author_email': 'robert.wezeman@tno.nl',
