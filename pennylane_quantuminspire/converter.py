@@ -16,26 +16,30 @@
 
 """
 This module contains functions for converting QuantumInspire cQASM programs
-into PennyLane circuit templates.
+(via qasm) into PennyLane circuit templates.
 """
 from typing import Any
 from qiskit import QuantumCircuit
 from pennylane_qiskit import load
 
 
-def convert_cqasm_to_qasm(cqasm_string_or_file: str) -> Any:
+def convert_cqasm_to_qasm(cqasm_string: str) -> str:
+    """Converts a cQASM program to a OpenQASM 2.0 program.
+    Args:
+        cqasm_string: the cQASM string
+    Returns:
+        function: the OpenQASM 2.0 program as string
+    """
     raise NotImplementedError
 
 
 def load_cqasm(cqasm_string: str) -> Any:
     """Loads a PennyLane template from a cQASM string.
     Args:
-        cqasm_string (str): the name of the cQASM string
+        cqasm_string: the cQASM algorithm as a string
     Returns:
         function: the new PennyLane template
     """
-
-    # converts cqasm to qasm
     qasm_string = convert_cqasm_to_qasm(cqasm_string)
     return load(QuantumCircuit.from_qasm_str(qasm_string))
 
@@ -43,9 +47,12 @@ def load_cqasm(cqasm_string: str) -> Any:
 def load_cqasm_from_file(cqasm_file: str) -> Any:
     """Loads a PennyLane template from a cQASM file.
     Args:
-        cqasm_file (str): the name of the cQASM file
+        cqasm_file: the name of the cQASM file
     Returns:
         function: the new PennyLane template
     """
-    qasm_string = convert_cqasm_to_qasm(cqasm_file)
+    with open(cqasm_file, "r", encoding="utf-8") as fh:
+        cqasm_string = fh.read()
+
+    qasm_string = convert_cqasm_to_qasm(cqasm_string)
     return load(QuantumCircuit.from_qasm_str(qasm_string))

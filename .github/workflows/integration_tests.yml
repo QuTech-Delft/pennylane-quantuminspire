@@ -42,7 +42,7 @@ jobs:
 
       - name: Run tests
         # Only run QI and Runtime tests (skipped otherwise)
-        run: python -m pytest tests -k 'test_spin2.py or test_starmon5.py' --cov=pennylane_quantuminspire --cov-report=term-missing --cov-report=xml -p no:warnings --tb=native
+        run: python -m pytest tests --cov=pennylane_quantuminspire --cov-report=term-missing --cov-report=xml -p no:warnings --tb=native
         env:
           QI_TOKEN: ${{ secrets.QI_TOKEN }}
           API_URL: https://api.quantum-inspire.com

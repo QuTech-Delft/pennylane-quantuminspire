@@ -4,16 +4,85 @@ import pennylane as qml
 import qiskit.providers.aer.noise as noise
 
 from pennylane_quantuminspire.qi_device import backend_online
+from quantuminspire.exceptions import ApiError
+
+
+class TestDevice:
+    """Tests with use of pennylane test_device"""
+
+    def test_device(self):
+        """
+        Test Quantum Inspire device with 'QX single-node simulator' backend
+        Alternatively, the command line can be used: >pl-device-test --device quantuminspire.qi --shots 1024
+        """
+        pytest.skip("Skipping test, run it from command line to see results")
+
+        from pennylane.devices.tests import test_device
+        test_device("quantuminspire.qi", backend="QX single-node simulator", shots=1024)
+
+
+class TestDeviceConfiguration:
+    """Tests the device configuration compatibility"""
+
+    def test_not_existing_backend(self):
+        """
+        Test backend exists.
+        """
+        with pytest.raises(ApiError) as exc_info:
+            _ = qml.device("quantuminspire.qi", wires=2, backend="non_existing_backend")
+
+        assert str(exc_info.value) == 'Backend type with name non_existing_backend does not exist!'
+
+    def test_not_supported_number_of_wires(self):
+        """
+        Test wires.
+        """
+        with pytest.raises(ValueError) as exc_info:
+            _ = qml.device("quantuminspire.qi", wires=2, backend="Starmon-5")
+
+        assert str(exc_info.value) == 'Invalid number of wires: 2. Should be exactly 5'
+
+        with pytest.raises(ValueError) as exc_info:
+            _ = qml.device("quantuminspire.qi", wires=['q0'], backend="Spin-2")
+
+        assert str(exc_info.value) == 'Invalid number of wires: 1. Should be exactly 2'
+
+        with pytest.raises(ValueError) as exc_info:
+            _ = qml.device("quantuminspire.qi", wires=[], backend="QX single-node simulator")
+
+        assert str(exc_info.value) == 'Invalid number of wires: 0'
+
+        with pytest.raises(ValueError) as exc_info:
+            _ = qml.device("quantuminspire.qi", wires=58, backend="QX-34-L")
+
+        assert str(exc_info.value) == 'Invalid number of wires: 58'
+
+    def test_not_supported_number_of_shots(self):
+        """
+        Test shots.
+        """
+        with pytest.raises(ValueError) as exc_info:
+            _ = qml.device("quantuminspire.qi", wires=2, backend="QX single-node simulator", shots=10000)
+
+        assert str(exc_info.value) == 'Invalid number of shots: 10000'
+
+        with pytest.raises(ValueError) as exc_info:
+            _ = qml.device("quantuminspire.qi", wires=5, backend="QX-34-L", shots=0)
+
+        assert str(exc_info.value) == 'Invalid number of shots: 0'
+
+        # shots is None is accepted when creating the device (though not supported by the backends currently)
+        dev = qml.device("quantuminspire.qi", wires=5, backend="QX-34-L", shots=None)
 
 
 class TestProbabilities:
     """Tests for the probability function"""
 
-    def test_probability_no_results(self, hardware_backend):
+    def test_probability_no_results(self, simulator_backend):
         """
         Test that the probabilities function returns None if no job has yet been run.
         """
-        dev = qml.device("quantuminspire.qi", backend=hardware_backend, wires=1, shots=None)
+        dev = qml.device("quantuminspire.qi", backend=simulator_backend, wires=1, shots=None)
         if not backend_online(dev.backend):
             pytest.skip("Skipping test, backend not online")
 
@@ -26,13 +95,13 @@ class TestQuantumInspireBackendOptions:
     def test_backend_options_cleaned(self):
         """Test that the backend memory options is reset upon new qxsim device
         initialization."""
-        dev = qml.device("quantuminspire.qxsim", wires=2, memory=False)
+        dev = qml.device("quantuminspire.qi", wires=2, backend="QX single-node simulator", memory=False)
         if not backend_online(dev.backend):
             pytest.skip("Skipping test, backend not online")
 
         assert dev.backend.options.get("memory") is True
 
-        dev2 = qml.device("quantuminspire.qxsim", wires=2)
+        dev2 = qml.device("quantuminspire.qi", wires=2, backend="QX single-node simulator")
         if not backend_online(dev2.backend):
             pytest.skip("Skipping test, backend not online")
 
@@ -47,7 +116,7 @@ class TestQuantumInspireBackendOptions:
         noise_model.add_all_qubit_quantum_error(bit_flip, ["rx"])
 
         with pytest.raises(AttributeError) as exc_info:
-            _ = qml.device("quantuminspire.qxsim", wires=2, noise_model=noise_model)
+            _ = qml.device("quantuminspire.qi", wires=2, backend="QX single-node simulator", noise_model=noise_model)
 
         assert str(exc_info.value) == 'Options field noise_model is not valid for this backend'
 
@@ -60,7 +129,8 @@ class TestAnalyticWarningHWSimulator:
         hardware simulators when calculating the expectation"""
 
         with pytest.warns(UserWarning) as record:
-            dev = qml.device("quantuminspire.qi", backend=hardware_backend, wires=2, shots=None)
+            number_of_wires = 2 if hardware_backend == "Spin-2" else 5
+            dev = qml.device("quantuminspire.qi", backend=hardware_backend, wires=number_of_wires, shots=None)
 
         if not backend_online(dev.backend):
             pytest.skip("Skipping test, backend not online")
