@@ -9,8 +9,9 @@ class TestCircuit:
     """Test simple RY circuit"""
 
     dev = qml.device(
-        "quantuminspire.starmon5",
+        "quantuminspire.qi",
         wires=5,
+        backend="Starmon-5",
         shots=1024
     )
 
@@ -25,4 +26,4 @@ class TestCircuit:
 
         exact_outcome = np.array([np.cos(theta / 2) ** 2, 0, np.sin(theta / 2) ** 2, 0])
         probabilities = self.circuit(theta)
-        assert np.linalg.norm(probabilities - exact_outcome) <= 0.1
+        assert np.linalg.norm(probabilities - exact_outcome) <= 0.25

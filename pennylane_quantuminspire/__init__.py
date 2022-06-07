@@ -18,8 +18,4 @@
 
 from ._version import __version__
 from .qi_device import QuantumInspireDevice
-from .qxsim import QXSimDevice
-from .qx34l import QX34LDevice
-from .spin2 import Spin2Device
-from .starmon5 import Starmon5Device
 from .converter import load_cqasm, load_cqasm_from_file

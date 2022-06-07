@@ -8,11 +8,11 @@ PennyLane-QuantumInspire Plugin
 
 .. image:: https://img.shields.io/readthedocs/pennylane-quantuminspire.svg?logo=read-the-docs&style=flat-square
     :alt: Read the Docs
-    :target: https://pennylanequantuminspire.readthedocs.io
+    :target: https://pennylane-quantuminspire.readthedocs.io
 
 .. header-start-inclusion-marker-do-not-remove
 
-The PennyLane-QuantumInspire plugin integrates the QuantumInspire Quantum Computing backends
+The PennyLane-QuantumInspire plugin integrates the Quantum Inspire quantum computing backends
 with PennyLane's quantum machine learning capabilities.
 
 `PennyLane <https://pennylane.readthedocs.io/en/stable/>`_ is a cross-platform Python library for quantum machine
@@ -32,13 +32,13 @@ Features
 Grants access to Quantum Inspire's cloud quantum `emulators <https://www.quantum-inspire.com/kbase/emulator-backends/>`_
 and `hardware backends <https://www.quantum-inspire.com/kbase/hardware-backends/>`_.
 
-Emulators:
-* QX single-node simulator
-* QX-34-L [requires advanced account]
+Emulator backends:
+    * ``"QX single-node simulator"`` - Quantum Inspire emulator run on a commodity cloud-based server, with 4GB RAM. It has a fast turn-around time for simulations up to 26 qubits. For basic users, the commodity cloud-based server will be sufficient.
+    * ``"QX-34-L"`` - Quantum Inspire emulator runs on the Lisa cluster computer uses four nodes of the fat_soil_shared partition of Lisa. With 1.5TB of memory each, this allows simulation jobs of up to 34 qubits [**requires advanced account**].
 
-Hardware:
-* Spin-2
-* Starmon-5
+Hardware backends:
+    * ``"Spin-2"`` - Quantum Inspire quantum 2-qubit semiconductor electron spin processor.
+    * ``"Starmon-5"`` - Quantum Inspire quantum 5-qubit superconductor Transmon processor.
 
 .. installation-start-inclusion-marker-do-not-remove
 
@@ -109,23 +109,49 @@ To build the **readthedocs** documentation do:
 
 The documentation is then build in '``doc/_build/html``'.
 
+.. installation-end-inclusion-marker-do-not-remove
+.. getting-started-start-inclusion-marker-do-not-remove
+
 Getting started
 ===============
 
-Once the PennyLane-QuantumInspire plugin is installed, the provided Quantum Inspire devices can be accessed straight
+Once the PennyLane-QuantumInspire plugin is installed, the provided Quantum Inspire device can be accessed straight
 away in PennyLane.
 
-The Quantum Inspire device can be instantiated with a QX single-node simulator backend as follows:
+The Quantum Inspire device can be instantiated with a ``QX single-node simulator`` backend as follows:
 
 .. code-block:: python
 
     import pennylane as qml
-    dev = qml.device('quantuminspire.qidevice', wires=2, backend = "QX single-node simulator")
+    dev = qml.device('quantuminspire.qi', wires=2, backend='QX single-node simulator')
 
-This devices can then be used just like other devices for the definition and evaluation of QNodes within the
+This device can then be used just like other devices for the definition and evaluation of QNodes within the
 PennyLane framework.
 
-.. installation-end-inclusion-marker-do-not-remove
+Inspecting results of computations in Quantum Inspire
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When a computation has run on a Quantum Inspire backend the algorithm that was executed and the results can be
+inspected in `Quantum Inspire <https://www.quantum-inspire.com>`_.
+The executed algorithms for a Quantum Inspire device are all contained in a single Quantum Inspire project.
+After login an overview is given of the available projects. By opening your project the backend that computed the
+results is displayed. Navigating to ``Results`` show the computation results for each algorithm. Also the
+algorithms code can be inspected here.
+The project name that is used by the plugin can be passed as a separate argument called ``project`` to the Quantum
+Inspire device constructor. For example:
+
+.. code-block:: python
+
+    dev = qml.device('quantuminspire.qi', wires=4, project='My project name')
+
+When no project name is given the project name defaults to: ``'PennyLane project 2022-06-07 09:50:38'``, where the last
+parts of the project name are replaced by the current date and local time.
+More information about working with Quantum Inspire can be found at
+`Quantum Inspire Quick Guide <https://www.quantum-inspire.com/kbase/quick-guide/>`_. Specific information about
+managing projects can be found at
+`Managing your projects <https://www.quantum-inspire.com/kbase/managing-your-projects/>`_.
+
+.. getting-started-end-inclusion-marker-do-not-remove
 .. support-start-inclusion-marker-do-not-remove
 
 Support

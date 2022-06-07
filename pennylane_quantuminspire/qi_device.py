@@ -20,8 +20,8 @@ evaluation and differentiation of Quantum Inspire's Quantum Processing Units (QP
 """
 
 from abc import ABC
-import time
-from typing import Any, Dict, Iterable, Set, Union
+from time import localtime, strftime
+from typing import Any, Dict, Iterable, Set, Union, Optional
 
 from pennylane_qiskit.qiskit_device import QiskitDevice
 
@@ -46,9 +46,28 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
             or iterable that contains unique labels for the subsystems as numbers (i.e., ``[-1, 0, 2]``)
             or strings (``['ancilla', 'q1', 'q2']``). Note that for some backends, the number
             of wires has to match the number of qubits accessible.
-        backend (str): the desired backend, default is "QX single-node simulator"
+
+            The supported number of qubits for the Quantum Inspire backends are:
+            'QX single-node simulator': between 1 and 26.
+            'QX-34-L': between 1 and 34.
+            'Spin-2': fixed number of 2.
+            'Starmon-5': fixed number of 5.
+        backend (str): the desired backend. Can be one of:
+            'QX single-node simulator': A QuantumInspire QX single-node emulator backend.
+            'QX-34-L': A QuantumInspire QX emulator running on Lisa SurfSara backend.
+            'Spin-2': A QuantumInspire Spin-2 hardware backend
+            'Starmon-5': A QuantumInspire Starmon-5 hardware backend.
+
+            Default is 'QX single-node simulator'
         shots (int): number of circuit evaluations/random samples used to estimate expectation values and
-            variances of observables. The default number of shots is 1024 for Quantum Inspire backends.
+            variances of observables.
+            The maximum number of shots for the Quantum Inspire backends are:
+            'QX single-node simulator': 4096
+            'QX-34-L': 4096
+            'Spin-2': 4096
+            'Starmon-5': 16384
+
+            Default number of shots is 1024.
 
     Keyword Args:
         token (str): The Quantum Inspire API token. If not provided or stored earlier, the environment
@@ -90,8 +109,8 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
         **kwargs: Dict[str, Any],
     ):
         # Connection to Quantum Inspire
-        connect(kwargs)
-
+        self._connect(kwargs)
+        self._check_backend(backend, wires, shots)
         # Remove unsupported operations from base class
         unsupported_operations = []
         for operation in self.operations:
@@ -105,21 +124,57 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
         # Initialize base class
         super().__init__(wires=wires, provider=QI, backend=backend, shots=shots, **kwargs)
 
+    @staticmethod
+    def _check_backend(backend: str, wires: Union[int, Iterable[int], Iterable[str]], shots: Optional[int]) -> None:
+        """Check if the backend is valid and the wires and shots are valid
+        Args:
+            backend: the desired backend
+            wires: Number of subsystems represented by the device,
+                or iterable that contains unique labels for the subsystems as numbers (i.e., ``[-1, 0, 2]``)
+                or strings (``['ancilla', 'q1', 'q2']``). Note that for some backends, the number
+                of wires has to match the number of qubits accessible.
+            shots: number of circuit evaluations/random samples used to estimate expectation values and
+                variances of observables.
 
-def connect(kwargs: Dict[str, Any]) -> None:
-    """Function that allows connection to Quantum Inspire.
+        """
+        backend_type: Dict[str, Any] = QI.get_api().get_backend_type(backend)
 
-    Args:
-        kwargs(dict): dictionary that contains the Quantum Inspire access token and project name
-    """
-    token = kwargs.get("token", None) is not None or load_account()
-    project_name = kwargs.get("project", f"pennylane_project_{int(time.time())}")
+        if shots is not None and (shots < 1 or shots > backend_type["max_number_of_shots"]):
+            raise ValueError(f"Invalid number of shots: {shots}")
 
-    qi_authentication = get_token_authentication(token)
-    QI.set_authentication(qi_authentication, project_name=project_name)
+        if isinstance(wires, int):
+            number_of_wires = wires
+        else:
+            number_of_wires = len(wires)
+
+        if number_of_wires < 1 or number_of_wires > backend_type["number_of_qubits"]:
+            raise ValueError(f"Invalid number of wires: {number_of_wires}")
+
+        if backend_type["is_hardware_backend"] and number_of_wires != backend_type["number_of_qubits"]:
+            raise ValueError(
+                f"Invalid number of wires: {number_of_wires}. " f'Should be exactly {backend_type["number_of_qubits"]}'
+            )
+
+    @staticmethod
+    def _connect(kwargs: Dict[str, Any]) -> None:
+        """Function that allows connection to Quantum Inspire.
+
+        Args:
+            kwargs(dict): dictionary that contains the Quantum Inspire access token and project name
+        """
+        token = kwargs.get("token", None) is not None or load_account()
+        date_time = strftime("%Y-%m-%d %H:%M:%S", localtime())
+        project_name = kwargs.get("project", f"PennyLane project {date_time}")
+
+        qi_authentication = get_token_authentication(token)
+        QI.set_authentication(qi_authentication, project_name=project_name)
 
 
 def backend_online(backend: Backend) -> bool:
+    """Check if backend is online for running experiments
+    Args:
+        backend: backend to check for being online
+    """
     backend_type = QI.get_api().get_backend_type_by_name(backend.name())
     status = backend_type["status"]
     return bool(status != "OFFLINE")

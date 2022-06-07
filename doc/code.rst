@@ -9,7 +9,7 @@ This section contains the API documentation for the PennyLane-QuantumInspire plu
     to use these classes and functions directly.
 
     See the :doc:`overview </index>` page for more
-    details using the available QuantumInspire devices with PennyLane.
+    details using the available Quantum Inspire device  with PennyLane.
 
 .. currentmodule:: pennylane_quantuminspire
 

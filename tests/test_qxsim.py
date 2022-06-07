@@ -5,24 +5,13 @@ import pennylane as qml
 
 
 @pytest.mark.usefixtures("online")
-class TestDevice:
-    """Tests for the pennylane device"""
-
-    def test_device(self):
-        """
-        """
-
-        from pennylane.devices.tests import test_device
-        test_device("quantuminspire.qxsim", shots=1024)
-
-
-@pytest.mark.usefixtures("online")
 class TestCircuit:
     """Test simple RY circuit"""
 
     dev = qml.device(
-        "quantuminspire.qxsim",
+        "quantuminspire.qi",
         wires=2,
+        backend="QX single-node simulator",
         shots=1024
     )
 
@@ -39,6 +28,7 @@ class TestCircuit:
         probabilities = self.circuit(theta)
         assert np.linalg.norm(probabilities - exact_outcome) <= 0.08
 
+    @staticmethod
     @qml.qnode(dev)
     def circuitH():
         qml.Hadamard(wires=1)

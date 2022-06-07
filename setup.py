@@ -41,14 +41,9 @@ extra_requirements = {
 
 devices_list = [
     'quantuminspire.qi = pennylane_quantuminspire:QuantumInspireDevice',
-    'quantuminspire.qxsim = pennylane_quantuminspire:QXSimDevice',
-    'quantuminspire.qx34l = pennylane_quantuminspire:QX34LDevice',
-    'quantuminspire.spin2 = pennylane_quantuminspire:Spin2Device',
-    'quantuminspire.starmon5 = pennylane_quantuminspire:Starmon5Device',
 ]
 
-convertors_list = [
-    # 'quantuminspire = pennylane_quantuminspire:load',
+converters_list = [
     # 'cqasm = pennylane_quantuminspire:load_cqasm',
     # 'cqasm_file = pennylane_quantuminspire:load_cqasm_from_file',
 ]
@@ -67,9 +62,9 @@ info = {
     ],
     'entry_points': {
         'pennylane.plugins': devices_list,
-        'pennylane.io': convertors_list
+        'pennylane.io': converters_list
     },
-    'description': 'PennyLane plugin for Quantum Inspire',
+    'description': 'PennyLane Plugin for Quantum Inspire',
     'long_description': long_description,
     'long_description_content_type': 'text/markdown',
     'provides': ["pennylane_quantuminspire"],

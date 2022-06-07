@@ -9,8 +9,9 @@ class TestCircuit:
     """Test simple RY circuit"""
 
     dev = qml.device(
-        "quantuminspire.qx34l",
+        "quantuminspire.qi",
         wires=2,
+        backend="QX-34-L",
         shots=1024
     )
 
@@ -27,6 +28,7 @@ class TestCircuit:
         probabilities = self.circuit(theta)
         assert np.linalg.norm(probabilities - exact_outcome) <= 0.08
 
+    @staticmethod
     @qml.qnode(dev)
     def circuitH():
         qml.Hadamard(wires=1)

@@ -9,8 +9,9 @@ class TestCircuit:
     """Test simple RY circuit"""
 
     dev = qml.device(
-        "quantuminspire.spin2",
+        "quantuminspire.qi",
         wires=2,
+        backend="Spin-2",
         shots=1024
     )
 

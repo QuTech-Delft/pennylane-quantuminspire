@@ -7,6 +7,7 @@
 
    Overview <overview>
    installation
+   getting-started
    support
 
 .. toctree::
@@ -14,10 +15,10 @@
    :caption: Usage
    :hidden:
 
-   devices/qxsim
-   devices/qx34l
-   devices/spin2
-   devices/starmon5
+   backends/qxsim
+   backends/qx34l
+   backends/spin2
+   backends/starmon5
 
 .. toctree::
    :maxdepth: 1
