@@ -1,5 +1,3 @@
-quantuminspire
-pennylane
 qiskit
-numpy
-sympy
+quantuminspire
+pennylane-qiskit

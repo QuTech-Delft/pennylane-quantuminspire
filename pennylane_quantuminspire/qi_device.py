@@ -23,6 +23,7 @@ from abc import ABC
 from time import localtime, strftime
 from typing import Any, Dict, Iterable, Set, Union, Optional
 
+from pennylane.wires import Wires
 from pennylane_qiskit.qiskit_device import QiskitDevice
 
 from qiskit.providers.backend import BackendV1 as Backend
@@ -145,7 +146,7 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
         if isinstance(wires, int):
             number_of_wires = wires
         else:
-            number_of_wires = len(wires)
+            number_of_wires = len(Wires(wires))
 
         if number_of_wires < 1 or number_of_wires > backend_type["number_of_qubits"]:
             raise ValueError(f"Invalid number of wires: {number_of_wires}")

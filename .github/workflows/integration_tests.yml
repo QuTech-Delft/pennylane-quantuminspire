@@ -29,20 +29,20 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-ci.txt
-          pip install wheel mypy pytest pytest-cov pytest-mock flaky --upgrade
+          pip install wheel pytest pytest-cov pytest-mock flaky mypy --upgrade
 
       - name: Install Plugin
         run: |
           python setup.py bdist_wheel
-          pip install dist/PennyLane*.whl
+          pip install dist/pennylane_quantuminspire*.whl
 
       - name: Run Type Checking
         run: |
           mypy --strict --ignore-missing-imports -p pennylane_quantuminspire
 
       - name: Run tests
-        # Only run QI and Runtime tests (skipped otherwise)
-        run: python -m pytest tests --cov=pennylane_quantuminspire --cov-report=term-missing --cov-report=xml -p no:warnings --tb=native
+        # Only run hardware backend tests (skipped otherwise)
+        run: python -m pytest tests -k 'test_spin2.py or test_starmon5.py' --cov=pennylane_quantuminspire --cov-report=term-missing --cov-report=xml -p no:warnings --tb=native
         env:
           QI_TOKEN: ${{ secrets.QI_TOKEN }}
           API_URL: https://api.quantum-inspire.com
