@@ -65,7 +65,7 @@ class TestDeviceConfiguration:
         with pytest.raises(DeviceError) as exc_info:
             _ = qml.device("quantuminspire.qi", wires=2, backend="QX single-node simulator", shots=10000)
 
-        assert str(exc_info.value) == 'Invalid number of shots: 10000'
+        assert str(exc_info.value) == 'Invalid number of shots: 10000. Must be <= 4096'
 
         with pytest.raises(DeviceError) as exc_info:
             _ = qml.device("quantuminspire.qi", wires=5, backend="QX-34-L", shots=0)
