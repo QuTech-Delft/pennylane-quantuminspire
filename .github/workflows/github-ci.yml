@@ -44,7 +44,7 @@ jobs:
         # Skip hardware backend tests as these backends are not always available
         run: |
           echo "running mypy"
-          MYPYPATH=. mypy --strict --ignore-missing-imports -p quantuminspire
+          MYPYPATH=. mypy --strict --ignore-missing-imports -p pennylane_quantuminspire
           echo "running unit tests"
           python -m pytest tests -k 'not test_spin2.py and not test_starmon5.py and not test_converter.py' --cov=pennylane_quantuminspire --cov-report=term-missing --cov-report=xml -p no:warnings --tb=native
         env:

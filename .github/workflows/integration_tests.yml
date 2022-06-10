@@ -38,7 +38,7 @@ jobs:
 
       - name: Run Type Checking
         run: |
-          mypy --strict --ignore-missing-imports -p pennylane_quantuminspire
+          MYPYPATH=. mypy --strict --ignore-missing-imports -p pennylane_quantuminspire
 
       - name: Run tests
         # Only run hardware backend tests (skipped otherwise)
