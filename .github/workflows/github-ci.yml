@@ -89,6 +89,9 @@ jobs:
           pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=1024 --device-kwargs backend=QX-34-L
           pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=1024 --device-kwargs backend=Spin-2
           pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=1024 --device-kwargs backend=Starmon-5
+        env:
+          API_URL: https://api.quantum-inspire.com
+          QI_TOKEN: ${{ secrets.QI_TOKEN }}
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1

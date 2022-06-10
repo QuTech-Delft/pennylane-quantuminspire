@@ -3,6 +3,7 @@ import pytest
 import pennylane as qml
 import qiskit.providers.aer.noise as noise
 
+from pennylane import DeviceError
 from pennylane_quantuminspire.qi_device import backend_online
 from quantuminspire.exceptions import ApiError
 
@@ -37,22 +38,22 @@ class TestDeviceConfiguration:
         """
         Test wires.
         """
-        with pytest.raises(ValueError) as exc_info:
+        with pytest.raises(DeviceError) as exc_info:
             _ = qml.device("quantuminspire.qi", wires=2, backend="Starmon-5")
 
         assert str(exc_info.value) == 'Invalid number of wires: 2. Should be exactly 5'
 
-        with pytest.raises(ValueError) as exc_info:
+        with pytest.raises(DeviceError) as exc_info:
             _ = qml.device("quantuminspire.qi", wires=['q0'], backend="Spin-2")
 
         assert str(exc_info.value) == 'Invalid number of wires: 1. Should be exactly 2'
 
-        with pytest.raises(ValueError) as exc_info:
+        with pytest.raises(DeviceError) as exc_info:
             _ = qml.device("quantuminspire.qi", wires=[], backend="QX single-node simulator")
 
         assert str(exc_info.value) == 'Invalid number of wires: 0'
 
-        with pytest.raises(ValueError) as exc_info:
+        with pytest.raises(DeviceError) as exc_info:
             _ = qml.device("quantuminspire.qi", wires=58, backend="QX-34-L")
 
         assert str(exc_info.value) == 'Invalid number of wires: 58'
@@ -61,15 +62,15 @@ class TestDeviceConfiguration:
         """
         Test shots.
         """
-        with pytest.raises(ValueError) as exc_info:
+        with pytest.raises(DeviceError) as exc_info:
             _ = qml.device("quantuminspire.qi", wires=2, backend="QX single-node simulator", shots=10000)
 
         assert str(exc_info.value) == 'Invalid number of shots: 10000'
 
-        with pytest.raises(ValueError) as exc_info:
+        with pytest.raises(DeviceError) as exc_info:
             _ = qml.device("quantuminspire.qi", wires=5, backend="QX-34-L", shots=0)
 
-        assert str(exc_info.value) == 'Invalid number of shots: 0'
+        assert str(exc_info.value) == 'The specified number of shots needs to be > 0'
 
         # shots is None is accepted when creating the device (though not supported by the backends currently)
         dev = qml.device("quantuminspire.qi", wires=5, backend="QX-34-L", shots=None)
