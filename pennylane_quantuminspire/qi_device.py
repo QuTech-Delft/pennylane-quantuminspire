@@ -92,16 +92,6 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
         "supports_tracker": False,
         "returns_state": False,
     }
-    # _operation_map = {**QISKIT_OPERATION_MAP, **QISKIT_OPERATION_INVERSES_MAP}
-    #
-    # operations = set(_operation_map.keys())
-    # observables = {"PauliX", "PauliY", "PauliZ", "Identity", "Hadamard", "Hermitian", "Projector"}
-    #
-    # hw_analytic_warning_message = (
-    #     "The analytic calculation of expectations, variances and "
-    #     "probabilities is only supported on statevector backends, not on the {}. "
-    #     "Such statistics obtained from this device are estimates based on samples."
-    # )
 
     def __init__(
         self,
@@ -113,7 +103,8 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
         # Connection to Quantum Inspire
         self._connect(kwargs)
         self._check_backend(backend, wires, shots)
-        # Remove unsupported operations from base class
+
+        # Remove unsupported operations from operations in base class
         unsupported_operations = []
         for operation in self.operations:
             if "QubitStateVector" in operation:
@@ -123,7 +114,7 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
             self.operations.remove(unsupported_operation)
             del self._operation_map[unsupported_operation]
 
-        # Initialize base class
+        # Initialize base class QiskitDevice
         super().__init__(wires=wires, provider=QI, backend=backend, shots=shots, **kwargs)
 
     @staticmethod
@@ -138,6 +129,8 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
             shots: number of circuit evaluations/random samples used to estimate expectation values and
                 variances of observables.
 
+        Raises:
+            DeviceError: When one of the parameters (shots or wires) has a value that is not supported by the backend
         """
         backend_type: Dict[str, Any] = QI.get_api().get_backend_type(backend)
 
@@ -168,7 +161,7 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
         """Function that allows connection to Quantum Inspire.
 
         Args:
-            kwargs(dict): dictionary that contains the Quantum Inspire access token and project name
+            kwargs: dictionary that contains the Quantum Inspire access token and project name
         """
         token = kwargs.get("token", None) is not None or load_account()
         date_time = strftime("%Y-%m-%d %H:%M:%S", localtime())
@@ -182,6 +175,9 @@ def backend_online(backend: Backend) -> bool:
     """Check if backend is online for running experiments
     Args:
         backend: backend to check for being online
+
+    Returns:
+        False when the backend status is OFFLINE, otherwise True
     """
     backend_type = QI.get_api().get_backend_type_by_name(backend.name())
     status = backend_type["status"]
