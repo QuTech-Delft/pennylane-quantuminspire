@@ -23,6 +23,8 @@ from abc import ABC
 from time import localtime, strftime
 from typing import Any, Dict, Iterable, Set, Union, Optional
 
+from pennylane import DeviceError
+from pennylane.wires import Wires
 from pennylane_qiskit.qiskit_device import QiskitDevice
 
 from qiskit.providers.backend import BackendV1 as Backend
@@ -139,19 +141,25 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
         """
         backend_type: Dict[str, Any] = QI.get_api().get_backend_type(backend)
 
+        if shots is not None:
+            if shots < 1:
+                raise DeviceError("The specified number of shots needs to be > 0")
+            elif shots > backend_type["max_number_of_shots"]:
+                raise DeviceError(f'Invalid number of shots: {shots}. Must be <= {backend_type["max_number_of_shots"]}')
+
         if shots is not None and (shots < 1 or shots > backend_type["max_number_of_shots"]):
-            raise ValueError(f"Invalid number of shots: {shots}")
+            raise DeviceError(f"Invalid number of shots: {shots}")
 
         if isinstance(wires, int):
             number_of_wires = wires
         else:
-            number_of_wires = len(wires)
+            number_of_wires = len(Wires(wires))
 
         if number_of_wires < 1 or number_of_wires > backend_type["number_of_qubits"]:
-            raise ValueError(f"Invalid number of wires: {number_of_wires}")
+            raise DeviceError(f"Invalid number of wires: {number_of_wires}")
 
         if backend_type["is_hardware_backend"] and number_of_wires != backend_type["number_of_qubits"]:
-            raise ValueError(
+            raise DeviceError(
                 f"Invalid number of wires: {number_of_wires}. " f'Should be exactly {backend_type["number_of_qubits"]}'
             )
 
