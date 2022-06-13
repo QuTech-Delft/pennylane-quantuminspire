@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
-      max-parallel: 2
+      max-parallel: 1
       matrix:
         python-version: [3.7, 3.8, 3.9, "3.10"]
 
@@ -41,54 +41,12 @@ jobs:
           pip install dist/pennylane*.whl
 
       - name: Run Tests
-        # Skip hardware backend tests as these backends are not always available
+        # Skip hardware backend tests as these backends are not always available, skip not implemented converter tests
         run: |
           echo "running mypy"
           MYPYPATH=. mypy --strict --ignore-missing-imports -p pennylane_quantuminspire
           echo "running unit tests"
           python -m pytest tests -k 'not test_spin2.py and not test_starmon5.py and not test_converter.py' --cov=pennylane_quantuminspire --cov-report=term-missing --cov-report=xml -p no:warnings --tb=native
-        env:
-          API_URL: https://api.quantum-inspire.com
-          QI_TOKEN: ${{ secrets.QI_TOKEN }}
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          file: ./coverage.xml
-
-  device-tests:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.4.1
-        with:
-          access_token: ${{ github.token }}
-
-      - uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements-ci.txt
-          pip install wheel pytest pytest-cov pytest-mock flaky --upgrade
-
-      - name: Install Plugin
-        run: |
-          python setup.py bdist_wheel
-          pip install dist/pennylane*.whl
-
-      - name: Run tests
-        # pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=4096 --device-kwargs backend=QX-34-L
-        # pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=4096 --device-kwargs backend=Spin-2
-        # pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=4096 --device-kwargs backend=Starmon-5
-        run: |
-          pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=4096 --device-kwargs backend='QX single-node simulator'
         env:
           API_URL: https://api.quantum-inspire.com
           QI_TOKEN: ${{ secrets.QI_TOKEN }}
