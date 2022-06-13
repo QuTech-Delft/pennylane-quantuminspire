@@ -63,7 +63,7 @@ info = {
     },
     'description': 'PennyLane Plugin for Quantum Inspire',
     'long_description': long_description,
-    'long_description_content_type': 'text/markdown',
+    'long_description_content_type': 'text/x-rst',
     'provides': ["pennylane_quantuminspire"],
     'install_requires': requirements,
     'extras_require': extra_requirements,
