@@ -18,6 +18,11 @@ jobs:
         python-version: [3.7, 3.8, 3.9, "3.10"]
 
     steps:
+      - name: {Print some vars}
+        run: |
+          echo "github.base_ref: <"
+          echo github.base_ref
+          echo ">"
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.4.1
         with:
@@ -47,6 +52,8 @@ jobs:
           MYPYPATH=. mypy --strict --ignore-missing-imports -p pennylane_quantuminspire
           echo "running unit tests"
           python -m pytest tests -k 'not test_spin2.py and not test_starmon5.py and not test_converter.py' --cov=pennylane_quantuminspire --cov-report=term-missing --cov-report=xml -p no:warnings --tb=native
+        # github.base_ref only set when it is a pull request, but then secrets are not reachable, so only test when no pull request
+        if: github.base_ref == ''
         env:
           API_URL: https://api.quantum-inspire.com
           QI_TOKEN: ${{ secrets.QI_TOKEN }}
