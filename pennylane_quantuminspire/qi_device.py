@@ -140,9 +140,6 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
             elif shots > backend_type["max_number_of_shots"]:
                 raise DeviceError(f'Invalid number of shots: {shots}. Must be <= {backend_type["max_number_of_shots"]}')
 
-        if shots is not None and (shots < 1 or shots > backend_type["max_number_of_shots"]):
-            raise DeviceError(f"Invalid number of shots: {shots}")
-
         if isinstance(wires, int):
             number_of_wires = wires
         else:
