@@ -86,9 +86,6 @@ jobs:
           pip install dist/pennylane*.whl
 
       - name: Run tests
-        # pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=4096 --device-kwargs backend=QX-34-L
-        # pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=4096 --device-kwargs backend=Spin-2
-        # pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=4096 --device-kwargs backend=Starmon-5
         run: |
           pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=4096 --device-kwargs backend='QX single-node simulator'
         env:
