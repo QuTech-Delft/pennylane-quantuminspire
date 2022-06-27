@@ -1,14 +1,13 @@
 import pytest
+from unittest import TestCase
 
 import pennylane as qml
 import qiskit.providers.aer.noise as noise
 
-from pennylane import DeviceError
 from pennylane_quantuminspire.qi_device import backend_online
-from quantuminspire.exceptions import ApiError
 
 
-class TestDevice:
+class TestDevice(TestCase):
     """Tests with use of pennylane test_device"""
 
     def test_device(self):
@@ -20,60 +19,6 @@ class TestDevice:
 
         from pennylane.devices.tests import test_device
         test_device("quantuminspire.qi", backend="QX single-node simulator", shots=1024)
-
-
-class TestDeviceConfiguration:
-    """Tests the device configuration compatibility"""
-
-    def test_not_existing_backend(self):
-        """
-        Test backend exists.
-        """
-        with pytest.raises(ApiError) as exc_info:
-            _ = qml.device("quantuminspire.qi", wires=2, backend="non_existing_backend")
-
-        assert str(exc_info.value) == 'Backend type with name non_existing_backend does not exist!'
-
-    def test_not_supported_number_of_wires(self):
-        """
-        Test wires.
-        """
-        with pytest.raises(DeviceError) as exc_info:
-            _ = qml.device("quantuminspire.qi", wires=2, backend="Starmon-5")
-
-        assert str(exc_info.value) == 'Invalid number of wires: 2. Should be exactly 5'
-
-        with pytest.raises(DeviceError) as exc_info:
-            _ = qml.device("quantuminspire.qi", wires=['q0'], backend="Spin-2")
-
-        assert str(exc_info.value) == 'Invalid number of wires: 1. Should be exactly 2'
-
-        with pytest.raises(DeviceError) as exc_info:
-            _ = qml.device("quantuminspire.qi", wires=[], backend="QX single-node simulator")
-
-        assert str(exc_info.value) == 'Invalid number of wires: 0'
-
-        with pytest.raises(DeviceError) as exc_info:
-            _ = qml.device("quantuminspire.qi", wires=58, backend="QX-34-L")
-
-        assert str(exc_info.value) == 'Invalid number of wires: 58'
-
-    def test_not_supported_number_of_shots(self):
-        """
-        Test shots.
-        """
-        with pytest.raises(DeviceError) as exc_info:
-            _ = qml.device("quantuminspire.qi", wires=2, backend="QX single-node simulator", shots=10000)
-
-        assert str(exc_info.value) == 'Invalid number of shots: 10000. Must be <= 4096'
-
-        with pytest.raises(DeviceError) as exc_info:
-            _ = qml.device("quantuminspire.qi", wires=5, backend="QX-34-L", shots=0)
-
-        assert str(exc_info.value) == 'The specified number of shots needs to be > 0'
-
-        # shots is None is accepted when creating the device (though not supported by the backends currently)
-        dev = qml.device("quantuminspire.qi", wires=5, backend="QX-34-L", shots=None)
 
 
 class TestProbabilities:
@@ -90,7 +35,7 @@ class TestProbabilities:
         assert dev.analytic_probability(wires=1) is None
 
 
-class TestQuantumInspireBackendOptions:
+class TestQuantumInspireBackendOptions(TestCase):
     """Test the backend options of QuantumInspire backends."""
 
     def test_backend_options_cleaned(self):
@@ -122,7 +67,7 @@ class TestQuantumInspireBackendOptions:
         assert str(exc_info.value) == 'Options field noise_model is not valid for this backend'
 
 
-class TestAnalyticWarningHWSimulator:
+class TestAnalyticWarningHWSimulator(TestCase):
     """Tests the warnings for when the analytic attribute of a device is set to true"""
 
     def test_warning_raised_for_hardware_backend_analytic_expval(self, hardware_backend, recorder):
