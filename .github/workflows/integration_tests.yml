@@ -1,11 +1,11 @@
-name: Quantum Inspire hardware integration tests
+name: Quantum Inspire integration tests
 on:
   schedule:
     - cron: '0 0 * * 0,4' # At 00:00 on Sunday and Thursday.
   workflow_dispatch:
 
 jobs:
-  hw-integration-tests:
+  integration-tests:
     runs-on: ubuntu-latest
 
     strategy:
@@ -40,9 +40,20 @@ jobs:
         run: |
           MYPYPATH=. mypy --strict --ignore-missing-imports -p pennylane_quantuminspire
 
-      - name: Run tests
-        # Only run hardware backend tests (skipped otherwise)
+      - name: Run QI-device tests
+        run: python -m pytest tests -k 'test_qi_device.py' --cov=pennylane_quantuminspire --cov-report=term-missing --cov-report=xml -p no:warnings --tb=native
+        env:
+          QI_TOKEN: ${{ secrets.QI_TOKEN }}
+          API_URL: https://api.quantum-inspire.com
+
+      - name: Run hardware backends tests
         run: python -m pytest tests -k 'test_spin2.py or test_starmon5.py' --cov=pennylane_quantuminspire --cov-report=term-missing --cov-report=xml -p no:warnings --tb=native
+        env:
+          QI_TOKEN: ${{ secrets.QI_TOKEN }}
+          API_URL: https://api.quantum-inspire.com
+
+      - name: Run simulator backends tests
+        run: python -m pytest tests -k 'test_qxsim.py or test_qx34l.py' --cov=pennylane_quantuminspire --cov-report=term-missing --cov-report=xml -p no:warnings --tb=native
         env:
           QI_TOKEN: ${{ secrets.QI_TOKEN }}
           API_URL: https://api.quantum-inspire.com
@@ -75,9 +86,6 @@ jobs:
           pip install dist/pennylane*.whl
 
       - name: Run tests
-        # pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=4096 --device-kwargs backend=QX-34-L
-        # pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=4096 --device-kwargs backend=Spin-2
-        # pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=4096 --device-kwargs backend=Starmon-5
         run: |
           pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=4096 --device-kwargs backend='QX single-node simulator'
         env:
