@@ -67,7 +67,7 @@ class TestQuantumInspireBackendOptions(TestCase):
         assert str(exc_info.value) == 'Options field noise_model is not valid for this backend'
 
 
-class TestAnalyticWarningHWSimulator(TestCase):
+class TestAnalyticWarningHWSimulator:
     """Tests the warnings for when the analytic attribute of a device is set to true"""
 
     def test_warning_raised_for_hardware_backend_analytic_expval(self, hardware_backend, recorder):
