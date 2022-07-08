@@ -81,7 +81,7 @@ A token can be set using the following steps:
     from quantuminspire.credentials import save_account
     save_account('YOUR_API_TOKEN')
 
-After calling save_account(), your credentials will be stored on disk.
+After calling ``save_account()``, your credentials will be stored on disk.
 Those who do not want to save their credentials to disk should use instead:
 
 .. code-block:: python

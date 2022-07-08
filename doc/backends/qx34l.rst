@@ -15,3 +15,4 @@ nodes of the fat_soil_shared partition of Lisa. With 1.5TB of memory each, this 
 
     * Waiting time: minutes to hours
     * Maximum number of qubits: 34
+    * Requires an advanced Quantum Inspire account
