@@ -7,7 +7,7 @@ PennyLane-QuantumInspire Plugin
   :start-after:	header-start-inclusion-marker-do-not-remove
   :end-before: header-end-inclusion-marker-do-not-remove
 
-Once the PennyLane-QuantumInspire plugin is installed and you have an API key, the Quantum Inspire device
+Once the PennyLane-QuantumInspire plugin is installed and you have set up an API key for the Quantum Inspire platform, the Quantum Inspire device
 can be accessed straightaway in PennyLane, without the need to import new packages.
 
 Backends
