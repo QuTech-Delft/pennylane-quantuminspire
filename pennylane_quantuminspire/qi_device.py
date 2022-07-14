@@ -20,19 +20,20 @@ evaluation and differentiation of Quantum Inspire's Quantum Processing Units (QP
 """
 
 from abc import ABC
+import logging
 from time import localtime, strftime
 from typing import Any, Dict, Iterable, Set, Union, Optional
 
 from pennylane import DeviceError
 from pennylane.wires import Wires
 from pennylane_qiskit.qiskit_device import QiskitDevice
-
 from qiskit.providers.backend import BackendV1 as Backend
-
 from quantuminspire.credentials import load_account, get_token_authentication
 from quantuminspire.qiskit import QI
 
 from ._version import __version__
+
+logger = logging.getLogger(__name__)
 
 
 class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
@@ -151,6 +152,13 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
         if backend_type["is_hardware_backend"] and number_of_wires != backend_type["number_of_qubits"]:
             raise DeviceError(
                 f"Invalid number of wires: {number_of_wires}. " f'Should be exactly {backend_type["number_of_qubits"]}'
+            )
+        if backend_type["status"] == "OFFLINE":
+            logger.warning(
+                "The backend you selected is currently offline. Your program will be queued until the "
+                "backend becomes available again. As a consequence a longer execution time applies. "
+                "You may check the website of Quantum Inspire to find information about longer downtimes. "
+                "Sorry for the inconvenience."
             )
 
     @staticmethod
