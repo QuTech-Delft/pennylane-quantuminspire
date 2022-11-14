@@ -2,7 +2,7 @@ docutils==0.19
 ipykernel==6.16.1
 jinja2==3.1.2
 mthree==1.1.0
-nbsphinx==0.8.9
+nbsphinx==0.8.10
 git+https://github.com/XanaduAI/pennylane.git#egg=pennylane
 pennylane-qiskit==0.24.0
 pybind11==2.10.1
