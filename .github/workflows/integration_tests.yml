@@ -87,7 +87,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pl-device-test --device=quantuminspire.qi --tb=short --skip-ops --shots=4096 --device-kwargs backend='QX single-node simulator'
+          python -m pytest tests -k 'test_pl_device_test.py' -p no:warnings
         env:
           API_URL: https://api.quantum-inspire.com
           QI_TOKEN: ${{ secrets.QI_TOKEN }}
