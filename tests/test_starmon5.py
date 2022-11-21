@@ -22,8 +22,10 @@ class TestCircuit:
 
     @pytest.mark.parametrize("theta", [0.512, 0.124, 1.23, 1.534, 0.662, 0])
     def test_circuit(self, theta):
-        """ Test if the circuit runs. Correctness of the result depends on the hardware used """
+        """
+        Test if the circuit runs. Correctness of the result depends on the hardware used
 
         exact_outcome = np.array([np.cos(theta / 2) ** 2, 0, np.sin(theta / 2) ** 2, 0])
-        probabilities = self.circuit(theta)
-        assert(isinstance(np.linalg.norm(probabilities - exact_outcome), float))
+        np.linalg.norm(self.circuit(theta) - exact_outcome) should be small
+        """
+        assert isinstance(self.circuit(theta), (float, np.ndarray))
