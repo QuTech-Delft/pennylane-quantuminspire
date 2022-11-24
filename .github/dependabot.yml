@@ -13,3 +13,9 @@ updates:
       - dependency-type: "all"
     assignees:
       - "QFer"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "QFer"
