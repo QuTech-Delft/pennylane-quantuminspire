@@ -51,7 +51,7 @@ Hardware backends:
 Installation
 ============
 
-This plugin requires Python version 3.7 and above, as well as PennyLane-Qiskit. Installation of the dependencies can
+This plugin requires Python version 3.8 and above, as well as PennyLane-Qiskit. Installation of the dependencies can
 be done using ``pip``:
 
 .. code-block:: bash
