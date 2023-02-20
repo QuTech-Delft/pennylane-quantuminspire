@@ -31,7 +31,7 @@ requirements = [
 
 extra_requirements = {
     'dev': ['pytest>=3.3.1', 'pytest-cov', 'pytest-mock', 'pylint', 'mypy>=0.670', 'black'],
-    'rtd': ['docutils==0.19', 'ipykernel==6.21.1', 'jinja2==3.1.2', 'mthree==2.0.0', 'nbsphinx==0.8.12',
+    'rtd': ['docutils==0.19', 'ipykernel==6.21.2', 'jinja2==3.1.2', 'mthree==2.0.0', 'nbsphinx==0.8.12',
             'pybind11==2.10.3', 'pygments==2.14.0', 'pygments-github-lexers==0.0.5', 'sphinxcontrib-bibtex==2.5.0',
             'sphinx-automodapi==0.14.1', 'xanadu-sphinx-theme==0.3.6'],
 }
