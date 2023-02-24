@@ -37,7 +37,8 @@ logger = logging.getLogger(__name__)
 
 
 class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
-    """A PennyLane device for the QuantumInspire API (remote) backend.
+    """
+    A PennyLane device for the QuantumInspire API (remote) backend.
 
     For more details, see the `Quantum Inspire documentation <https://github.com/QuTech-Delft/quantuminspire>`_
 
@@ -103,7 +104,9 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
     ):
         # Connection to Quantum Inspire
         self._connect(kwargs)
-        self._check_backend(backend, wires, shots)
+        backend_type: Dict[str, Any] = QI.get_api().get_backend_type(backend)
+        wires = self._adjust_wires(backend_type, wires)
+        self._check_backend(backend_type, wires, shots)
 
         # Remove unsupported operations from operations in base class
         unsupported_operations = []
@@ -119,22 +122,54 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
         super().__init__(wires=wires, provider=QI, backend=backend, shots=shots, **kwargs)
 
     @staticmethod
-    def _check_backend(backend: str, wires: Union[int, Iterable[int], Iterable[str]], shots: Optional[int]) -> None:
-        """Check if the backend is valid and the wires and shots are valid
+    def _adjust_wires(
+        backend_type: Dict[str, Any], wires: Union[int, Iterable[int], Iterable[str]]
+    ) -> Union[int, Iterable[int], Iterable[str]]:
+        """
+        For some backends, the number of wires has to match the number of qubits accessible. Here we add dummy wires
+        when the numbers do not match.
+
         Args:
-            backend: the desired backend
+            backend_type: the backend (type) information.
             wires: Number of subsystems represented by the device,
                 or iterable that contains unique labels for the subsystems as numbers (i.e., ``[-1, 0, 2]``)
-                or strings (``['ancilla', 'q1', 'q2']``). Note that for some backends, the number
-                of wires has to match the number of qubits accessible.
+                or strings (``['ancilla', 'q1', 'q2']``).
+
+        Returns:
+            wires: adjusted for the hardware backend when the number of wires has to match the number of qubits
+            accessible.
+        """
+        backend_number_of_qubits = backend_type["number_of_qubits"]
+        if backend_type["is_hardware_backend"]:
+            if isinstance(wires, int):
+                all_wires = Wires(range(wires))
+            else:
+                all_wires = Wires(wires)
+
+            if len(all_wires) < backend_number_of_qubits:
+                dummy_wires = Wires([f"_dummy-wire-{i}" for i in range(backend_number_of_qubits - len(all_wires))])
+                wires = Wires.all_wires([all_wires, dummy_wires])
+
+        return wires
+
+    @staticmethod
+    def _check_backend(
+        backend_type: Dict[str, Any], wires: Union[int, Iterable[int], Iterable[str]], shots: Optional[int]
+    ) -> None:
+        """
+        Check if the backend is valid and the wires and shots are valid.
+
+        Args:
+            backend_type: the backend (type) information.
+            wires: Number of subsystems represented by the device,
+                or iterable that contains unique labels for the subsystems as numbers (i.e., ``[-1, 0, 2]``)
+                or strings (``['ancilla', 'q1', 'q2']``).
             shots: number of circuit evaluations/random samples used to estimate expectation values and
                 variances of observables.
 
         Raises:
-            DeviceError: When one of the parameters (shots or wires) has a value that is not supported by the backend
+            DeviceError: When one of the parameters (shots or wires) has a value that is not supported by the backend.
         """
-        backend_type: Dict[str, Any] = QI.get_api().get_backend_type(backend)
-
         if shots is not None:
             if shots < 1:
                 raise DeviceError("The specified number of shots needs to be > 0")
@@ -163,10 +198,11 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
 
     @staticmethod
     def _connect(kwargs: Dict[str, Any]) -> None:
-        """Function that allows connection to Quantum Inspire.
+        """
+        Function that allows connection to Quantum Inspire.
 
         Args:
-            kwargs: dictionary that contains the Quantum Inspire access token and project name
+            kwargs: dictionary that contains the Quantum Inspire access token and project name.
         """
         token = kwargs.get("token", None) is not None or load_account()
         date_time = strftime("%Y-%m-%d %H:%M:%S", localtime())
@@ -177,12 +213,14 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
 
 
 def backend_online(backend: Backend) -> bool:
-    """Check if backend is online for running experiments
+    """
+    Check if backend is online for running experiments.
+
     Args:
-        backend: backend to check for being online
+        backend: backend to check for being online.
 
     Returns:
-        False when the backend status is OFFLINE, otherwise True
+        False when the backend status is OFFLINE, otherwise True.
     """
     backend_type = QI.get_api().get_backend_type_by_name(backend.name())
     status = backend_type["status"]
