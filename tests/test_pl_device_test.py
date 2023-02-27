@@ -2,8 +2,8 @@ import pytest
 from unittest import TestCase
 
 import pennylane as qml
-
 from pennylane_quantuminspire.qi_device import backend_online
+
 
 @pytest.mark.usefixtures("online")
 class TestPennyLaneDeviceTest(TestCase):

@@ -2,6 +2,7 @@ import numpy as np
 import pytest
 
 import pennylane as qml
+from pennylane import DeviceError
 
 
 @pytest.mark.usefixtures("online")
@@ -29,3 +30,49 @@ class TestCircuit:
         np.linalg.norm(self.circuit(theta) - exact_outcome) should be small
         """
         assert isinstance(self.circuit(theta), (float, np.ndarray))
+
+
+@pytest.mark.usefixtures("online")
+class TestNumberOfWires:
+    """Test provided wires."""
+
+    dev = qml.device(
+        "quantuminspire.qi",
+        wires=5,
+        backend="Starmon-5"
+    )
+
+    @pytest.mark.parametrize("wires", [1, 2, 5, [0, 1, 2], [0, 1, 2, 3, 4]])
+    def test_valid_wires(self, wires):
+        """Test valid input wires"""
+        dev = qml.device(
+            "quantuminspire.qi", wires=wires, backend="Starmon-5", shots=1024
+        )
+
+        @qml.qnode(dev)
+        def circuit():
+            """
+            Test if the circuit runs. Correctness of the result depends on the hardware used.
+            """
+            qml.RY(0.512, wires=0)
+            return qml.probs(wires=[0])
+
+        assert isinstance(circuit(), (float, np.ndarray))
+
+    @pytest.mark.parametrize("wires", [0, []])
+    def test_zero_wires(self, wires):
+        """Test empty input wires"""
+        expected_message = "Invalid number of wires: 0"
+        with pytest.raises(DeviceError, match=expected_message):
+            qml.device(
+                "quantuminspire.qi", wires=wires, backend="Starmon-5", shots=1024
+            )
+
+    @pytest.mark.parametrize("wires", [6, [0, 1, 2, 3, 4, 5]])
+    def test_too_many_wires(self, wires):
+        """Test too many input wires"""
+        expected_message = f"Invalid number of wires: 6"
+        with pytest.raises(DeviceError, match=expected_message):
+            qml.device(
+                "quantuminspire.qi", wires=wires, backend="Starmon-5", shots=1024
+            )

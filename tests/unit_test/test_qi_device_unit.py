@@ -7,8 +7,7 @@ from unittest.mock import MagicMock, patch
 
 import pennylane as qml
 from pennylane import DeviceError
-from quantuminspire.exceptions import ApiError
-
+from quantuminspire.exceptions import ApiError, QiskitBackendError
 from pennylane_quantuminspire.qi_device import backend_online, QI
 
 
@@ -71,20 +70,20 @@ class TestDeviceConfiguration(TestCase):
 
         assert str(exc_info.value) == 'Backend type with name non_existing_backend does not exist!'
 
+    def test_number_of_wires_less_than_number_of_qubits_hardware_backends_succeed(self, *args):
+        """
+        Test that number of wires < number of qubits of hardware backends is supported.
+        """
+        with patch('pennylane_quantuminspire.qi_device.QiskitDevice.__init__'):
+            _ = qml.device("quantuminspire.qi", wires=2, backend="Starmon-5")
+
+        with patch('pennylane_quantuminspire.qi_device.QiskitDevice.__init__'):
+            _ = qml.device("quantuminspire.qi", wires=['q0'], backend="Spin-2")
+
     def test_not_supported_number_of_wires(self, *args):
         """
         Test wires.
         """
-        with pytest.raises(DeviceError) as exc_info:
-            _ = qml.device("quantuminspire.qi", wires=2, backend="Starmon-5")
-
-        assert str(exc_info.value) == 'Invalid number of wires: 2. Should be exactly 5'
-
-        with pytest.raises(DeviceError) as exc_info:
-            _ = qml.device("quantuminspire.qi", wires=['q0'], backend="Spin-2")
-
-        assert str(exc_info.value) == 'Invalid number of wires: 1. Should be exactly 2'
-
         with pytest.raises(DeviceError) as exc_info:
             _ = qml.device("quantuminspire.qi", wires=[], backend="QX single-node simulator")
 
@@ -110,7 +109,7 @@ class TestDeviceConfiguration(TestCase):
         assert str(exc_info.value) == 'The specified number of shots needs to be > 0'
 
         with patch('pennylane_quantuminspire.qi_device.QiskitDevice.__init__'):
-            # shots is None is accepted when creating the device (though not supported by the backends currently)
+            # shots=None is accepted when creating the device (though not supported by the backends currently)
             _ = qml.device("quantuminspire.qi", wires=5, backend="QX-34-L", shots=None)
 
     def test_backend_online(self, *args):
