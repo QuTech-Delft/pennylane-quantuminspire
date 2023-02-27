@@ -178,7 +178,7 @@ Inspire device constructor. For example:
 
     dev = qml.device('quantuminspire.qi', wires=4, project='My project name')
 
-When no project name is given the project name defaults to: ``'PennyLane project 2022-06-07 09:50:38'``, where the last
+When no project name is given the project name defaults to: ``'PennyLane project 2023-02-27 16:32:38'``, where the last
 parts of the project name are replaced by the current date and local time.
 More information about working with Quantum Inspire can be found at
 `Quantum Inspire Quick Guide <https://www.quantum-inspire.com/kbase/quick-guide/>`_. Specific information about

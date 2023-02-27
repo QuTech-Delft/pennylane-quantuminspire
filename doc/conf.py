@@ -63,7 +63,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'PennyLane-QuantumInspire'
-copyright = "Copyright 2022, QuTech"
+copyright = "Copyright 2023, QuTech"
 author = 'QuTech'
 
 # The version info for the project you're documenting, acts as replacement for

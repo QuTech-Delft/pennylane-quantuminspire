@@ -1,6 +1,6 @@
 # PennyLane-Quantum Inspire Plugin
 #
-# Copyright 2022 QuTech Delft
+# Copyright 2023 QuTech Delft
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,4 +19,4 @@ Version information.
 Version number according to semantic versioning (https://semver.org/)
 """
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"
