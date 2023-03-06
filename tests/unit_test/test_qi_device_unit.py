@@ -82,7 +82,7 @@ class TestDeviceConfiguration(TestCase):
 
     def test_not_supported_number_of_wires(self, *args):
         """
-        Test wires. Fail when we have no wires or more than the capacity of the backend.
+        Test wires. Fail when we have no wires or more than the capacity (nr of qubits) of the backend.
         """
         with pytest.raises(DeviceError) as exc_info:
             _ = qml.device("quantuminspire.qi", wires=[], backend="Starmon-5")
