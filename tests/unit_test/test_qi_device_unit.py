@@ -72,7 +72,7 @@ class TestDeviceConfiguration(TestCase):
 
     def test_number_of_wires_less_than_number_of_qubits_hardware_backends_succeed(self, *args):
         """
-        Test that number of wires < number of qubits of hardware backends is supported.
+        Test that number of 0 < wires < number of qubits of hardware backends is supported.
         """
         with patch('pennylane_quantuminspire.qi_device.QiskitDevice.__init__'):
             _ = qml.device("quantuminspire.qi", wires=2, backend="Starmon-5")
@@ -82,8 +82,13 @@ class TestDeviceConfiguration(TestCase):
 
     def test_not_supported_number_of_wires(self, *args):
         """
-        Test wires.
+        Test wires. Fail when we have no wires or more than the capacity (nr of qubits) of the backend.
         """
+        with pytest.raises(DeviceError) as exc_info:
+            _ = qml.device("quantuminspire.qi", wires=[], backend="Starmon-5")
+
+        assert str(exc_info.value) == 'Invalid number of wires: 0'
+
         with pytest.raises(DeviceError) as exc_info:
             _ = qml.device("quantuminspire.qi", wires=[], backend="QX single-node simulator")
 

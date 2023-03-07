@@ -127,7 +127,7 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
     ) -> Union[int, Iterable[int], Iterable[str]]:
         """
         For some backends, the number of wires has to match the number of qubits accessible. Here we add dummy wires
-        when the numbers do not match.
+        when the numbers do not match. Only add dummy wires when initially at least one wire was found.
 
         Args:
             backend_type: the backend (type) information.
@@ -146,7 +146,7 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
             else:
                 all_wires = Wires(wires)
 
-            if len(all_wires) < backend_number_of_qubits:
+            if 0 < len(all_wires) < backend_number_of_qubits:
                 dummy_wires = Wires([f"_dummy-wire-{i}" for i in range(backend_number_of_qubits - len(all_wires))])
                 wires = Wires.all_wires([all_wires, dummy_wires])
 
