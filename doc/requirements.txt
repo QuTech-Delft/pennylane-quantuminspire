@@ -11,5 +11,5 @@ pygments-github-lexers==0.0.5
 qiskit==0.42.0
 quantuminspire==2.1.0
 sphinxcontrib-bibtex==2.5.0
-sphinx-automodapi==0.14.1
+sphinx-automodapi==0.15.0
 xanadu-sphinx-theme==0.3.7
