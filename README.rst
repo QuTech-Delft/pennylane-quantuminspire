@@ -133,13 +133,22 @@ Run the unit tests using:
 
 .. code-block:: bash
 
-    pytest
+    pytest tests/unit_test
 
 or including coverage:
 
 .. code-block:: bash
 
-    pytest tests --cov=pennylane_quantuminspire --cov-report=term-missing --cov-report=xml -p no:warnings --tb=native
+    pytest tests/unit_test --cov=pennylane_quantuminspire --cov-report=term-missing --cov-report=xml -p no:warnings --tb=native
+
+Device tests
+~~~~~~~~~~~~
+
+Run the device tests using:
+
+.. code-block:: bash
+
+    pytest
 
 .. installation-end-inclusion-marker-do-not-remove
 
