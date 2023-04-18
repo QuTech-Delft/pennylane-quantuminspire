@@ -6,7 +6,7 @@ nbsphinx==0.9.1
 git+https://github.com/XanaduAI/pennylane.git#egg=pennylane
 pennylane-qiskit==0.29.0
 pybind11==2.10.4
-pygments==2.14.0
+pygments==2.15.0
 pygments-github-lexers==0.0.5
 qiskit==0.42.1
 quantuminspire==2.1.0
