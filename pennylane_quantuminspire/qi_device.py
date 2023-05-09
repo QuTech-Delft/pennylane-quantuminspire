@@ -184,12 +184,13 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
 
         if backend_type["is_hardware_backend"] and number_of_wires != backend_type["number_of_qubits"]:
             raise DeviceError(
-                f'Invalid number of wires: {number_of_wires}. '
-                f'Should be {backend_type["number_of_qubits"]}'
+                f'Invalid number of wires: {number_of_wires}. Should be {backend_type["number_of_qubits"]}'
             )
         if number_of_wires < 1 or number_of_wires > backend_type["number_of_qubits"]:
-            raise DeviceError(f'Invalid number of wires: {number_of_wires}. '
-                              f'Must be >= 1 and <= {backend_type["number_of_qubits"]}')
+            raise DeviceError(
+                f"Invalid number of wires: {number_of_wires}. "
+                f'Must be >= 1 and <= {backend_type["number_of_qubits"]}'
+            )
 
         if backend_type["status"] == "OFFLINE":
             logger.warning(
@@ -247,5 +248,5 @@ def delete_qi_projects() -> None:
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == 'cleanup':
+    if len(sys.argv) > 1 and sys.argv[1] == "cleanup":
         delete_qi_projects()
