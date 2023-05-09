@@ -21,6 +21,7 @@ evaluation and differentiation of Quantum Inspire's Quantum Processing Units (QP
 
 from abc import ABC
 import logging
+import sys
 from time import localtime, strftime
 from typing import Any, Dict, Iterable, Set, Union, Optional
 
@@ -31,7 +32,7 @@ from qiskit.providers.backend import BackendV1 as Backend
 from quantuminspire.credentials import load_account, get_token_authentication
 from quantuminspire.qiskit import QI
 
-from ._version import __version__
+from pennylane_quantuminspire._version import __version__
 
 logger = logging.getLogger(__name__)
 
@@ -181,13 +182,15 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
         else:
             number_of_wires = len(Wires(wires))
 
-        if number_of_wires < 1 or number_of_wires > backend_type["number_of_qubits"]:
-            raise DeviceError(f"Invalid number of wires: {number_of_wires}")
-
         if backend_type["is_hardware_backend"] and number_of_wires != backend_type["number_of_qubits"]:
             raise DeviceError(
-                f"Invalid number of wires: {number_of_wires}. " f'Should be exactly {backend_type["number_of_qubits"]}'
+                f'Invalid number of wires: {number_of_wires}. '
+                f'Should be {backend_type["number_of_qubits"]}'
             )
+        if number_of_wires < 1 or number_of_wires > backend_type["number_of_qubits"]:
+            raise DeviceError(f'Invalid number of wires: {number_of_wires}. '
+                              f'Must be >= 1 and <= {backend_type["number_of_qubits"]}')
+
         if backend_type["status"] == "OFFLINE":
             logger.warning(
                 "The backend you selected is currently offline. Your program will be queued until the "
@@ -225,3 +228,24 @@ def backend_online(backend: Backend) -> bool:
     backend_type = QI.get_api().get_backend_type_by_name(backend.name())
     status = backend_type["status"]
     return bool(status != "OFFLINE")
+
+
+def delete_qi_projects() -> None:
+    """
+    Operating the device will create a lot of QI projects. With this method the projects can be deleted when a token is
+    available (for example the integration test pipelines).
+    """
+    token = load_account()
+    if token is not None:
+        qi_authentication = get_token_authentication(token)
+        QI.set_authentication(qi_authentication)
+        api = QI.get_api()
+
+        projects = api.get_projects()
+        for project in projects:
+            api.delete_project(project["id"])
+
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == 'cleanup':
+        delete_qi_projects()

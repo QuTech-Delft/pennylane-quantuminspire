@@ -38,7 +38,7 @@ jobs:
       - name: Install Plugin
         run: |
           python setup.py bdist_wheel
-          pip install dist/pennylane*.whl
+          pip install dist/pennylane_quantuminspire*.whl
 
       - name: Run Tests
         run: |

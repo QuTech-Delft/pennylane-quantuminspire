@@ -58,6 +58,12 @@ jobs:
           QI_TOKEN: ${{ secrets.QI_TOKEN }}
           API_URL: https://api.quantum-inspire.com
 
+      - name: Clean up
+        run: python pennylane_quantuminspire/qi_device.py cleanup
+        env:
+          QI_TOKEN: ${{ secrets.QI_TOKEN }}
+          API_URL: https://api.quantum-inspire.com
+
   device-tests:
     runs-on: ubuntu-latest
 
@@ -83,14 +89,20 @@ jobs:
       - name: Install Plugin
         run: |
           python setup.py bdist_wheel
-          pip install dist/pennylane*.whl
+          pip install dist/pennylane_quantuminspire*.whl
 
       - name: Run tests
         run: |
           python -m pytest tests/test_pl_device_test.py -p no:warnings
         env:
-          API_URL: https://api.quantum-inspire.com
           QI_TOKEN: ${{ secrets.QI_TOKEN }}
+          API_URL: https://api.quantum-inspire.com
+
+      - name: Clean up
+        run: python pennylane_quantuminspire/qi_device.py cleanup
+        env:
+          QI_TOKEN: ${{ secrets.QI_TOKEN }}
+          API_URL: https://api.quantum-inspire.com
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3.1.4
