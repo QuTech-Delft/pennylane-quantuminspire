@@ -9,7 +9,7 @@ pybind11==2.10.4
 pygments==2.15.1
 pygments-github-lexers==0.0.5
 qiskit==0.43.0
-quantuminspire==2.1.0
+quantuminspire==2.2.0
 sphinxcontrib-bibtex==2.5.0
 sphinx-automodapi==0.15.0
 xanadu-sphinx-theme==0.3.7
