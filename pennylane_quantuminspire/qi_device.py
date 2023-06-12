@@ -233,8 +233,8 @@ def backend_online(backend: Backend) -> bool:
 
 def delete_qi_projects() -> None:
     """
-    Operating the device will create a lot of QI projects. With this method the projects can be deleted when a token is
-    available (for example the integration test pipelines).
+    Operating the device will create a lot of QI projects making future runs possibly slower. With this method
+    the projects can be deleted when a token is available (used in the integration tests pipelines).
     """
     token = load_account()
     if token is not None:
