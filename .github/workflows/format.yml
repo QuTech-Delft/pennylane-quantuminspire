@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: pip install black
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Run Black
         run: black -l 120 pennylane_quantuminspire/ --check
