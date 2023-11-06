@@ -8,7 +8,7 @@ pennylane-qiskit==0.32.0
 pybind11==2.11.1
 pygments==2.15.1
 pygments-github-lexers==0.0.5
-qiskit==0.44.2
+qiskit==0.45.0
 quantuminspire==2.2.0
 sphinxcontrib-bibtex==2.5.0
 sphinx-automodapi==0.15.0
