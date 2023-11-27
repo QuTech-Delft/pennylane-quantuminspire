@@ -32,7 +32,7 @@ requirements = [
 extra_requirements = {
     'dev': ['pytest>=3.3.1', 'pytest-cov', 'pytest-mock', 'pylint', 'mypy>=0.670', 'black', 'flaky'],
     'rtd': ['docutils==0.20.1', 'ipykernel==6.25.2', 'jinja2==3.1.2', 'mthree==2.5.1', 'nbsphinx==0.9.3',
-            'pybind11==2.11.1', 'pygments==2.15.1', 'pygments-github-lexers==0.0.5', 'sphinxcontrib-bibtex==2.5.0',
+            'pybind11==2.11.1', 'pygments==2.17.2', 'pygments-github-lexers==0.0.5', 'sphinxcontrib-bibtex==2.5.0',
             'sphinx-automodapi==0.15.0', 'xanadu-sphinx-theme==0.5.0'],
 }
 
