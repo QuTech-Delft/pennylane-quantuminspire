@@ -7,11 +7,26 @@ from unittest.mock import MagicMock, patch
 
 import pennylane as qml
 from pennylane import DeviceError
-from quantuminspire.exceptions import ApiError, QiskitBackendError
-from pennylane_quantuminspire.qi_device import backend_online, QI
+from quantuminspire.exceptions import ApiError
+from pennylane_quantuminspire.qi_device import backend_online, delete_qi_projects, QI
 
 
 class MockApi:
+
+    deleted_project = []
+    @staticmethod
+    def get_projects():
+        return [{'name': 'project1',
+                 'id': 1
+                },
+                {'name': 'project2',
+                 'id': 2
+                 }
+                ]
+
+    def delete_project(self, project_id: int) -> None:
+        self.deleted_project.append(project_id)
+
     @staticmethod
     def get_backend_type_by_name(backend_name):
         if backend_name == 'backend_offline':
@@ -87,17 +102,22 @@ class TestDeviceConfiguration(TestCase):
         with pytest.raises(DeviceError) as exc_info:
             _ = qml.device("quantuminspire.qi", wires=[], backend="Starmon-5")
 
-        assert str(exc_info.value) == 'Invalid number of wires: 0'
+        assert str(exc_info.value) == 'Invalid number of wires: 0. Should be 5'
 
         with pytest.raises(DeviceError) as exc_info:
             _ = qml.device("quantuminspire.qi", wires=[], backend="QX single-node simulator")
 
-        assert str(exc_info.value) == 'Invalid number of wires: 0'
+        assert str(exc_info.value) == 'Invalid number of wires: 0. Must be >= 1 and <= 26'
+
+        with pytest.raises(DeviceError) as exc_info:
+            _ = qml.device("quantuminspire.qi", wires=6, backend="Starmon-5")
+
+        assert str(exc_info.value) == 'Invalid number of wires: 6. Should be 5'
 
         with pytest.raises(DeviceError) as exc_info:
             _ = qml.device("quantuminspire.qi", wires=58, backend="QX-34-L")
 
-        assert str(exc_info.value) == 'Invalid number of wires: 58'
+        assert str(exc_info.value) == 'Invalid number of wires: 58. Must be >= 1 and <= 34'
 
     def test_not_supported_number_of_shots(self, *args):
         """
@@ -152,3 +172,22 @@ class TestDeviceConfiguration(TestCase):
                           "You may check the website of Quantum Inspire to find information about longer downtimes. "
                           "Sorry for the inconvenience.", print_string)
             logging.getLogger().removeHandler(stream_handler)
+
+    def test_delete_projects(self, *args):
+        """
+        Test the deletion of all projects for this test-account.
+        """
+
+        my_api = MockApi()
+        # no token found
+        with patch('pennylane_quantuminspire.qi_device.load_account', return_value=None) as mock_load:
+            with patch.object(QI, 'get_api', return_value=my_api):
+                delete_qi_projects()
+                mock_load.assert_called()
+                self.assertListEqual(my_api.deleted_project, [])
+        # token available
+        with patch('pennylane_quantuminspire.qi_device.load_account', return_value='token') as mock_load:
+            with patch.object(QI, 'get_api', return_value=my_api):
+                delete_qi_projects()
+                mock_load.assert_called()
+                self.assertListEqual(my_api.deleted_project, [1, 2])
