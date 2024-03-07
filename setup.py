@@ -27,6 +27,7 @@ requirements = [
     "pennylane-qiskit>=0.29.0,<0.34.0",
     "quantuminspire>=2.1.0",
     "qiskit>=0.46,<1.0",
+    "pennylane>=0.30,<0.34"
 ]
 
 extra_requirements = {
