@@ -38,7 +38,6 @@ jobs:
       - name: Install Plugin
         run: |
           python setup.py bdist_wheel
-          ls -al dist
           pip install dist/pennylane*.whl
 
       - name: Run Tests

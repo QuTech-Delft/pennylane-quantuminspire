@@ -24,17 +24,10 @@ with open("README.rst", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 requirements = [
-    #"pennylane-qiskit>=0.29.0,<0.34.0",
     "pennylane-qiskit>=0.29.0",
-    #"quantuminspire>=2.1.0,<=2.2.1",
     "quantuminspire>=2.1.0",
-    "qiskit>=0.46,<1.0",
-    #"qiskit<=0.45.1",
-    #"pennylane>=0.30,<0.34",
-    #"qiskit-aer<=0.13.1",
-    #"qiskit-ibm-provider<0.8",
-    #"qiskit-ibm-runtime<0.18",
-    #"pennylane-lightning<0.34"
+    "qiskit<=0.45.1",
+    "pennylane>=0.30,<0.34",
 ]
 
 extra_requirements = {
