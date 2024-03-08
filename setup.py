@@ -28,6 +28,8 @@ requirements = [
     "quantuminspire>=2.1.0",
     "qiskit<=0.45.1",
     "pennylane>=0.30,<0.34",
+    "qiskit-aer<=0.13.1",    # to fix documentation
+    "qiskit-ibm-provider<0.8", # to fix documentation
 ]
 
 extra_requirements = {
