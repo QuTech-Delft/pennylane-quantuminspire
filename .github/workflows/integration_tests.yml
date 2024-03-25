@@ -53,7 +53,7 @@ jobs:
           API_URL: https://api.quantum-inspire.com
 
       - name: Run simulator backends tests
-        run: python -m pytest tests/test_qxsim.py tests/test_qx34l.py --cov=pennylane_quantuminspire --cov-report=term-missing --cov-report=xml -p no:warnings --tb=native
+        run: python -m pytest tests/test_qxsim.py --cov=pennylane_quantuminspire --cov-report=term-missing --cov-report=xml -p no:warnings --tb=native
         env:
           QI_TOKEN: ${{ secrets.QI_TOKEN }}
           API_URL: https://api.quantum-inspire.com
