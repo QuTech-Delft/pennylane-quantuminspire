@@ -39,7 +39,6 @@ and `hardware backends <https://www.quantum-inspire.com/kbase/hardware-backends/
 Emulator backends:
 
 * ``"QX single-node simulator"`` - Quantum Inspire emulator run on a commodity cloud-based server, with 4GB RAM. It has a fast turn-around time for simulations up to 26 qubits. For basic users, the commodity cloud-based server will be sufficient.
-* ``"QX-34-L"`` - Quantum Inspire emulator runs on the Lisa cluster computer uses four nodes of the fat_soil_shared partition of Lisa. With 1.5TB of memory each, this allows simulation jobs of up to 34 qubits [**requires advanced account**].
 
 Hardware backends:
 

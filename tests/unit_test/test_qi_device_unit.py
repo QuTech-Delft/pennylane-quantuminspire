@@ -42,12 +42,6 @@ class MockApi:
                     'is_hardware_backend': True,
                     'status': "IDLE"
                     }
-        elif backend == 'QX-34-L':
-            return {'max_number_of_shots': 4096,
-                    'number_of_qubits': 34,
-                    'is_hardware_backend': False,
-                    'status': "IDLE"
-                    }
         else:
             return {'max_number_of_shots': 4096,
                     'number_of_qubits': 26,
@@ -94,11 +88,6 @@ class TestDeviceConfiguration(TestCase):
 
         assert str(exc_info.value) == 'Invalid number of wires: 0'
 
-        with pytest.raises(DeviceError) as exc_info:
-            _ = qml.device("quantuminspire.qi", wires=58, backend="QX-34-L")
-
-        assert str(exc_info.value) == 'Invalid number of wires: 58'
-
     def test_not_supported_number_of_shots(self, *args):
         """
         Test shots.
@@ -107,15 +96,6 @@ class TestDeviceConfiguration(TestCase):
             _ = qml.device("quantuminspire.qi", wires=2, backend="QX single-node simulator", shots=10000)
 
         assert str(exc_info.value) == 'Invalid number of shots: 10000. Must be <= 4096'
-
-        with pytest.raises(DeviceError) as exc_info:
-            _ = qml.device("quantuminspire.qi", wires=5, backend="QX-34-L", shots=0)
-
-        assert str(exc_info.value) == 'The specified number of shots needs to be > 0'
-
-        with patch('pennylane_quantuminspire.qi_device.QiskitDevice.__init__'):
-            # shots=None is accepted when creating the device (though not supported by the backends currently)
-            _ = qml.device("quantuminspire.qi", wires=5, backend="QX-34-L", shots=None)
 
     def test_backend_online(self, *args):
         """

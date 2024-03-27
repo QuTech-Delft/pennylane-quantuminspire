@@ -53,12 +53,10 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
 
             The supported number of qubits for the Quantum Inspire backends are:
             'QX single-node simulator': between 1 and 26.
-            'QX-34-L': between 1 and 34.
             'Spin-2': fixed number of 2.
             'Starmon-5': fixed number of 5.
         backend (str): the desired backend. Can be one of:
             'QX single-node simulator': A QuantumInspire QX single-node emulator backend.
-            'QX-34-L': A QuantumInspire QX emulator running on Lisa SurfSara backend.
             'Spin-2': A QuantumInspire Spin-2 hardware backend
             'Starmon-5': A QuantumInspire Starmon-5 hardware backend.
 
@@ -67,7 +65,6 @@ class QuantumInspireDevice(QiskitDevice, ABC):  # type: ignore
             variances of observables.
             The maximum number of shots for the Quantum Inspire backends are:
             'QX single-node simulator': 4096
-            'QX-34-L': 4096
             'Spin-2': 4096
             'Starmon-5': 16384
 

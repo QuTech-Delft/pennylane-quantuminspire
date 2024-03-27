@@ -22,7 +22,7 @@ from pennylane_quantuminspire.qi_device import backend_online
 
 state_backends = []
 hw_backends = ["Starmon-5", "Spin-2"]
-sim_backends = ["QX single-node simulator", "QX-34-L"]
+sim_backends = ["QX single-node simulator"]
 
 @pytest.fixture(scope="class")
 def online(request):
