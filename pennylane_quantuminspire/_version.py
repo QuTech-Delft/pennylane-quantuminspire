@@ -19,4 +19,4 @@ Version information.
 Version number according to semantic versioning (https://semver.org/)
 """
 
-__version__ = "0.4.1"
+__version__ = "0.4.2"
