@@ -26,8 +26,8 @@ with open("README.rst", "r", encoding="utf-8") as fh:
 requirements = [
     "pennylane-qiskit>=0.29.0",
     "quantuminspire>=2.1.0",
-    "qiskit<=0.45.1",
-    "pennylane>=0.30,<0.34",
+    # qiskit-terra, which is automatically installed with pennylane-qiskit, is not (yet) compatible with the newest version of qiskit.
+    "qiskit<= 0.46.1",
 ]
 
 extra_requirements = {
@@ -86,9 +86,9 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Programming Language :: Python",
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
     'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
     'Programming Language :: Python :: 3 :: Only',
     "Topic :: Scientific/Engineering :: Physics"
 ]
