@@ -16,7 +16,6 @@
    :hidden:
 
    backends/qxsim
-   backends/qx34l
    backends/spin2
    backends/starmon5
 
