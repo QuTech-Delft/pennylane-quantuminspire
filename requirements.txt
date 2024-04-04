@@ -1,3 +1,2 @@
 pennylane-qiskit>=0.29.0
 quantuminspire>=2.1.0
-pennylane>=0.30
