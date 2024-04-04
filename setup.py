@@ -26,8 +26,7 @@ with open("README.rst", "r", encoding="utf-8") as fh:
 requirements = [
     "pennylane-qiskit>=0.29.0",
     "quantuminspire>=2.1.0",
-    "pennylane>=0.30",
-    "qiskit",
+    "pennylane>=0.30"
 ]
 
 extra_requirements = {
