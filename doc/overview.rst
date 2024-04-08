@@ -21,11 +21,6 @@ Currently, for the Quantum Inspire device four different backends are available:
     :link: backends/qxsim.html
 
 .. title-card::
-    :name: 'QX-34-L'
-    :description: Quantum Inspire emulator runs on the Lisa cluster computer uses four nodes of the fat_soil_shared partition of Lisa. With 1.5TB of memory each, this allows simulation jobs of up to 34 qubits.
-    :link: backends/qx34l.html
-
-.. title-card::
     :name: 'Spin-2'
     :description: Quantum Inspire quantum 2-qubit semiconductor electron spin processor.
     :link: backends/spin2.html
@@ -64,7 +59,7 @@ You can try it out using any of the qubit based `demos from the PennyLane docume
 <https://pennylane.ai/qml/demonstrations.html>`_, for example the tutorial on
 `qubit rotation <https://pennylane.ai/qml/demos/tutorial_qubit_rotation.html>`_.
 Simply replace ``'default.qubit'`` with the Quantum Inspire device ``'quantuminspire.qi'`` and a backend of your choice,
-such as ``'QX single-node simulator'``, or ``'QX-34-L'``.
+such as ``'QX single-node simulator'``.
 
 .. raw:: html
 
