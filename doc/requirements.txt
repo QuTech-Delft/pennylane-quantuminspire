@@ -1,9 +1,6 @@
 pennylane-qiskit>=0.29.0
 quantuminspire>=2.1.0
-
-# qiskit-terra, which is automatically installed with pennylane-qiskit, is not (yet) compatible with the newest version of qiskit.
-qiskit<=0.46.1
-
+qiskit<=0.45.3
 docutils==0.20.1
 ipykernel==6.25.2
 jinja2==3.1.2
