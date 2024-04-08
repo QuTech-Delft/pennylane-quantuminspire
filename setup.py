@@ -26,8 +26,7 @@ with open("README.rst", "r", encoding="utf-8") as fh:
 requirements = [
     "pennylane-qiskit>=0.29.0",
     "quantuminspire>=2.1.0",
-    # qiskit-terra, which is automatically installed with pennylane-qiskit, is not (yet) compatible with the newest version of qiskit.
-    "qiskit<= 0.46.1",
+    "qiskit<= 0.45.3",
 ]
 
 extra_requirements = {
