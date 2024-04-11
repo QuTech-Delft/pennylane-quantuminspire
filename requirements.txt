@@ -1,5 +1,4 @@
 pennylane-qiskit>=0.29.0
 quantuminspire>=2.1.0
-
-# qiskit-terra, which is automatically installed with pennylane-qiskit, is not (yet) compatible with the newest version of qiskit.
 qiskit<=0.45.3
+qiskit_aer<=0.13.3
