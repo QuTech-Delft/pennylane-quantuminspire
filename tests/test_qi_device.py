@@ -2,7 +2,7 @@ import pytest
 from unittest import TestCase
 
 import pennylane as qml
-import qiskit.providers.aer.noise as noise
+from qiskit_aer import noise
 
 from pennylane_quantuminspire.qi_device import backend_online
 

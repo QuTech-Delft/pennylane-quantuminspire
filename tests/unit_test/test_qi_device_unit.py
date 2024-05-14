@@ -7,7 +7,7 @@ from unittest.mock import MagicMock, patch
 
 import pennylane as qml
 from pennylane import DeviceError
-from quantuminspire.exceptions import ApiError, QiskitBackendError
+from quantuminspire.exceptions import ApiError
 from pennylane_quantuminspire.qi_device import backend_online, QI
 
 
