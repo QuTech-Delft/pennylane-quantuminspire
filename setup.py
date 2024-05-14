@@ -24,15 +24,14 @@ with open("README.rst", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 requirements = [
-    "pennylane-qiskit>=0.29.0",
-    "quantuminspire>=2.1.0",
-    "qiskit<=0.45.3",
-    "qiskit_aer<=0.13.3"
+    "pennylane-qiskit>=0.36.0",
+    "quantuminspire>=2.3.0",
+    "qiskit>=1.0"
 ]
 
 extra_requirements = {
     'dev': ['pytest>=3.3.1', 'pytest-cov', 'pytest-mock', 'pylint', 'mypy>=0.670', 'black', 'flaky'],
-    'rtd': ['docutils==0.20.1', 'ipykernel==6.25.2', 'jinja2==3.1.2', 'mthree==2.5.1', 'nbsphinx==0.9.3',
+    'rtd': ['docutils==0.20.1', 'ipykernel==6.25.2', 'jinja2==3.1.2', 'mthree==2.6.3', 'nbsphinx==0.9.3',
             'pybind11==2.11.1', 'pygments==2.15.1', 'pygments-github-lexers==0.0.5', 'sphinxcontrib-bibtex==2.5.0',
             'sphinx-automodapi==0.15.0', 'xanadu-sphinx-theme==0.5.0'],
 }
