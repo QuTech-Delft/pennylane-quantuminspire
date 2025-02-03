@@ -35,7 +35,7 @@ extra_requirements = {
             'flaky'],
     'rtd': ['docutils==0.20.1', 'ipykernel==6.25.2', 'jinja2==3.1.2', 'mthree==2.6.3', 'nbsphinx==0.9.3',
             'pybind11==2.11.1', 'pygments==2.15.1', 'pygments-github-lexers==0.0.5', 'sphinxcontrib-bibtex==2.5.0',
-            'sphinx-automodapi==0.15.0', 'xanadu-sphinx-theme==0.5.0'],
+            'sphinx-automodapi==0.18.0', 'xanadu-sphinx-theme==0.5.0'],
 }
 
 devices_list = [
