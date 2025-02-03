@@ -48,6 +48,6 @@ jobs:
           python -m pytest tests/unit_test/ --cov=pennylane_quantuminspire --cov-report=term-missing --cov-report=xml -p no:warnings --tb=native
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3.1.4
+        uses: codecov/codecov-action@v5.3.1
         with:
           file: ./coverage.xml
