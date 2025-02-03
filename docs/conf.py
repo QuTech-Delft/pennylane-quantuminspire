@@ -23,7 +23,7 @@ __location__ = os.path.dirname(__file__)
 # -- Run api docs ------------------------------------------------------------
 
 output_dir = os.path.join(__location__, "api")
-module_dir = os.path.join(__location__, "../pennylane_quantuminspire2")
+module_dir = os.path.join(__location__, "../pennylane_quantuminspire")
 try:
     shutil.rmtree(output_dir)
 except FileNotFoundError:
@@ -75,7 +75,7 @@ templates_path = ["_templates"]
 master_doc = "index"
 
 # General information about the project.
-project = "Pennylane-QuantumInspire2"
+project = "Pennylane-QuantumInspire"
 copyright = "2024, QuTech"
 
 # The version info for the project you're documenting, acts as replacement for
@@ -214,7 +214,7 @@ html_static_path = ["_static"]
 # html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "pennylane-quantuminspire2-doc"
+htmlhelp_basename = "pennylane-quantuminspire-doc"
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -230,7 +230,7 @@ latex_elements: dict[str, Any] = {
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
-latex_documents = [("index", "user_guide.tex", "Pennylane-QuantumInspire2 Documentation", "QuTech", "manual")]
+latex_documents = [("index", "user_guide.tex", "Pennylane-QuantumInspire Documentation", "QuTech", "manual")]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.

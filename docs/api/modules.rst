@@ -1,7 +1,7 @@
-pennylane_quantuminspire2
+pennylane_quantuminspire
 =========================
 
 .. toctree::
    :maxdepth: 4
 
-   pennylane_quantuminspire2
+   pennylane_quantuminspire

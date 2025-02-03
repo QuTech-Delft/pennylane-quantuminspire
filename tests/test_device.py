@@ -8,11 +8,11 @@ from qiskit.exceptions import QiskitError
 from qiskit_quantuminspire.qi_backend import QIBackend
 
 with patch("qiskit_quantuminspire.qi_provider.QIProvider"):
-    from pennylane_quantuminspire2.qi_device import QI2Device
+    from pennylane_quantuminspire.qi_device import QIDevice
 
 
-def test_device_circuit(mocker: MockerFixture, QI2_backend: QIBackend) -> None:
-    device = QI2Device(backend=QI2_backend)
+def test_device_circuit(mocker: MockerFixture, QI_backend: QIBackend) -> None:
+    device = QIDevice(backend=QI_backend)
 
     @qml.qnode(device=device)
     # untyped decorator in pennylane, so mypy will complain here
@@ -28,9 +28,9 @@ def test_device_circuit(mocker: MockerFixture, QI2_backend: QIBackend) -> None:
     mock_job.submit.assert_called()
 
 
-def test_qiskit_error_is_wrapped_as_device_error(mocker: MockerFixture, QI2_backend: QIBackend) -> None:
+def test_qiskit_error_is_wrapped_as_device_error(mocker: MockerFixture, QI_backend: QIBackend) -> None:
     # Arrange
-    device = QI2Device(backend=QI2_backend)
+    device = QIDevice(backend=QI_backend)
     error_message = "Result failed ,  Experiment failed. System Message: Simulated Error"
     mocker.patch("pennylane_qiskit.remote.RemoteDevice.execute", side_effect=QiskitError(error_message))
 

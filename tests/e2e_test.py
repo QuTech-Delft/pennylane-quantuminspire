@@ -11,7 +11,7 @@ def _run_e2e_tests(backend_name: str) -> None:
     # Step 1: Create QML device
     provider = QIProvider()
     backend = provider.get_backend(backend_name)
-    e2e_device = QI2Device(backend=backend)
+    e2e_device = QIDevice(backend=backend)
 
     # Step 2: Create a quantum circuit
     @qml.qnode(e2e_device)
