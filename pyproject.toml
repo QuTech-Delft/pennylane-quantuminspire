@@ -19,7 +19,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.9"
 pennylane-qiskit = "^0.40.0"
-qiskit-quantuminspire = "^0.3.0"
+qiskit-quantuminspire = "^0.8.2"
 
 [tool.poetry.group.dev.dependencies]
 requests = "^2.32.3"
