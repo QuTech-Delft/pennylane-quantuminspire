@@ -7,7 +7,7 @@
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
         <title>pennylane_quantuminspire2 package - Pennylane-QuantumInspire2 0.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
@@ -205,13 +205,18 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/submitting.html">Submitting a circuit</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../notebooks/index.html">Example Notebooks</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Example Notebooks</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hybrid/index.html">Hybrid Algorithms</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Hybrid Algorithms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hybrid/basics.html">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hybrid/leveraging_pennylane.html">Leveraging Pennylane</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../notebooks/index.html">Example Notebooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Example Notebooks</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/basic_circuit_execution.html">Basic circuit execution</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing and Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">API Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">API Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">pennylane_quantuminspire2 package</a></li>
 </ul>
 </li>
@@ -261,8 +266,29 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 </section>
-<section id="pennylane-quantuminspire2-qi-device-module">
-<h2>pennylane_quantuminspire2.qi_device module<a class="headerlink" href="#pennylane-quantuminspire2-qi-device-module" title="Link to this heading">¶</a></h2>
+<section id="module-pennylane_quantuminspire2.cqasm">
+<span id="pennylane-quantuminspire2-cqasm-module"></span><h2>pennylane_quantuminspire2.cqasm module<a class="headerlink" href="#module-pennylane_quantuminspire2.cqasm" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pennylane_quantuminspire2.cqasm.dumps">
+<span class="sig-prename descclassname"><span class="pre">pennylane_quantuminspire2.cqasm.</span></span><span class="sig-name descname"><span class="pre">dumps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QNode</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Any" title="(in Python v3.11)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Any" title="(in Python v3.11)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/pennylane_quantuminspire2/cqasm.html#dumps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pennylane_quantuminspire2.cqasm.dumps" title="Link to this definition">¶</a></dt>
+<dd><p>Return the cQASM representation of the quantum function.</p>
+</dd></dl>
+
+</section>
+<section id="module-pennylane_quantuminspire2.qi_device">
+<span id="pennylane-quantuminspire2-qi-device-module"></span><h2>pennylane_quantuminspire2.qi_device module<a class="headerlink" href="#module-pennylane_quantuminspire2.qi_device" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pennylane_quantuminspire2.qi_device.QI2Device">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pennylane_quantuminspire2.qi_device.</span></span><span class="sig-name descname"><span class="pre">QI2Device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QIBackend</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Any" title="(in Python v3.11)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pennylane_quantuminspire2/qi_device.html#QI2Device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pennylane_quantuminspire2.qi_device.QI2Device" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RemoteDevice</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pennylane_quantuminspire2.qi_device.QI2Device.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QuantumTape</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Sequence" title="(in Python v3.11)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><span class="pre">QuantumTape</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ExecutionConfig</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">ExecutionConfig(grad_on_execution=None,</span> <span class="pre">use_device_gradient=None,</span> <span class="pre">use_device_jacobian_product=None,</span> <span class="pre">gradient_method=None,</span> <span class="pre">gradient_keyword_arguments={},</span> <span class="pre">device_options={},</span> <span class="pre">interface=None,</span> <span class="pre">derivative_order=1,</span> <span class="pre">mcm_config=MCMConfig(mcm_method=None,</span> <span class="pre">postselect_mode=None))</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Result</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.11)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Result</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/pennylane_quantuminspire2/qi_device.html#QI2Device.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pennylane_quantuminspire2.qi_device.QI2Device.execute" title="Link to this definition">¶</a></dt>
+<dd><p>Execute a circuit or a batch of circuits and turn it into results.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-pennylane_quantuminspire2">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pennylane_quantuminspire2" title="Link to this heading">¶</a></h2>
@@ -318,7 +344,17 @@
             <ul>
 <li><a class="reference internal" href="#">pennylane_quantuminspire2 package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#pennylane-quantuminspire2-qi-device-module">pennylane_quantuminspire2.qi_device module</a></li>
+<li><a class="reference internal" href="#module-pennylane_quantuminspire2.cqasm">pennylane_quantuminspire2.cqasm module</a><ul>
+<li><a class="reference internal" href="#pennylane_quantuminspire2.cqasm.dumps"><code class="docutils literal notranslate"><span class="pre">dumps()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-pennylane_quantuminspire2.qi_device">pennylane_quantuminspire2.qi_device module</a><ul>
+<li><a class="reference internal" href="#pennylane_quantuminspire2.qi_device.QI2Device"><code class="docutils literal notranslate"><span class="pre">QI2Device</span></code></a><ul>
+<li><a class="reference internal" href="#pennylane_quantuminspire2.qi_device.QI2Device.execute"><code class="docutils literal notranslate"><span class="pre">QI2Device.execute()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-pennylane_quantuminspire2">Module contents</a></li>
 </ul>
 </li>

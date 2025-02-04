@@ -17,14 +17,14 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "93fe4f56-4ced-41fc-b778-14d6c95e2434",
+   "id": "84ac851519c41400",
    "metadata": {},
    "outputs": [],
    "source": [
     "# Be sure to have logged in to the QI2 platform via the SDK. If you have installed it in the same environment as\n",
     "# this notebook, you may run this cell.\n",
     "\n",
-    "!qi login \"https://staging.qi2.quantum-inspire.com\""
+    "!qi login"
    ]
   },
   {
@@ -38,11 +38,12 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "3d4b3950-fe75-47cf-afb5-2286be7c01b4",
+   "id": "56125355f94b587a",
    "metadata": {},
    "outputs": [],
    "source": [
     "import pennylane as qml\n",
+    "from qiskit_quantuminspire.qi_provider import QIProvider\n",
     "\n",
     "from pennylane_quantuminspire2.qi_device import QI2Device"
    ]
@@ -58,12 +59,13 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "df119aa6-6b48-43a5-aa68-ecf4f7c0dc38",
+   "id": "497905bec7405b69",
    "metadata": {},
    "outputs": [],
    "source": [
     "# Show all current supported backends:\n",
-    "print(QI2Device.backends())"
+    "provider = QIProvider()\n",
+    "print(provider.backends())"
    ]
   },
   {
@@ -79,15 +81,16 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "72f3d7dc",
+   "id": "a22fc1d9924ffed7",
    "metadata": {},
    "outputs": [],
    "source": [
     "# Get Quantum Inspire's simulator backend:\n",
-    "emulator_backend = QI2Device.get_backend(\"QX emulator\")\n",
+    "\n",
+    "backend = provider.get_backend(\"QX emulator\")\n",
     "\n",
     "# Instantiate a Pennylane device based on chosen backend\n",
-    "demo_device = QI2Device(emulator_backend)"
+    "demo_device = QI2Device(backend)"
    ]
   },
   {
@@ -102,7 +105,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "e6bbe6af-9908-46cb-8638-8f29966fbf61",
+   "id": "f5f94ce3e6a32941",
    "metadata": {},
    "outputs": [],
    "source": [

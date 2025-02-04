@@ -9,14 +9,16 @@ Make sure you are logged into QI2, then use a QI2Device to fetch backends:
 
 .. code-block:: python
 
+    from qiskit_quantuminspire.qi_provider import QIProvider
     from pennylane_quantuminspire2.qi_device import QI2Device
 
     # Show all current supported backends:
-    for backend in QI2Device.backends():
+    provider = QIProvider()
+    for backend in provider.backends():
         print(f"{backend.name}")
 
     # Get Quantum Inspire's simulator backend:
-    emulator_backend = QI2Device.get_backend("QX emulator")
+    emulator_backend = provider.get_backend("QX emulator")
 
     # Instantiate a Pennylane device based on chosen backend
     demo_device = QI2Device(emulator_backend)

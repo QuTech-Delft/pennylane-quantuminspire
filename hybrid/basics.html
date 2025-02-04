@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Hybrid Algorithms" href="../hybrid/index.html" /><link rel="prev" title="Installation and login" href="installation.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Leveraging Pennylane" href="leveraging_pennylane.html" /><link rel="prev" title="Hybrid Algorithms" href="index.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
-        <title>How to: Submit a circuit - Pennylane-QuantumInspire2 0.1.0 documentation</title>
+        <title>Basics - Pennylane-QuantumInspire2 0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -200,14 +200,14 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
-<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Getting Started</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Getting Started</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation and login</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Submitting a circuit</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Getting Started</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html">Installation and login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/submitting.html">Submitting a circuit</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../hybrid/index.html">Hybrid Algorithms</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Hybrid Algorithms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../hybrid/basics.html">Basics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../hybrid/leveraging_pennylane.html">Leveraging Pennylane</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Hybrid Algorithms</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Hybrid Algorithms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leveraging_pennylane.html">Leveraging Pennylane</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../notebooks/index.html">Example Notebooks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Example Notebooks</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -241,7 +241,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/getting_started/submitting.rst.txt" title="View this page">
+  <a class="muted-link" href="../_sources/hybrid/basics.md.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -261,49 +261,102 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="how-to-submit-a-circuit">
-<h1>How to: Submit a circuit<a class="headerlink" href="#how-to-submit-a-circuit" title="Link to this heading">¶</a></h1>
-<section id="getting-a-backend">
-<h2>Getting a backend<a class="headerlink" href="#getting-a-backend" title="Link to this heading">¶</a></h2>
-<p>Make sure you are logged into QI2, then use a QI2Device to fetch backends:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_quantuminspire.qi_provider</span><span class="w"> </span><span class="kn">import</span> <span class="n">QIProvider</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pennylane_quantuminspire2.qi_device</span><span class="w"> </span><span class="kn">import</span> <span class="n">QI2Device</span>
+          <section id="basics">
+<h1>Basics<a class="headerlink" href="#basics" title="Link to this heading">¶</a></h1>
+<p>Quantum Inspire 2 supports hybrid classical-quantum algorithms, and allows execution of both the quantum and the classical part fully on the QI2 servers.</p>
+<section id="script-format">
+<h2>Script format<a class="headerlink" href="#script-format" title="Link to this heading">¶</a></h2>
+<p>Any script that will be executed on the QI2 platform is required to have at least the <code class="docutils literal notranslate"><span class="pre">execute()</span></code> and <code class="docutils literal notranslate"><span class="pre">finalize()</span></code> functions.</p>
+<section id="execute">
+<h3>Execute<a class="headerlink" href="#execute" title="Link to this heading">¶</a></h3>
+<p>The execute function is the function that gets called by QI2 first. As an argument it gets a <code class="docutils literal notranslate"><span class="pre">QuantumInterface</span></code>, which is what allows you to actually execute your circuit. In the example below, the same circuit is executed 5 times in a row as a simple illustration of the interchanging control between the hybrid and classical domains. Normally, you might want to change your <code class="docutils literal notranslate"><span class="pre">QNode</span></code> (circuit) between each execution based on your results. Refer to <a class="reference download internal" download="" href="../_downloads/37401a34e99ce8cb3a98d02cc88a5bb4/simple.py"><span class="xref download myst">this example</span></a> to see how you can dynamically update your quantum circuit.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
 
-<span class="c1"># Show all current supported backends:</span>
-<span class="n">provider</span> <span class="o">=</span> <span class="n">QIProvider</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">backend</span> <span class="ow">in</span> <span class="n">provider</span><span class="o">.</span><span class="n">backends</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pennylane</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qml</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pennylane</span><span class="w"> </span><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qi2_shared.hybrid.quantum_interface</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumInterface</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_quantuminspire.hybrid.hybrid_backend</span><span class="w"> </span><span class="kn">import</span> <span class="n">QIHybridBackend</span>
 
-<span class="c1"># Get Quantum Inspire&#39;s simulator backend:</span>
-<span class="n">emulator_backend</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s2">&quot;QX emulator&quot;</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pennylane_quantuminspire2</span><span class="w"> </span><span class="kn">import</span> <span class="n">cqasm</span>
 
-<span class="c1"># Instantiate a Pennylane device based on chosen backend</span>
-<span class="n">demo_device</span> <span class="o">=</span> <span class="n">QI2Device</span><span class="p">(</span><span class="n">emulator_backend</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_circuit</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">QI2Device</span><span class="p">):</span>
+    <span class="nd">@qml</span><span class="o">.</span><span class="n">qnode</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">circuit</span><span class="p">(</span><span class="n">circuit_params</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
+        <span class="n">qml</span><span class="o">.</span><span class="n">RX</span><span class="p">(</span><span class="n">circuit_params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">wires</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">qml</span><span class="o">.</span><span class="n">RY</span><span class="p">(</span><span class="n">circuit_params</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">wires</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">qml</span><span class="o">.</span><span class="n">CNOT</span><span class="p">(</span><span class="n">wires</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">qml</span><span class="o">.</span><span class="n">expval</span><span class="p">(</span><span class="n">qml</span><span class="o">.</span><span class="n">PauliZ</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">circuit</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="n">qi</span><span class="p">:</span> <span class="n">QuantumInterface</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the classical part of the Hybrid Quantum/Classical Algorithm.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        qi: A QuantumInterface instance that can be used to execute quantum circuits</span>
+
+<span class="sd">    The qi object has a single method called execute_circuit, its interface is described below:</span>
+
+<span class="sd">    qi.execute_circuit args:</span>
+<span class="sd">        circuit: a string representation of a quantum circuit</span>
+<span class="sd">        number_of_shots: how often to execute the circuit</span>
+<span class="sd">        raw_data_enabled (default: False): report measurement per shot (if supported by backend type)</span>
+
+<span class="sd">    qi.execute_circuit return value:</span>
+<span class="sd">        The results of executing the quantum circuit, this is an object with the following attributes</span>
+<span class="sd">            results: The results from iteration n-1.</span>
+<span class="sd">            raw_data: Measurement per shot as a list of strings (or None if disabled).</span>
+<span class="sd">            shots_requested: The number of shots requested by the user for the previous iteration.</span>
+<span class="sd">            shots_done: The number of shots actually run.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">backend</span> <span class="o">=</span> <span class="n">QIHybridBackend</span><span class="p">(</span><span class="n">qi</span><span class="p">)</span>
+    <span class="n">device</span>  <span class="o">=</span> <span class="n">QI2Device</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+    <span class="n">circuit_params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">circuit</span> <span class="o">=</span> <span class="n">generate_circuit</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+        <span class="n">circuit_str</span> <span class="o">=</span> <span class="n">cqasm</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">circuit_params</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">qi</span><span class="o">.</span><span class="n">execute_circuit</span><span class="p">(</span><span class="n">circuit_str</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="submitting-a-circuit">
-<h2>Submitting a Circuit<a class="headerlink" href="#submitting-a-circuit" title="Link to this heading">¶</a></h2>
-<p>Once a device has been specified, it may be used to submit circuits.
-For example, running a Bell State:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pennylane</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qml</span>
+<section id="finalize">
+<h3>Finalize<a class="headerlink" href="#finalize" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">finalize()</span></code> function allows you to aggregate your results. It should return a dictionary which will be stored as the final result. By default it takes a list of all measurements as an argument, but through the use of globals you could also export other data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="n">list_of_measurements</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Aggregate the results from all iterations into one final result.</span>
 
-<span class="nd">@qml</span><span class="o">.</span><span class="n">qnode</span><span class="p">(</span><span class="n">demo_device</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">bell_state</span><span class="p">():</span>
-    <span class="n">qml</span><span class="o">.</span><span class="n">Hadamard</span><span class="p">(</span><span class="n">wires</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">qml</span><span class="o">.</span><span class="n">CNOT</span><span class="p">(</span><span class="n">wires</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">qml</span><span class="o">.</span><span class="n">expval</span><span class="p">(</span><span class="n">qml</span><span class="o">.</span><span class="n">Z</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+<span class="sd">    Args:</span>
+<span class="sd">        list_of_measurements: List of all results from the previous iterations.</span>
 
-<span class="c1"># Execute the circuit</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">bell_state</span><span class="p">()</span>
-
-<span class="c1"># Print expectation values</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A free-form result, with a `property`: `value` structure. Value can</span>
+<span class="sd">        be everything serializable.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="n">list_of_measurements</span><span class="p">}</span>
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Other measurements than <code class="code docutils literal notranslate"><span class="pre">qml.expval()</span></code> and <code class="code docutils literal notranslate"><span class="pre">qml.var()</span></code> are only supported for backends that support measurement results for individual shots.</p>
+</section>
+</section>
+<section id="execution">
+<h2>Execution<a class="headerlink" href="#execution" title="Link to this heading">¶</a></h2>
+<p>A complete script with both example functions can be found <a class="reference download internal" download="" href="../_downloads/37401a34e99ce8cb3a98d02cc88a5bb4/simple.py"><span class="xref download myst">here</span></a>. This can be uploaded to QI2 as follows (using the CLI), where <code class="docutils literal notranslate"><span class="pre">&lt;backend_id&gt;</span></code> is the id number of the selected quantum backend, which can be retrieved using the QIProvider.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>QIProvider<span class="o">()</span>
+<span class="k">for</span><span class="w"> </span>backend<span class="w"> </span><span class="k">in</span><span class="w"> </span>provider.backends<span class="o">()</span>:
+<span class="w">    </span>print<span class="o">(</span>backend<span class="o">)</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qi<span class="w"> </span>files<span class="w"> </span>upload<span class="w"> </span>./simple.py<span class="w"> </span>&lt;backend_id&gt;
+</pre></div>
+</div>
+<p>The final results can be retrieved as follows, where <code class="docutils literal notranslate"><span class="pre">&lt;job_id&gt;</span></code> is the job id returned by the previous command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qi<span class="w"> </span>final_results<span class="w"> </span>get<span class="w"> </span>&lt;job_id&gt;
+</pre></div>
 </div>
 </section>
 </section>
@@ -313,23 +366,23 @@ For example, running a Bell State:</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../hybrid/index.html">
+          <a class="next-page" href="leveraging_pennylane.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Hybrid Algorithms</div>
+                <div class="title">Leveraging Pennylane</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="installation.html">
+          <a class="prev-page" href="index.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Installation and login</div>
+                <div class="title">Hybrid Algorithms</div>
                 
               </div>
             </a>
@@ -363,9 +416,13 @@ For example, running a Bell State:</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">How to: Submit a circuit</a><ul>
-<li><a class="reference internal" href="#getting-a-backend">Getting a backend</a></li>
-<li><a class="reference internal" href="#submitting-a-circuit">Submitting a Circuit</a></li>
+<li><a class="reference internal" href="#">Basics</a><ul>
+<li><a class="reference internal" href="#script-format">Script format</a><ul>
+<li><a class="reference internal" href="#execute">Execute</a></li>
+<li><a class="reference internal" href="#finalize">Finalize</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#execution">Execution</a></li>
 </ul>
 </li>
 </ul>

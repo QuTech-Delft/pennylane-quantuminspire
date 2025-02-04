@@ -8,6 +8,7 @@ Welcome to the documentation of **Pennylane-QuantumInspire2**, a Pennylane plugi
    :hidden:
 
    Getting Started <getting_started/index>
+   Hybrid Algorithms <hybrid/index>
    Example Notebooks <notebooks/index>
    Contributing and Development <contributing>
    License <license>
