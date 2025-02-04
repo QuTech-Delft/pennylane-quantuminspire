@@ -1,8 +1,8 @@
 =========================
-Pennylane-QuantumInspire2
+Pennylane-QuantumInspire
 =========================
 
-Welcome to the documentation of **Pennylane-QuantumInspire2**, a Pennylane plugin for the Quantum Inspire platform.
+Welcome to the documentation of **Pennylane-QuantumInspire**, a Pennylane plugin for the Quantum Inspire platform.
 
 .. toctree::
    :hidden:
@@ -13,7 +13,7 @@ Welcome to the documentation of **Pennylane-QuantumInspire2**, a Pennylane plugi
    Contributing and Development <contributing>
    License <license>
    API Reference <api/modules>
-   GitHub <https://github.com/QuTech-Delft/pennylane-quantuminspire2>
+   GitHub <https://github.com/QuTech-Delft/pennylane-quantuminspire>
 
 
 .. _toctree: https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html
