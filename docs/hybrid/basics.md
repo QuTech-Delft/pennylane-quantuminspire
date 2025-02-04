@@ -1,6 +1,6 @@
 # Basics
 
-Quantum Inspire 2 supports hybrid classical-quantum algorithms, and allows execution of both the quantum and the classical part fully on the Qauntum Inspire servers.
+Quantum Inspire supports hybrid classical-quantum algorithms, and allows execution of both the quantum and the classical part fully on the Qauntum Inspire servers.
 
 ## Script format
 
