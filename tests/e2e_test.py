@@ -4,14 +4,14 @@ import pennylane as qml
 from pennylane import numpy as np
 from qiskit_quantuminspire.qi_provider import QIProvider
 
-from pennylane_quantuminspire2.qi_device import QI2Device
+from pennylane_quantuminspire.qi_device import QIDevice
 
 
 def _run_e2e_tests(backend_name: str) -> None:
     # Step 1: Create QML device
     provider = QIProvider()
     backend = provider.get_backend(backend_name)
-    e2e_device = QI2Device(backend=backend)
+    e2e_device = QIDevice(backend=backend)
 
     # Step 2: Create a quantum circuit
     @qml.qnode(e2e_device)

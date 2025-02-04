@@ -4,14 +4,14 @@ import pennylane as qml
 from pytest_mock import MockerFixture
 from qiskit_quantuminspire.qi_backend import QIBackend
 
-from pennylane_quantuminspire2.cqasm import dumps
+from pennylane_quantuminspire.cqasm import dumps
 
 with patch("qiskit_quantuminspire.qi_provider.QIProvider"):
-    from pennylane_quantuminspire2.qi_device import QI2Device
+    from pennylane_quantuminspire.qi_device import QIDevice
 
 
-def test_device_backends(mocker: MockerFixture, QI2_backend: QIBackend) -> None:
-    device = QI2Device(backend=QI2_backend)
+def test_device_backends(mocker: MockerFixture, QI_backend: QIBackend) -> None:
+    device = QIDevice(backend=QI_backend)
 
     @qml.qnode(device=device)
     def quantum_function():  # type: ignore

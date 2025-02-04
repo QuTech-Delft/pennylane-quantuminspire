@@ -1,15 +1,14 @@
 # Basics
 
-Quantum Inspire 2 supports hybrid classical-quantum algorithms, and allows execution of both the quantum and the classical part fully on the QI2 servers.
+Quantum Inspire supports hybrid classical-quantum algorithms, and allows execution of both the quantum and the classical part fully on the Qauntum Inspire servers.
 
 ## Script format
 
-Any script that will be executed on the QI2 platform is required to have at least the `execute()` and `finalize()` functions.
+Any script that will be executed on the QI platform is required to have at least the `execute()` and `finalize()` functions.
 
 ### Execute
 
-The execute function is the function that gets called by QI2 first. As an argument it gets a `QuantumInterface`, which is what allows you to actually execute your circuit. In the example below, the same circuit is executed 5 times in a row as a simple illustration of the interchanging control between the hybrid and classical domains. Normally, you might want to change your `QNode` (circuit) between each execution based on your results. Refer to [this example](./simple.py) to see how you can dynamically update your quantum circuit.
-
+The execute function is the function that gets called by Quantum Inspire first. As an argument it gets a `QuantumInterface`, which is what allows you to actually execute your circuit. In the example below, the same circuit is executed 5 times in a row as a simple illustration of the interchanging control between the hybrid and classical domains. Normally, you might want to change your `QNode` (circuit) between each execution based on your results. Refer to [this example](./simple.py) to see how you can dynamically update your quantum circuit.
 
 ```python
 
@@ -21,16 +20,16 @@ from qi2_shared.hybrid.quantum_interface import QuantumInterface
 from qiskit import QuantumCircuit
 from qiskit_quantuminspire.hybrid.hybrid_backend import QIHybridBackend
 
-from pennylane_quantuminspire2 import cqasm
+from pennylane_quantuminspire import cqasm
 
-def generate_circuit(device: QI2Device):
+def generate_circuit(device: QIDevice):
     @qml.qnode(device)
     def circuit(circuit_params):  # type: ignore
         qml.RX(circuit_params[0], wires=0)
         qml.RY(circuit_params[1], wires=1)
         qml.CNOT(wires=[0, 1])
         return qml.expval(qml.PauliZ(0))
-    
+
     return circuit
 
 
@@ -56,7 +55,7 @@ def execute(qi: QuantumInterface) -> None:
     """
 
     backend = QIHybridBackend(qi)
-    device  = QI2Device(backend=backend)
+    device  = QIDevice(backend=backend)
     circuit_params = np.array([0.1, 0.2], requires_grad=True)
 
     circuit = generate_circuit(device)
@@ -86,7 +85,7 @@ def finalize(list_of_measurements: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 ## Execution
 
-A complete script with both example functions can be found [here](./simple.py). This can be uploaded to QI2 as follows (using the CLI), where `<backend_id>` is the id number of the selected quantum backend, which can be retrieved using the QIProvider.
+A complete script with both example functions can be found [here](./simple.py). This can be uploaded to QI as follows (using the CLI), where `<backend_id>` is the id number of the selected quantum backend, which can be retrieved using the QIProvider.
 
 ```bash
 provider = QIProvider()

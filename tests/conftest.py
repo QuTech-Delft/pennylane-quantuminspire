@@ -29,7 +29,7 @@ def create_backend(id: int = 1, name: str = "qi_backend") -> QIBackend:
 
 
 @pytest.fixture
-def QI2_backend(mocker: MockerFixture) -> QIBackend:
+def QI_backend(mocker: MockerFixture) -> QIBackend:
     """Backend fixture for fields we care about."""
     backend_object = create_backend()
 

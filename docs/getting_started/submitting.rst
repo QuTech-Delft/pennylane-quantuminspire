@@ -5,12 +5,12 @@ How to: Submit a circuit
 Getting a backend
 =================
 
-Make sure you are logged into QI2, then use a QI2Device to fetch backends:
+Make sure you are logged into Quantum Inspire, then use a QIDevice to fetch backends:
 
 .. code-block:: python
 
     from qiskit_quantuminspire.qi_provider import QIProvider
-    from pennylane_quantuminspire2.qi_device import QI2Device
+    from pennylane_quantuminspire.qi_device import QIDevice
 
     # Show all current supported backends:
     provider = QIProvider()
@@ -21,7 +21,7 @@ Make sure you are logged into QI2, then use a QI2Device to fetch backends:
     emulator_backend = provider.get_backend("QX emulator")
 
     # Instantiate a Pennylane device based on chosen backend
-    demo_device = QI2Device(emulator_backend)
+    demo_device = QIDevice(emulator_backend)
 
 
 Submitting a Circuit
