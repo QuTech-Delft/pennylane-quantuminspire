@@ -7,12 +7,12 @@ from qiskit import QuantumCircuit
 from qiskit_quantuminspire.hybrid.hybrid_backend import QIHybridBackend
 from scipy.optimize import minimize
 
-from pennylane_quantuminspire2.qi_device import QI2Device
+from pennylane_quantuminspire.qi_device import QIDevice
 
 resultstring = ""
 
 
-def generate_circuit(device: QI2Device) -> qml.QNode:
+def generate_circuit(device: QIDevice) -> qml.QNode:
     # Define a simple Hamiltonian
     H = qml.Hamiltonian([0.5, 0.3], [qml.PauliZ(0) @ qml.PauliZ(1), qml.PauliX(0) @ qml.PauliX(1)])
 
@@ -36,7 +36,7 @@ def convert_to_qiskit(q_node: qml.QNode, *args: Any, **kwargs: Any) -> QuantumCi
 def execute(qi: QuantumInterface) -> None:
 
     backend = QIHybridBackend(qi)
-    device = QI2Device(backend=backend)
+    device = QIDevice(backend=backend)
 
     circuit = generate_circuit(device)
     initial_params = np.array([0.1, 0.2], requires_grad=True)

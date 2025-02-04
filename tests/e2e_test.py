@@ -4,7 +4,7 @@ import pennylane as qml
 from pennylane import numpy as np
 from qiskit_quantuminspire.qi_provider import QIProvider
 
-from pennylane_quantuminspire2.qi_device import QI2Device
+from pennylane_quantuminspire.qi_device import QIDevice
 
 
 def _run_e2e_tests(backend_name: str) -> None:
