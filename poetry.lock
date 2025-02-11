@@ -2778,13 +2778,13 @@ cffi = {version = "*", markers = "implementation_name == \"pypy\""}
 
 [[package]]
 name = "qi-compute-api-client"
-version = "0.46.0"
+version = "0.47.0"
 description = "An API client for the Compute Job Manager of Quantum Inspire."
 optional = false
-python-versions = "<4.0,>=3.8"
+python-versions = "<4.0,>=3.9"
 files = [
-    {file = "qi_compute_api_client-0.46.0-py3-none-any.whl", hash = "sha256:5c8780c2113f31393f9aaa26bacf513021357b08394f96aeaa6030a7f854cf17"},
-    {file = "qi_compute_api_client-0.46.0.tar.gz", hash = "sha256:54bbfb26c26e430cf22f1f1f0b43534ed5bd2cfdad7c7417eba42e6c80f9172a"},
+    {file = "qi_compute_api_client-0.47.0-py3-none-any.whl", hash = "sha256:3a6510ec4b08b123f7935ab66b5af04eceab4c2a9a7a17d4e3f8c2323b9bc1d0"},
+    {file = "qi_compute_api_client-0.47.0.tar.gz", hash = "sha256:ad21b1bf22f74a6fab21a2dcf9fdb1a663bea4e6688744c7eebcc65dad9c0f83"},
 ]
 
 [package.dependencies]
@@ -2792,6 +2792,7 @@ aiohttp = ">=3.10.5,<4.0.0"
 pydantic = ">=2.10.4,<3.0.0"
 python-dateutil = ">=2.8.2,<3.0.0"
 requests = ">=2.31.0,<3.0.0"
+typing-extensions = ">=4.12.2,<5.0.0"
 urllib3 = ">=2.0.0,<3.0.0"
 
 [[package]]
@@ -2943,19 +2944,19 @@ websocket-client = ">=1.5.1"
 
 [[package]]
 name = "qiskit-quantuminspire"
-version = "0.9.0"
+version = "0.10.0"
 description = "Qiskit provider for Quantum Inspire backends "
 optional = false
 python-versions = "<4.0,>=3.9"
 files = [
-    {file = "qiskit_quantuminspire-0.9.0-py3-none-any.whl", hash = "sha256:c51b096a49cceca5e3ae6773ac07c5908e7f7298fa4f065d12e9141edf39943b"},
-    {file = "qiskit_quantuminspire-0.9.0.tar.gz", hash = "sha256:eb9448086b94a747d1269743b9e9fb992a005c2a169698ad59e937a8bc0b3966"},
+    {file = "qiskit_quantuminspire-0.10.0-py3-none-any.whl", hash = "sha256:bb75f33aec71f0d2a369bc56119e512e17a70db36cb227f54e747c3459846e75"},
+    {file = "qiskit_quantuminspire-0.10.0.tar.gz", hash = "sha256:98b20217d5374c742abab09cba16759174c7ddbf44278e071ca40426d9da4b3e"},
 ]
 
 [package.dependencies]
 opensquirrel = "0.3.1"
 pydantic = ">=2.10.6,<3.0.0"
-qi-compute-api-client = ">=0.46.0,<0.47.0"
+qi-compute-api-client = ">=0.47.0,<0.48.0"
 qiskit = ">=1.2.0,<2.0.0"
 requests = ">=2.32.3,<3.0.0"
 
@@ -4072,4 +4073,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "8bb2cdef0981cb5d940df39385c9c70d7913d4956277e90e51abdd8ed60e91f2"
+content-hash = "af5379f5d644a7b4295eabb05e291ee73f6154546fdfb585891e4ebb8cd85643"
