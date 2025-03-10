@@ -2161,13 +2161,13 @@ kokkos = ["pennylane-lightning-kokkos"]
 
 [[package]]
 name = "pennylane-qiskit"
-version = "0.40.0"
+version = "0.40.1"
 description = "PennyLane plugin for Qiskit"
 optional = false
 python-versions = "*"
 groups = ["main"]
 files = [
-    {file = "PennyLane_qiskit-0.40.0-py3-none-any.whl", hash = "sha256:6295926b5acd2e96515459fb7c9dddeadf2c70e2a5f2807c6685fb025c7c4408"},
+    {file = "pennylane_qiskit-0.40.1-py3-none-any.whl", hash = "sha256:fc75940692ed112e6ebc689408264c7b8b30887db8488dbab428e2be83f30fda"},
 ]
 
 [package.dependencies]
@@ -2175,7 +2175,7 @@ networkx = ">=2.2"
 numpy = "*"
 pennylane = ">=0.38"
 qiskit = ">=0.32,<1.3"
-qiskit-aer = "*"
+qiskit-aer = "<0.16.1"
 qiskit-ibm-provider = "*"
 qiskit-ibm-runtime = "<=0.29"
 sympy = "<1.13"
