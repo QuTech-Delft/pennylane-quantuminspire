@@ -16,7 +16,7 @@ def create_backend(id: int = 1, name: str = "qi_backend") -> QIBackend:
         is_hardware=True,
         image_id="qi_backend",
         features=[],
-        default_compiler_config="",
+        default_compiler_config={},
         status=BackendStatus.IDLE,
         default_number_of_shots=1024,
         max_number_of_shots=2048,
@@ -24,6 +24,7 @@ def create_backend(id: int = 1, name: str = "qi_backend") -> QIBackend:
         description="A Quantum Inspire backend",
         native_gateset="",
         supports_raw_data=False,
+        enabled=True,
     )
     return QIBackend(backend_type=backend_type)
 
