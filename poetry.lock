@@ -2946,25 +2946,21 @@ websocket-client = ">=1.5.1"
 
 [[package]]
 name = "qiskit-quantuminspire"
-version = "0.10.0"
+version = "0.11.2"
 description = "Qiskit provider for Quantum Inspire backends "
 optional = false
-python-versions = "^3.9"
-files = []
-develop = false
+python-versions = "<4.0,>=3.9"
+files = [
+    {file = "qiskit_quantuminspire-0.11.2-py3-none-any.whl", hash = "sha256:c8057c5abb9f85fa7c12cd58ecbf04c9647a6333519b0c6141f391c99ddcb390"},
+    {file = "qiskit_quantuminspire-0.11.2.tar.gz", hash = "sha256:124d4706cae00f451e9cad5077663435fb811532330d9b49db861d8f3cf36de7"},
+]
 
 [package.dependencies]
 opensquirrel = "0.4.0"
-pydantic = "^2.10.6"
-qi-compute-api-client = "^0.50.0"
-qiskit = "^1.2.0"
-requests = "^2.32.3"
-
-[package.source]
-type = "git"
-url = "https://github.com/QuTech-Delft/qiskit-quantuminspire"
-reference = "9b016c8eac3f5bee4119940e3bdddfedace7af0b"
-resolved_reference = "9b016c8eac3f5bee4119940e3bdddfedace7af0b"
+pydantic = ">=2.10.6,<3.0.0"
+qi-compute-api-client = ">=0.50.0,<0.51.0"
+qiskit = ">=1.2.0,<2.0.0"
+requests = ">=2.32.3,<3.0.0"
 
 [[package]]
 name = "referencing"
@@ -4079,4 +4075,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "ac6821901d1617cc8a30bdd2d7a936960b11fc50a202b4b89649672b13683832"
+content-hash = "21ef1d4dca6b206d57a2a9b726d8c2db06b7e01a8bbf56e78273f8a9ec82d55b"
