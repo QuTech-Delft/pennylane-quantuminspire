@@ -21,8 +21,8 @@ classifiers = [
 python = "^3.9"
 pennylane-qiskit = ">=0.40,<0.42"
 pennylane="^0.38.0"
-qiskit-quantuminspire = ">=0.11.1"
-opensquirrel="^0.3.1"
+qiskit-quantuminspire = ">=0.11.2"
+opensquirrel="^0.4.0"
 
 [tool.poetry.group.dev.dependencies]
 requests = "^2.32.3"
