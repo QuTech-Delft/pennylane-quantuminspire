@@ -2166,13 +2166,13 @@ kokkos = ["pennylane-lightning-kokkos"]
 
 [[package]]
 name = "pennylane-qiskit"
-version = "0.41.0"
+version = "0.41.0.post0"
 description = "PennyLane plugin for Qiskit"
 optional = false
 python-versions = "*"
 groups = ["main"]
 files = [
-    {file = "pennylane_qiskit-0.41.0-py3-none-any.whl", hash = "sha256:e8e487860146e227a9c0a7d50a407098776999cc650f64a9a644445849c5c15d"},
+    {file = "pennylane_qiskit-0.41.0.post0-py3-none-any.whl", hash = "sha256:b51f1d63e835387f9bd6359f843c2526458e69362026a0a5e7c17f96fe766bbe"},
 ]
 
 [package.dependencies]
