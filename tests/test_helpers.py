@@ -2,9 +2,9 @@ from unittest.mock import patch
 
 import pennylane as qml
 from pytest_mock import MockerFixture
+from qiskit_quantuminspire import cqasm
 from qiskit_quantuminspire.qi_backend import QIBackend
 
-from qiskit_quantuminspire import cqasm
 from pennylane_quantuminspire.helpers import convert_to_qiskit
 from pennylane_quantuminspire.qi_instructions import Asm
 
