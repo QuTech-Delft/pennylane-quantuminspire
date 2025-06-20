@@ -5,6 +5,7 @@ from pennylane import numpy as np
 from qiskit_quantuminspire.qi_provider import QIProvider
 
 from pennylane_quantuminspire.qi_device import QIDevice
+from pennylane_quantuminspire.qi_instructions import Asm
 
 
 def _run_e2e_tests(backend_name: str) -> None:
@@ -18,6 +19,7 @@ def _run_e2e_tests(backend_name: str) -> None:
     def my_quantum_circuit(circuit_params):  # type: ignore
         qml.RX(circuit_params[0], wires=0)  # Apply an RX gate to qubit 0
         qml.RY(circuit_params[1], wires=1)  # Apply an RY gate to qubit 1
+        Asm("TestBackend", """ a ' " {} () [] b """)
         qml.CNOT(wires=[0, 1])  # Apply a CNOT gate
         return qml.expval(qml.PauliZ(0))  # Measure the expectation value of PauliZ on qubit 0
 

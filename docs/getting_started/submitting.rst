@@ -48,3 +48,40 @@ For example, running a Bell State:
 
 .. warning::
     Other measurements than :code:`qml.expval()` and :code:`qml.var()` are only supported for backends that support measurement results for individual shots.
+
+
+Support for Assembly Declaration
+================================
+
+The ``pennylane-quantuminspire`` plugin also supports assembly declarations that can be used to add backend-specific (assembly) code to a Pennylane circuit.  
+They are realized through an ``Asm`` instruction.
+
+Example
+-------
+
+.. code-block:: python
+
+    import pennylane as qml
+    from pennylane_quantuminspire.qi_instructions import Asm
+
+    @qml.qnode(demo_device)
+    def quantum_function():
+        qml.Hadamard(wires=0)
+        Asm("TestBackend", """ a ' " {} () [] b """)
+        return qml.expval(qml.PauliX(wires=[0]))
+
+The corresponding ``cQASM`` that gets generated for this circuit looks like:
+
+.. code-block:: none
+
+    version 3.0
+
+    qubit[1] q
+    bit[1] b
+
+    H q[0]
+    asm(TestBackend) ''' a ' " {} () [] b '''
+    barrier q[0]
+    b[0] = measure q[0]
+
+See the `Assembly declaration <https://qutech-delft.github.io/cQASM-spec/latest/language_specification/statements/assembly_declaration.html>`_ documentation for more on ``asm`` instructions.

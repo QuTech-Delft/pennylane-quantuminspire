@@ -7,11 +7,14 @@ from pennylane_qiskit.qiskit_device import QuantumTape_or_Batch, Result_or_Resul
 from qiskit.exceptions import QiskitError
 from qiskit_quantuminspire.qi_backend import QIBackend
 
+from pennylane_quantuminspire.qi_instructions import PENNLYLANE_ASM_NAME
+
 
 class QIDevice(RemoteDevice):  # type: ignore[misc]
 
     def __init__(self, backend: QIBackend, **kwargs: Any) -> None:
         super().__init__(wires=backend.num_qubits, backend=backend, **kwargs)
+        self.operations.add(PENNLYLANE_ASM_NAME)
 
     # pylint: disable=unused-argument, no-member
     def execute(
