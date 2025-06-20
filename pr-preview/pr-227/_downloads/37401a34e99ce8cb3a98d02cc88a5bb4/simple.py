@@ -6,8 +6,8 @@ from qi2_shared.hybrid.quantum_interface import QuantumInterface
 from qiskit_quantuminspire.hybrid.hybrid_backend import QIHybridBackend
 from scipy.optimize import minimize
 
-from pennylane_quantuminspire.qi_device import QIDevice
 from pennylane_quantuminspire.helpers import convert_to_qiskit
+from pennylane_quantuminspire.qi_device import QIDevice
 
 resultstring = ""
 
@@ -24,6 +24,7 @@ def generate_circuit(device: QIDevice) -> qml.QNode:
         return qml.expval(H)
 
     return circuit
+
 
 def execute(qi: QuantumInterface) -> None:
 
