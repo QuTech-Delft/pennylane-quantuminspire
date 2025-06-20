@@ -4,7 +4,7 @@ import pennylane as qml
 from qiskit import QuantumCircuit
 from qiskit_quantuminspire import cqasm
 
-from tests.simple import convert_to_qiskit
+from pennylane_quantuminspire.helpers import convert_to_qiskit
 
 
 def dumps(q_node: qml.QNode, *args: Any, **kwargs: Any) -> str:
