@@ -1,5 +1,4 @@
 import argparse
-from concurrent.futures import ThreadPoolExecutor
 
 import pennylane as qml
 from pennylane import numpy as np
@@ -56,13 +55,8 @@ def _run_asm_decl_e2e_tests(backend_name: str) -> None:
 
 
 def main(name: str) -> None:
-    with ThreadPoolExecutor() as executor:
-        futures = [
-            executor.submit(_run_e2e_tests, backend_name=name),
-            executor.submit(_run_asm_decl_e2e_tests, backend_name=name),
-        ]
-        for future in futures:
-            future.result()
+    _run_e2e_tests(name)
+    _run_asm_decl_e2e_tests(name)
 
 
 if __name__ == "__main__":
