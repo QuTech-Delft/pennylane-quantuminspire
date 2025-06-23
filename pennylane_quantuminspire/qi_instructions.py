@@ -14,5 +14,8 @@ class Asm(Operation):  # type: ignore[misc]
         super().__init__(backend_name, asm_code, wires=[], id=id)
 
 
+# This is a workaround to enable Asm instructions with the pennylane-quantuminspire plugin.
+# The plugin only supports operations officially defined in Qiskit, and Asm is not one of them.
+# Since this is not officially supported, we manually register a custom mapping to make it work.
 PENNLYLANE_ASM_NAME = Asm().name
 QISKIT_OPERATION_MAP[PENNLYLANE_ASM_NAME] = QiskitQIAsm

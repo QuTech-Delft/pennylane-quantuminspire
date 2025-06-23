@@ -81,6 +81,7 @@ The corresponding ``cQASM`` that gets generated for this circuit looks like:
 
     H q[0]
     asm(TestBackend) ''' a ' " {} () [] b '''
+    H q[0]
     barrier q[0]
     b[0] = measure q[0]
 
