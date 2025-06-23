@@ -12,14 +12,6 @@ pennylane\_quantuminspire.cqasm module
    :undoc-members:
    :show-inheritance:
 
-pennylane\_quantuminspire.helpers module
-----------------------------------------
-
-.. automodule:: pennylane_quantuminspire.helpers
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 pennylane\_quantuminspire.qi\_device module
 -------------------------------------------
 

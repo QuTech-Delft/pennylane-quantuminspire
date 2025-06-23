@@ -6,7 +6,7 @@ from qi2_shared.hybrid.quantum_interface import QuantumInterface
 from qiskit_quantuminspire.hybrid.hybrid_backend import QIHybridBackend
 from scipy.optimize import minimize
 
-from pennylane_quantuminspire.helpers import convert_to_qiskit
+from pennylane_quantuminspire.cqasm import convert_to_qiskit
 from pennylane_quantuminspire.qi_device import QIDevice
 
 resultstring = ""

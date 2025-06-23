@@ -274,6 +274,9 @@
 
 
 
+<span class="c1"># This is a workaround to enable Asm instructions with the pennylane-quantuminspire plugin.</span>
+<span class="c1"># The plugin only supports operations officially defined in Qiskit, and Asm is not one of them.</span>
+<span class="c1"># Since this is not officially supported, we manually register a custom mapping to make it work.</span>
 <span class="n">PENNLYLANE_ASM_NAME</span> <span class="o">=</span> <span class="n">Asm</span><span class="p">()</span><span class="o">.</span><span class="n">name</span>
 <span class="n">QISKIT_OPERATION_MAP</span><span class="p">[</span><span class="n">PENNLYLANE_ASM_NAME</span><span class="p">]</span> <span class="o">=</span> <span class="n">QiskitQIAsm</span>
 </pre></div>
