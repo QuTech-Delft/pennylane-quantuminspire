@@ -1,4 +1,5 @@
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 
 import pennylane as qml
 from pennylane import numpy as np
@@ -19,7 +20,6 @@ def _run_e2e_tests(backend_name: str) -> None:
     def my_quantum_circuit(circuit_params):  # type: ignore
         qml.RX(circuit_params[0], wires=0)  # Apply an RX gate to qubit 0
         qml.RY(circuit_params[1], wires=1)  # Apply an RY gate to qubit 1
-        Asm("TestBackend", """ a ' " {} () [] b """)
         qml.CNOT(wires=[0, 1])  # Apply a CNOT gate
         return qml.expval(qml.PauliZ(0))  # Measure the expectation value of PauliZ on qubit 0
 
@@ -40,8 +40,29 @@ def _run_e2e_tests(backend_name: str) -> None:
     print(f"Optimized result: {result}")
 
 
+def _run_asm_decl_e2e_tests(backend_name: str) -> None:
+    provider = QIProvider()
+    backend = provider.get_backend(backend_name)
+    e2e_device = QIDevice(backend=backend)
+
+    @qml.qnode(device=e2e_device)
+    def quantum_function():  # type: ignore
+        qml.Hadamard(wires=[0])
+        Asm("TestBackend", """ a ' " {} () [] b """)
+        return qml.expval(qml.PauliX(wires=[0]))
+
+    result = quantum_function()
+    print("Result asm decl:", result)
+
+
 def main(name: str) -> None:
-    _run_e2e_tests(backend_name=name)
+    with ThreadPoolExecutor() as executor:
+        futures = [
+            executor.submit(_run_e2e_tests, backend_name=name),
+            executor.submit(_run_asm_decl_e2e_tests, backend_name=name),
+        ]
+        for future in futures:
+            future.result()
 
 
 if __name__ == "__main__":
