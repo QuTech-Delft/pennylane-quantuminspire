@@ -16,7 +16,7 @@ def test_dumps(mocker: MockerFixture, QI_backend: QIBackend) -> None:
     @qml.qnode(device=device)
     def quantum_function():  # type: ignore
         qml.Hadamard(wires=[0])
-        # Asm("TestBackend", """ a ' " {} () [] b """)
+        Asm("TestBackend", """ a ' " {} () [] b """)
         return qml.expval(qml.PauliX(wires=[0]))
 
     expected_cqasm = 'version 3.0\n\nqubit[1] q\nbit[1] b\n\nH q[0]\nasm(TestBackend) \'\'\' a \' " {} () [] b \'\'\'\nH q[0]\nbarrier q[0]\nb[0] = measure q[0]\n'
