@@ -5,6 +5,7 @@ from pennylane import numpy as np
 from qiskit_quantuminspire.qi_provider import QIProvider
 
 from pennylane_quantuminspire.qi_device import QIDevice
+from pennylane_quantuminspire.qi_instructions import Asm
 
 
 def _run_e2e_tests(backend_name: str) -> None:
@@ -38,8 +39,24 @@ def _run_e2e_tests(backend_name: str) -> None:
     print(f"Optimized result: {result}")
 
 
+def _run_asm_decl_e2e_tests(backend_name: str) -> None:
+    provider = QIProvider()
+    backend = provider.get_backend(backend_name)
+    e2e_device = QIDevice(backend=backend)
+
+    @qml.qnode(device=e2e_device)
+    def quantum_function():  # type: ignore
+        qml.Hadamard(wires=[0])
+        Asm("TestBackend", """ a ' " {} () [] b """)
+        return qml.expval(qml.PauliX(wires=[0]))
+
+    result = quantum_function()
+    print("Result asm decl:", result)
+
+
 def main(name: str) -> None:
-    _run_e2e_tests(backend_name=name)
+    _run_e2e_tests(name)
+    _run_asm_decl_e2e_tests(name)
 
 
 if __name__ == "__main__":
