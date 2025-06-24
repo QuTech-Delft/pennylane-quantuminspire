@@ -258,25 +258,38 @@
 <span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">pennylane</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qml</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pennylane_qiskit.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">circuit_to_qiskit</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_quantuminspire</span><span class="w"> </span><span class="kn">import</span> <span class="n">cqasm</span>
+
+
+<div class="viewcode-block" id="convert_to_qiskit">
+<a class="viewcode-back" href="../../api/pennylane_quantuminspire.html#pennylane_quantuminspire.cqasm.convert_to_qiskit">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_to_qiskit</span><span class="p">(</span><span class="n">q_node</span><span class="p">:</span> <span class="n">qml</span><span class="o">.</span><span class="n">QNode</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantumCircuit</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the QiskitCircuit representation of the quantum function.&quot;&quot;&quot;</span>
+
+    <span class="n">q_node</span><span class="o">.</span><span class="n">construct</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">used_wires</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">q_node</span><span class="o">.</span><span class="n">qtape</span><span class="o">.</span><span class="n">operations</span><span class="p">:</span>
+        <span class="n">used_wires</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">wires</span><span class="p">)</span>
+
+    <span class="n">register_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">used_wires</span><span class="p">)</span>
+
+    <span class="n">quantum_circuit</span> <span class="o">=</span> <span class="n">circuit_to_qiskit</span><span class="p">(</span>
+        <span class="n">q_node</span><span class="o">.</span><span class="n">qtape</span><span class="p">,</span>
+        <span class="n">register_size</span><span class="o">=</span><span class="n">register_size</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">quantum_circuit</span></div>
+
 
 
 <div class="viewcode-block" id="dumps">
 <a class="viewcode-back" href="../../api/pennylane_quantuminspire.html#pennylane_quantuminspire.cqasm.dumps">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">dumps</span><span class="p">(</span><span class="n">q_node</span><span class="p">:</span> <span class="n">qml</span><span class="o">.</span><span class="n">QNode</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the cQASM representation of the quantum function.&quot;&quot;&quot;</span>
-
-    <span class="n">q_node</span><span class="o">.</span><span class="n">construct</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="n">openqasm_code</span> <span class="o">=</span> <span class="n">q_node</span><span class="o">.</span><span class="n">tape</span><span class="o">.</span><span class="n">to_openqasm</span><span class="p">()</span>
-
-    <span class="c1"># As of pennylane v0.40.0 Qnode.tape property is deprecated and instead the following approach is advised:</span>
-    <span class="c1"># tape = qml.workflow.construct_tape(q_node)</span>
-    <span class="c1"># openqasm_code = tape(*args, **kwargs).to_openqasm()</span>
-
-    <span class="n">quantum_circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="o">.</span><span class="n">from_qasm_str</span><span class="p">(</span><span class="n">openqasm_code</span><span class="p">)</span>
+    <span class="n">quantum_circuit</span> <span class="o">=</span> <span class="n">convert_to_qiskit</span><span class="p">(</span><span class="n">q_node</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="n">result</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">cqasm</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">quantum_circuit</span><span class="p">)</span>
-
     <span class="k">return</span> <span class="n">result</span></div>
 
 </pre></div>

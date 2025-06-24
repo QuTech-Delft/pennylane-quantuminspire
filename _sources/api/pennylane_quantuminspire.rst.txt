@@ -20,6 +20,14 @@ pennylane\_quantuminspire.qi\_device module
    :undoc-members:
    :show-inheritance:
 
+pennylane\_quantuminspire.qi\_instructions module
+-------------------------------------------------
+
+.. automodule:: pennylane_quantuminspire.qi_instructions
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

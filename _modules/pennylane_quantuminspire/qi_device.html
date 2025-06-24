@@ -264,6 +264,8 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitError</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_quantuminspire.qi_backend</span><span class="w"> </span><span class="kn">import</span> <span class="n">QIBackend</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">pennylane_quantuminspire.qi_instructions</span><span class="w"> </span><span class="kn">import</span> <span class="n">PENNLYLANE_ASM_NAME</span>
+
 
 <div class="viewcode-block" id="QIDevice">
 <a class="viewcode-back" href="../../api/pennylane_quantuminspire.html#pennylane_quantuminspire.qi_device.QIDevice">[docs]</a>
@@ -271,6 +273,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="p">:</span> <span class="n">QIBackend</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">wires</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">PENNLYLANE_ASM_NAME</span><span class="p">)</span>
 
     <span class="c1"># pylint: disable=unused-argument, no-member</span>
 <div class="viewcode-block" id="QIDevice.execute">

@@ -306,6 +306,38 @@ For example, running a Bell State:</p>
 <p>Other measurements than <code class="code docutils literal notranslate"><span class="pre">qml.expval()</span></code> and <code class="code docutils literal notranslate"><span class="pre">qml.var()</span></code> are only supported for backends that support measurement results for individual shots.</p>
 </div>
 </section>
+<section id="support-for-assembly-declaration">
+<h2>Support for Assembly Declaration<a class="headerlink" href="#support-for-assembly-declaration" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">pennylane-quantuminspire</span></code> plugin also supports assembly declarations that can be used to add backend-specific (assembly) code to a Pennylane circuit.
+They are realized through an <code class="docutils literal notranslate"><span class="pre">Asm</span></code> instruction.</p>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pennylane</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qml</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pennylane_quantuminspire.qi_instructions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Asm</span>
+
+<span class="nd">@qml</span><span class="o">.</span><span class="n">qnode</span><span class="p">(</span><span class="n">demo_device</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">quantum_function</span><span class="p">():</span>
+    <span class="n">qml</span><span class="o">.</span><span class="n">Hadamard</span><span class="p">(</span><span class="n">wires</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">Asm</span><span class="p">(</span><span class="s2">&quot;TestBackend&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;&quot; a &#39; &quot; </span><span class="si">{}</span><span class="s2"> () [] b &quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">qml</span><span class="o">.</span><span class="n">expval</span><span class="p">(</span><span class="n">qml</span><span class="o">.</span><span class="n">PauliX</span><span class="p">(</span><span class="n">wires</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>The corresponding <code class="docutils literal notranslate"><span class="pre">cQASM</span></code> that gets generated for this circuit looks like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>version 3.0
+
+qubit[1] q
+bit[1] b
+
+H q[0]
+asm(TestBackend) &#39;&#39;&#39; a &#39; &quot; {} () [] b &#39;&#39;&#39;
+H q[0]
+barrier q[0]
+b[0] = measure q[0]
+</pre></div>
+</div>
+<p>See the <a class="reference external" href="https://qutech-delft.github.io/cQASM-spec/latest/language_specification/statements/assembly_declaration.html">Assembly declaration</a> documentation for more on <code class="docutils literal notranslate"><span class="pre">asm</span></code> instructions.</p>
+</section>
+</section>
 </section>
 
         </article>
@@ -366,6 +398,10 @@ For example, running a Bell State:</p>
 <li><a class="reference internal" href="#">How to: Submit a circuit</a><ul>
 <li><a class="reference internal" href="#getting-a-backend">Getting a backend</a></li>
 <li><a class="reference internal" href="#submitting-a-circuit">Submitting a Circuit</a></li>
+<li><a class="reference internal" href="#support-for-assembly-declaration">Support for Assembly Declaration</a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

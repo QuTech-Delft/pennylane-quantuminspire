@@ -3,10 +3,10 @@ from typing import Any, Dict, List
 import pennylane as qml
 from pennylane import numpy as np
 from qi2_shared.hybrid.quantum_interface import QuantumInterface
-from qiskit import QuantumCircuit
 from qiskit_quantuminspire.hybrid.hybrid_backend import QIHybridBackend
 from scipy.optimize import minimize
 
+from pennylane_quantuminspire.cqasm import convert_to_qiskit
 from pennylane_quantuminspire.qi_device import QIDevice
 
 resultstring = ""
@@ -24,13 +24,6 @@ def generate_circuit(device: QIDevice) -> qml.QNode:
         return qml.expval(H)
 
     return circuit
-
-
-def convert_to_qiskit(q_node: qml.QNode, *args: Any, **kwargs: Any) -> QuantumCircuit:
-    """Return the Qiskit QuantumCircuit representation of the quantum function."""
-    q_node.construct(args=args, kwargs=kwargs)
-    openqasm_code = q_node.tape.to_openqasm()
-    return QuantumCircuit.from_qasm_str(openqasm_code)
 
 
 def execute(qi: QuantumInterface) -> None:
