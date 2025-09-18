@@ -1,5 +1,7 @@
 import argparse
+import os
 
+import pytest
 import pennylane as qml
 from pennylane import numpy as np
 from qiskit_quantuminspire.qi_provider import QIProvider
@@ -8,7 +10,12 @@ from pennylane_quantuminspire.qi_device import QIDevice
 from pennylane_quantuminspire.qi_instructions import Asm
 
 
-def _run_e2e_tests(backend_name: str) -> None:
+@pytest.fixture
+def backend_name() -> str:
+    return os.getenv("BACKEND_NAME")
+
+
+def test_complete_flow(backend_name: str) -> None:
     # Step 1: Create QML device
     provider = QIProvider()
     backend = provider.get_backend(backend_name)
@@ -39,7 +46,7 @@ def _run_e2e_tests(backend_name: str) -> None:
     print(f"Optimized result: {result}")
 
 
-def _run_asm_decl_e2e_tests(backend_name: str) -> None:
+def test_asm_decl(backend_name: str) -> None:
     provider = QIProvider()
     backend = provider.get_backend(backend_name)
     e2e_device = QIDevice(backend=backend)
@@ -52,20 +59,3 @@ def _run_asm_decl_e2e_tests(backend_name: str) -> None:
 
     result = quantum_function()
     print("Result asm decl:", result)
-
-
-def main(name: str) -> None:
-    _run_e2e_tests(name)
-    _run_asm_decl_e2e_tests(name)
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run E2E test on a backend.")
-    parser.add_argument(
-        "name",
-        type=str,
-        help="Name of the backend where the E2E tests will run.",
-    )
-
-    args = parser.parse_args()
-    main(args.name)
