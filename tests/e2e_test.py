@@ -1,8 +1,7 @@
-import argparse
 import os
 
-import pytest
 import pennylane as qml
+import pytest
 from pennylane import numpy as np
 from qiskit_quantuminspire.qi_provider import QIProvider
 
@@ -12,7 +11,7 @@ from pennylane_quantuminspire.qi_instructions import Asm
 
 @pytest.fixture
 def backend_name() -> str:
-    return os.getenv("BACKEND_NAME")
+    return os.getenv("BACKEND_NAME", "")
 
 
 def test_complete_flow(backend_name: str) -> None:
