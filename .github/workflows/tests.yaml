@@ -8,7 +8,7 @@ on:
 
 jobs:
   testing:
-    uses: qutech-delft/github-actions/.github/workflows/poetry-tests.yaml@master
+    uses: qutech-delft/github-actions/.github/workflows/poetry-tests.yaml@ffd449ca80de1261637f53f64907a7c28e817012
     with:
       e2e_path: 'tests/e2e_test.py'
       idp_url: 'https://quantum-inspire-staging.eu.auth0.com'
