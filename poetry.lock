@@ -2844,7 +2844,6 @@ version = "0.1.10"
 description = "A Fast, spec compliant Python 3.12+ tokenizer that runs on older Pythons."
 optional = false
 python-versions = ">=3.8"
-groups = ["dev"]
 files = [
     {file = "pytokens-0.1.10-py3-none-any.whl", hash = "sha256:db7b72284e480e69fb085d9f251f66b3d2df8b7166059261258ff35f50fb711b"},
     {file = "pytokens-0.1.10.tar.gz", hash = "sha256:c9a4bfa0be1d26aebce03e6884ba454e842f186a59ea43a6d3b25af58223c044"},
@@ -3242,7 +3241,7 @@ websocket-client = ">=1.5.1"
 
 [[package]]
 name = "qiskit-quantuminspire"
-version = "0.12.0"
+version = "0.10.0"
 description = "Qiskit provider for Quantum Inspire backends "
 optional = false
 python-versions = "<4.0,>=3.9"
@@ -3254,10 +3253,16 @@ files = [
 
 [package.dependencies]
 opensquirrel = "0.5.0"
-pydantic = ">=2.10.6,<3.0.0"
-qi-compute-api-client = ">=0.50.0,<0.51.0"
-qiskit = ">=1.2.0,<2.0.0"
-requests = ">=2.32.3,<3.0.0"
+pydantic = "^2.10.6"
+qi-compute-api-client = "^0.50.0"
+qiskit = "^1.2.0"
+requests = "^2.32.3"
+
+[package.source]
+type = "git"
+url = "https://github.com/QuTech-Delft/qiskit-quantuminspire.git"
+reference = "61c86e554f46b3ad4cd6c1899d7f309f38473290"
+resolved_reference = "61c86e554f46b3ad4cd6c1899d7f309f38473290"
 
 [[package]]
 name = "referencing"
@@ -4436,4 +4441,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.9"
-content-hash = "7d8bdb415d694272b289e451a469cd1e988f73d77becdbc62497d5b5ad17f6c9"
+content-hash = "c54049bd51909ced85888c0ac508a1812febbecaa9240b30b22fc429a269b109"
