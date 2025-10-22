@@ -12,13 +12,13 @@ def convert_to_qiskit(q_node: qml.QNode, *args: Any, **kwargs: Any) -> QuantumCi
     q_node.construct(args=args, kwargs=kwargs)
 
     used_wires = set()
-    for op in q_node.qtape.operations:
+    for op in q_node._tape.operations:
         used_wires.update(op.wires)
 
     register_size = len(used_wires)
 
     quantum_circuit = circuit_to_qiskit(
-        q_node.qtape,
+        q_node._tape,
         register_size=register_size,
     )
     return quantum_circuit

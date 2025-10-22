@@ -2,7 +2,7 @@ from unittest.mock import MagicMock, patch
 
 import pennylane as qml
 import pytest
-from pennylane import DeviceError
+from pennylane.exceptions import DeviceError
 from pytest_mock import MockerFixture
 from qiskit.exceptions import QiskitError
 from qiskit_quantuminspire.qi_backend import QIBackend
