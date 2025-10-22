@@ -21,7 +21,7 @@ classifiers = [
 python = "^3.11"
 pennylane-qiskit = "0.43.0"
 pennylane = "0.43.0"
-qiskit-quantuminspire = {git = "https://github.com/qutech-delft/qiskit-quantuminspire.git", branch="feature/QI2-1580/qiskit_2_1_x"}
+qiskit-quantuminspire = {git = "https://github.com/qutech-delft/qiskit-quantuminspire", branch="feature/QI2-1580/qiskit_2_1_x"}
 opensquirrel = "^0.5.0"
 
 [tool.poetry.group.dev.dependencies]
