@@ -10,8 +10,6 @@ documentation = "https://qutech-delft.github.io/pennylane-quantuminspire/"
 classifiers = [
   'Development Status :: 4 - Beta',
   'Programming Language :: Python :: 3',
-  'Programming Language :: Python :: 3.9',
-  'Programming Language :: Python :: 3.10',
   'Programming Language :: Python :: 3.11',
   'Programming Language :: Python :: 3.12',
   'License :: OSI Approved :: Apache Software License',
@@ -21,7 +19,7 @@ classifiers = [
 python = "^3.11"
 pennylane-qiskit = "0.43.0"
 pennylane = "0.43.0"
-qiskit-quantuminspire = { git = "https://github.com/qutech-delft/qiskit-quantuminspire", rev="82a4f06cc761931d9ef838d85e0b494445528321"}
+qiskit-quantuminspire = "0.13.0"
 opensquirrel = "^0.5.0"
 
 [tool.poetry.group.dev.dependencies]
