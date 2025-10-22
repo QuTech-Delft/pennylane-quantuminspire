@@ -3164,8 +3164,8 @@ requests = "^2.32.3"
 
 [package.source]
 type = "git"
-url = "https://github.com/qutech-delft/qiskit-quantuminspire.git"
-reference = "feature/QI2-1580/qiskit_2_1_x"
+url = "https://github.com/qutech-delft/qiskit-quantuminspire"
+reference = "82a4f06cc761931d9ef838d85e0b494445528321"
 resolved_reference = "82a4f06cc761931d9ef838d85e0b494445528321"
 
 [[package]]
@@ -4234,4 +4234,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.11"
-content-hash = "7b4ac5b4bb48702ac402aac9ce710b45266a2c7046611da9ca8ba0303f2d309d"
+content-hash = "7eeb952ade27f77729395b178b9e35b5c3923419a0c807fe923c5d8e76c55468"
