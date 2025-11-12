@@ -28,7 +28,7 @@ black = { extras = ["jupyter"], version = "^25.1.0" }
 coverage = { extras = ["toml"], version = "^7.6.10" }
 docformatter = "1.7.7"
 mypy = "^1.15"
-pytest = { extras = ["toml"], version = "^8.3.4" }
+pytest = { extras = ["toml"], version = ">=8.3.4,<10.0.0" }
 pytest-asyncio = ">=0.25.3,<1.4.0"
 pytest-cov = ">=6,<8"
 pytest-mock = "^3.14.0"
