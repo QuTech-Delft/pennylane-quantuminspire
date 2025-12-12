@@ -1,6 +1,6 @@
 from typing import Any
 
-from pennylane.devices.execution_config import DefaultExecutionConfig, ExecutionConfig
+from pennylane.devices.execution_config import ExecutionConfig
 from pennylane.exceptions import DeviceError
 from pennylane_qiskit import RemoteDevice
 from pennylane_qiskit.qiskit_device import QuantumTape_or_Batch, Result_or_ResultBatch
@@ -17,9 +17,7 @@ class QIDevice(RemoteDevice):  # type: ignore[misc]
 
     # pylint: disable=unused-argument, no-member
     def execute(
-        self,
-        circuits: QuantumTape_or_Batch,
-        execution_config: ExecutionConfig = DefaultExecutionConfig,
+        self, circuits: QuantumTape_or_Batch, execution_config: ExecutionConfig | None = None
     ) -> Result_or_ResultBatch:
         try:
             results = super().execute(circuits, execution_config)
