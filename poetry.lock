@@ -1545,8 +1545,6 @@ version = "0.6.3"
 description = "Mypyc runtime library"
 optional = false
 python-versions = ">=3.9"
-groups = ["dev"]
-markers = "platform_python_implementation != \"PyPy\""
 files = [
     {file = "librt-0.6.3-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:45660d26569cc22ed30adf583389d8a0d1b468f8b5e518fcf9bfe2cd298f9dd1"},
     {file = "librt-0.6.3-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:54f3b2177fb892d47f8016f1087d21654b44f7fc4cf6571c1c6b3ea531ab0fcf"},
@@ -3278,26 +3276,22 @@ visualization = ["plotly (>=5.23.0)"]
 
 [[package]]
 name = "qiskit-quantuminspire"
-version = "0.13.0"
+version = "0.14.0"
 description = "Qiskit provider for Quantum Inspire backends "
 optional = false
-python-versions = "^3.10"
-files = []
-develop = false
+python-versions = "<4.0,>=3.10"
+files = [
+    {file = "qiskit_quantuminspire-0.14.0-py3-none-any.whl", hash = "sha256:25fc3a3c7c45b4c96795bd3f031f1fa1bc1d42373eaa28a124d2f3a7c11d081c"},
+    {file = "qiskit_quantuminspire-0.14.0.tar.gz", hash = "sha256:d9e57aba40f0ead854a6af32d183201319bb5127c24ed3fbab70539b788033c3"},
+]
 
 [package.dependencies]
-colorama = "^0.4.6"
+colorama = ">=0.4.6,<0.5.0"
 opensquirrel = "0.8.0"
-pydantic = "^2.10.6"
-qi-compute-api-client = "^0.50.0"
+pydantic = ">=2.10.6,<3.0.0"
+qi-compute-api-client = ">=0.50.0,<0.51.0"
 qiskit = ">=2.0.0,<2.2.0"
-requests = "^2.32.3"
-
-[package.source]
-type = "git"
-url = "https://github.com/QuTech-Delft/qiskit-quantuminspire"
-reference = "fcf70cc028441d422d094bb3bf431ed016ddcf2d"
-resolved_reference = "fcf70cc028441d422d094bb3bf431ed016ddcf2d"
+requests = ">=2.32.3,<3.0.0"
 
 [[package]]
 name = "referencing"
@@ -4378,4 +4372,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "bc9e288888891891afce4384ab58b11a6b3db9616a549285f31534065fa83f85"
+content-hash = "b1f786a702cea6edb64fe7bd6a567fa781c4b33e9f41ca3dc9a550f32ab2da0f"
