@@ -20,7 +20,7 @@ python = "^3.11"
 pennylane-qiskit = "^0.43.0"
 pennylane = "^0.43.0"
 opensquirrel = "^0.8.0"
-qiskit-quantuminspire = "^0.14.0"
+qiskit-quantuminspire = "^0.15.0"
 
 [tool.poetry.group.dev.dependencies]
 requests = "^2.32.3"
