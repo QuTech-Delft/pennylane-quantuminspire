@@ -24,7 +24,7 @@ qiskit-quantuminspire = "^0.15.0"
 
 [tool.poetry.group.dev.dependencies]
 requests = "^2.32.3"
-black = { extras = ["jupyter"], version = "^25.1.0" }
+black = { extras = ["jupyter"], version = ">=25.1,<27.0" }
 coverage = { extras = ["toml"], version = "^7.6.10" }
 docformatter = "1.7.7"
 mypy = "^1.15"
