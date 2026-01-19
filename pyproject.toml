@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pennylane-quantuminspire"
-version = "0.11.0"
+version = "0.12.0"
 description = "The PennyLane-QuantumInspire plugin integrates the Quantum Inspire quantum computing backends with PennyLane's quantum machine learning capabilities."
 authors = ["Quantum Inspire <support@quantum-inspire.com>"]
 readme = "README.md"
@@ -12,6 +12,7 @@ classifiers = [
   'Programming Language :: Python :: 3',
   'Programming Language :: Python :: 3.11',
   'Programming Language :: Python :: 3.12',
+  'Programming Language :: Python :: 3.13',
   'License :: OSI Approved :: Apache Software License',
 ]
 
