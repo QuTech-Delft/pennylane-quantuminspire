@@ -21,8 +21,13 @@ def test_dumps(mocker: MockerFixture, QI_backend: QIBackend) -> None:
         return qml.expval(qml.PauliX(wires=[0]))
 
     expected_cqasm = (
-        "version 3.0\n\nqubit[1] q\nbit[1] b\n\nH q[0]\nasm(TestBackend) ''' a ' \" {} () [] b '''\n"
-        + "H q[0]\nbarrier q[0]\nb[0] = measure q[0]\n"
+        "version 3.0\n\n"
+        "qubit[1] q\n"
+        "bit[1] b\n\n"
+        "H q[0]\n"
+        "asm(TestBackend) ''' a ' \" {} () [] b '''\n"
+        "H q[0]\n"
+        "b[0] = measure q[0]\n"
     )
 
     assert dumps(quantum_function) == expected_cqasm
