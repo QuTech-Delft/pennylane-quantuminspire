@@ -1,0 +1,37 @@
+pennylane\_quantuminspire package
+=================================
+
+Submodules
+----------
+
+pennylane\_quantuminspire.cqasm module
+--------------------------------------
+
+.. automodule:: pennylane_quantuminspire.cqasm
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+pennylane\_quantuminspire.qi\_device module
+-------------------------------------------
+
+.. automodule:: pennylane_quantuminspire.qi_device
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+pennylane\_quantuminspire.qi\_instructions module
+-------------------------------------------------
+
+.. automodule:: pennylane_quantuminspire.qi_instructions
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: pennylane_quantuminspire
+   :members:
+   :show-inheritance:
+   :undoc-members:
