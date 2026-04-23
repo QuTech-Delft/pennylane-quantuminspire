@@ -2,8 +2,6 @@
 
 You can install the Pennylane-QI plugin using pip. In case you want to install the plugin using Conda and want to access the Quantum Inspire API, refer to the section below.
 
-After cloning the repository, simply run the following command in the project root:
-
 ```bash
 pip install pennylane-quantuminspire
 ```
