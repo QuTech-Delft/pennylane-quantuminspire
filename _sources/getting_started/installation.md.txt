@@ -1,9 +1,9 @@
 # Installation and login
 
-You can install the Pennylane-QI plugin using pip. After cloning the repository, simply run the following command in the project root:
+You can install the Pennylane-QI plugin using pip. In case you want to install the plugin using Conda and want to access the Quantum Inspire API, refer to the section below.
 
 ```bash
-pip install .
+pip install pennylane-quantuminspire
 ```
 
 For access to the Quantum Inspire API you can use the QI tool. Once installed (see [repository](https://github.com/QuTech-Delft/quantuminspire) for installation instructions), run the shell command below to log in to the production environment.
@@ -11,3 +11,31 @@ For access to the Quantum Inspire API you can use the QI tool. Once installed (s
 ```bash
 qi login
 ```
+
+## Installation in Conda
+
+You can easily create a Conda environment that automatically comes with `quantuminspire` and `pennylane-quantuminspire` installed by using an `environment.yml` file.
+
+Check you Conda version with `conda --version`, then run the appropriate command:
+
+Conda >= 26.3:
+
+```bash
+conda create --file https://conda.quantum-inspire.com/pennylane.yml
+```
+
+Conda < 26.3:
+
+```bash
+conda env create --file https://conda.quantum-inspire.com/pennylane.yml
+```
+
+By default, the environment that will be created will be named `pennylane-qi`; use the `-n/--name <CUSTOM-ENV-NAME>` option to overwrite this.
+
+After creating the environment, you need to activate it (use your custom environment name if you have defined it):
+
+```bash
+conda activate pennylane-qi
+```
+
+> **Note:** Note that due to dependency conflicts, an older version of the plugin might be installed. You can check the version using `pip show pennylane-quantuminspire` from the Conda environment.
