@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pennylane-quantuminspire"
-version = "0.14.0"
+version = "0.14.1"
 description = "The PennyLane-QuantumInspire plugin integrates the Quantum Inspire quantum computing backends with PennyLane's quantum machine learning capabilities."
 authors = ["Quantum Inspire <support@quantum-inspire.com>"]
 readme = "README.md"
@@ -21,7 +21,7 @@ python = ">=3.11,<3.14"
 pennylane-qiskit = ">=0.43,<0.45"
 pennylane = "^0.44.0"
 opensquirrel = "^0.8.0"
-qiskit-quantuminspire = "^0.17.0"
+qiskit-quantuminspire = "^0.17.1"
 
 [tool.poetry.group.dev.dependencies]
 requests = "^2.32.3"
