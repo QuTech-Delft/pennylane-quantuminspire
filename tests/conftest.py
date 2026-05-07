@@ -28,6 +28,7 @@ def create_backend(id: int = 1, name: str = "qi_backend") -> QIBackend:
         messages={},
         job_execution_time_limit=3600,
         max_jobs_per_batch_job=5,
+        batchjobs_per_queue_limit=5,
         identifier="dummy",
     )
     return QIBackend(backend_type=backend_type)
