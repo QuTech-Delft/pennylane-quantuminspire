@@ -2531,13 +2531,13 @@ tensor = ["pennylane-lightning-tensor"]
 
 [[package]]
 name = "pennylane-qiskit"
-version = "0.44.1"
+version = "0.45.0"
 description = "PennyLane plugin for Qiskit"
 optional = false
 python-versions = "*"
 groups = ["main"]
 files = [
-    {file = "pennylane_qiskit-0.44.1-py3-none-any.whl", hash = "sha256:967dae00061d51e280dd2214945d138286912e542c4d85df1d0779a14b17c73f"},
+    {file = "pennylane_qiskit-0.45.0-py3-none-any.whl", hash = "sha256:f2b1a53f16e5aaef7c236c471576e0fdb5153574d86cc760ca78649a930541dc"},
 ]
 
 [package.dependencies]
@@ -4710,4 +4710,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<3.14"
-content-hash = "1661be05562077f116af8c900e6aaf2c8a3fabc8dc9dc27c4a7ea6ceeb8dcbf5"
+content-hash = "0c1e02c0756ecde400dbe047237c0897d9a7748a4d475a4aab335a18587eb133"
