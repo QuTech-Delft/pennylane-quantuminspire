@@ -27,6 +27,7 @@ def test_dumps(mocker: MockerFixture, QI_backend: QIBackend) -> None:
         "H q[0]\n"
         "asm(TestBackend) ''' a ' \" {} () [] b '''\n"
         "H q[0]\n"
+        "barrier q[0]\n"
         "b[0] = measure q[0]\n"
     )
 
