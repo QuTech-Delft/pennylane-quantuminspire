@@ -2299,13 +2299,13 @@ files = [
 
 [[package]]
 name = "opensquirrel"
-version = "0.9.0"
+version = "0.8.0"
 description = "A quantum circuit transformation and manipulation tool"
 optional = false
 python-versions = ">=3.10.0"
 files = [
-    {file = "opensquirrel-0.9.0-py3-none-any.whl", hash = "sha256:54bf018b411aa5943138e7c269fea447567d6794cdb34dfff1e0faee5db3dac8"},
-    {file = "opensquirrel-0.9.0.tar.gz", hash = "sha256:b9fc1f2e588ada96db31b94b81ef41d82e6b1b9ef3ced005a1b1eb28b9212781"},
+    {file = "opensquirrel-0.8.0-py3-none-any.whl", hash = "sha256:8d0d2913c0f7d6a217e7126c75118cc10379d61cd5cf73ea075c7d01319fcde3"},
+    {file = "opensquirrel-0.8.0.tar.gz", hash = "sha256:18197cc251fe5faaa0e78d3f77b07ed68e50504a1434d155016dd421ec7d81e9"},
 ]
 
 [package.dependencies]
@@ -3435,7 +3435,7 @@ develop = false
 
 [package.dependencies]
 colorama = ">=0.4.0,<0.5.0"
-opensquirrel = "0.9.0"
+opensquirrel = "0.8.0"
 pydantic = ">=2.0.0,<3"
 qi-compute-api-client = "^0.61.0"
 qiskit = ">=2.0.0,<2.4.0"
@@ -3444,8 +3444,8 @@ requests = ">=2.0.0,<3"
 [package.source]
 type = "git"
 url = "https://github.com/QuTech-Delft/qiskit-quantuminspire.git"
-reference = "8a42836efda3ebf95e5f2742c4e965a6274f0b2b"
-resolved_reference = "8a42836efda3ebf95e5f2742c4e965a6274f0b2b"
+reference = "98978ad3ca4b82d87a30558879a5b31f9f1fc475"
+resolved_reference = "98978ad3ca4b82d87a30558879a5b31f9f1fc475"
 
 [[package]]
 name = "referencing"
@@ -4535,4 +4535,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<3.14"
-content-hash = "cc4775b4ca652086f0a00dac996a618a7c5ade2ae3c8eff5d1db0c710fb37ff8"
+content-hash = "aea9881bddfbb952e9f3d8507f87a15462c71c4596b68f8f56b282d53b33d812"
