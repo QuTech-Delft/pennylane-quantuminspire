@@ -2299,13 +2299,13 @@ files = [
 
 [[package]]
 name = "opensquirrel"
-version = "0.8.0"
+version = "0.9.0"
 description = "A quantum circuit transformation and manipulation tool"
 optional = false
 python-versions = ">=3.10.0"
 files = [
-    {file = "opensquirrel-0.8.0-py3-none-any.whl", hash = "sha256:8d0d2913c0f7d6a217e7126c75118cc10379d61cd5cf73ea075c7d01319fcde3"},
-    {file = "opensquirrel-0.8.0.tar.gz", hash = "sha256:18197cc251fe5faaa0e78d3f77b07ed68e50504a1434d155016dd421ec7d81e9"},
+    {file = "opensquirrel-0.9.0-py3-none-any.whl", hash = "sha256:54bf018b411aa5943138e7c269fea447567d6794cdb34dfff1e0faee5db3dac8"},
+    {file = "opensquirrel-0.9.0.tar.gz", hash = "sha256:b9fc1f2e588ada96db31b94b81ef41d82e6b1b9ef3ced005a1b1eb28b9212781"},
 ]
 
 [package.dependencies]
@@ -3426,7 +3426,7 @@ visualization = ["plotly (>=5.23.0)"]
 
 [[package]]
 name = "qiskit-quantuminspire"
-version = "0.18.1"
+version = "0.18.2"
 description = "Qiskit provider for Quantum Inspire backends "
 optional = false
 python-versions = ">=3.10,<3.14"
@@ -3435,7 +3435,7 @@ develop = false
 
 [package.dependencies]
 colorama = ">=0.4.0,<0.5.0"
-opensquirrel = "0.8.0"
+opensquirrel = "0.9.0"
 pydantic = ">=2.0.0,<3"
 qi-compute-api-client = "^0.61.0"
 qiskit = ">=2.0.0,<2.4.0"
@@ -3444,8 +3444,8 @@ requests = ">=2.0.0,<3"
 [package.source]
 type = "git"
 url = "https://github.com/QuTech-Delft/qiskit-quantuminspire.git"
-reference = "803d7112f346def991dc4bbe98bacb004e838c28"
-resolved_reference = "803d7112f346def991dc4bbe98bacb004e838c28"
+reference = "8a42836efda3ebf95e5f2742c4e965a6274f0b2b"
+resolved_reference = "8a42836efda3ebf95e5f2742c4e965a6274f0b2b"
 
 [[package]]
 name = "referencing"
@@ -4535,4 +4535,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<3.14"
-content-hash = "be35a6f4d9d156ecff0b2173628897c167d5ad30f9dcbc4096cbc2317a4ba00e"
+content-hash = "cc4775b4ca652086f0a00dac996a618a7c5ade2ae3c8eff5d1db0c710fb37ff8"
