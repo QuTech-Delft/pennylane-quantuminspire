@@ -20,8 +20,8 @@ classifiers = [
 python = ">=3.11,<3.14"
 pennylane-qiskit = ">=0.43,<0.46"
 pennylane = ">=0.43,<0.46"
-opensquirrel = "^0.8.0"
-qiskit-quantuminspire = "^0.18.2"
+opensquirrel = "^0.9.1"
+qiskit-quantuminspire = { git = "https://github.com/QuTech-Delft/qiskit-quantuminspire.git", rev = "c8c32104aa3d446158a99f4fd026833f249ee115" }
 
 [tool.poetry.group.dev.dependencies]
 requests = "^2.32.3"
