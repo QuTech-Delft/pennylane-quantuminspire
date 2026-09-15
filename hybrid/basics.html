@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Leveraging Pennylane" href="leveraging_pennylane.html"><link rel="prev" title="Hybrid Algorithms" href="index.html">
 
     <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
-        <title>Basics - Pennylane-QuantumInspire 0.15.2 documentation</title>
+        <title>Basics - Pennylane-QuantumInspire 0.15.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
@@ -162,7 +162,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Pennylane-QuantumInspire 0.15.2 documentation</div></a>
+      <a href="../index.html"><div class="brand">Pennylane-QuantumInspire 0.15.3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -183,7 +183,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
-  <span class="sidebar-brand-text">Pennylane-QuantumInspire 0.15.2 documentation</span>
+  <span class="sidebar-brand-text">Pennylane-QuantumInspire 0.15.3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -283,7 +283,7 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="n">qi</span><span class="p">:</span> <span class="n">QuantumInterface</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the classical part of the Hybrid Quantum/Classical Algorithm.</span>
+<span class="w">    </span><span class="sd">"""Run the classical part of the Hybrid Quantum/Classical Algorithm.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        qi: A QuantumInterface instance that can be used to execute quantum circuits</span>
@@ -301,7 +301,7 @@
 <span class="sd">            raw_data: Measurement per shot as a list of strings (or None if disabled).</span>
 <span class="sd">            shots_requested: The number of shots requested by the user for the previous iteration.</span>
 <span class="sd">            shots_done: The number of shots actually run.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">backend</span> <span class="o">=</span> <span class="n">QIHybridBackend</span><span class="p">(</span><span class="n">qi</span><span class="p">)</span>
     <span class="n">device</span>  <span class="o">=</span> <span class="n">QIDevice</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
@@ -319,7 +319,7 @@
 <h3>Finalize<a class="headerlink" href="#finalize" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">finalize()</span></code> function allows you to aggregate your results. It should return a dictionary which will be stored as the final result. By default it takes a list of all measurements as an argument, but through the use of globals you could also export other data.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="n">list_of_measurements</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Aggregate the results from all iterations into one final result.</span>
+<span class="w">    </span><span class="sd">"""Aggregate the results from all iterations into one final result.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        list_of_measurements: List of all results from the previous iterations.</span>
@@ -327,8 +327,8 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        A free-form result, with a `property`: `value` structure. Value can</span>
 <span class="sd">        be everything serializable.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="n">list_of_measurements</span><span class="p">}</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">"results"</span><span class="p">:</span> <span class="n">list_of_measurements</span><span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -424,7 +424,7 @@
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7c174e4c"></script>
+</div><script src="../_static/documentation_options.js?v=d86fca55"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

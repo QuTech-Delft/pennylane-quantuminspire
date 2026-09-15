@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Hybrid Algorithms" href="../hybrid/index.html"><link rel="prev" title="Installation and login" href="installation.html">
 
     <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
-        <title>How to: Submit a circuit - Pennylane-QuantumInspire 0.15.2 documentation</title>
+        <title>How to: Submit a circuit - Pennylane-QuantumInspire 0.15.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
@@ -162,7 +162,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Pennylane-QuantumInspire 0.15.2 documentation</div></a>
+      <a href="../index.html"><div class="brand">Pennylane-QuantumInspire 0.15.3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -183,7 +183,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
-  <span class="sidebar-brand-text">Pennylane-QuantumInspire 0.15.2 documentation</span>
+  <span class="sidebar-brand-text">Pennylane-QuantumInspire 0.15.3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -262,10 +262,10 @@
 <span class="c1"># Show all current supported backends:</span>
 <span class="n">provider</span> <span class="o">=</span> <span class="n">QIProvider</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">backend</span> <span class="ow">in</span> <span class="n">provider</span><span class="o">.</span><span class="n">backends</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="c1"># Get Quantum Inspire&#39;s simulator backend:</span>
-<span class="n">emulator_backend</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s2">&quot;QX emulator&quot;</span><span class="p">)</span>
+<span class="c1"># Get Quantum Inspire's simulator backend:</span>
+<span class="n">emulator_backend</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s2">"QX emulator"</span><span class="p">)</span>
 
 <span class="c1"># Instantiate a Pennylane device based on chosen backend</span>
 <span class="n">demo_device</span> <span class="o">=</span> <span class="n">QIDevice</span><span class="p">(</span><span class="n">emulator_backend</span><span class="p">)</span>
@@ -308,7 +308,7 @@ They are realized through an <code class="docutils literal notranslate"><span cl
 <span class="nd">@qml</span><span class="o">.</span><span class="n">qnode</span><span class="p">(</span><span class="n">demo_device</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">quantum_function</span><span class="p">():</span>
     <span class="n">qml</span><span class="o">.</span><span class="n">Hadamard</span><span class="p">(</span><span class="n">wires</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">Asm</span><span class="p">(</span><span class="s2">&quot;TestBackend&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;&quot; a &#39; &quot; </span><span class="si">{}</span><span class="s2"> () [] b &quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">Asm</span><span class="p">(</span><span class="s2">"TestBackend"</span><span class="p">,</span> <span class="s2">""" a ' " </span><span class="si">{}</span><span class="s2"> () [] b """</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">qml</span><span class="o">.</span><span class="n">expval</span><span class="p">(</span><span class="n">qml</span><span class="o">.</span><span class="n">PauliX</span><span class="p">(</span><span class="n">wires</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 </div>
@@ -319,7 +319,7 @@ qubit[1] q
 bit[1] b
 
 H q[0]
-asm(TestBackend) &#39;&#39;&#39; a &#39; &quot; {} () [] b &#39;&#39;&#39;
+asm(TestBackend) ''' a ' " {} () [] b '''
 H q[0]
 barrier q[0]
 b[0] = measure q[0]
@@ -403,7 +403,7 @@ b[0] = measure q[0]
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7c174e4c"></script>
+</div><script src="../_static/documentation_options.js?v=d86fca55"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
