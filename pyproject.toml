@@ -21,7 +21,7 @@ python = ">=3.11,<3.14"
 pennylane-qiskit = ">=0.43,<0.46"
 pennylane = ">=0.43,<0.46"
 opensquirrel = "^0.9.1"
-qiskit-quantuminspire = { git = "https://github.com/QuTech-Delft/qiskit-quantuminspire.git", rev = "c834ab2576cea62f4e412f2fb2ad2d3342c95428" }
+qiskit-quantuminspire = "~=0.18.6"
 
 [tool.poetry.group.dev.dependencies]
 requests = "^2.32.3"
