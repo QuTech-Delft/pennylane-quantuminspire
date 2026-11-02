@@ -2768,19 +2768,20 @@ tensor = ["pennylane-lightning-tensor"]
 
 [[package]]
 name = "pennylane-qiskit"
-version = "0.45.0"
+version = "0.45.1"
 description = "PennyLane plugin for Qiskit"
 optional = false
 python-versions = "*"
 groups = ["main"]
 files = [
-    {file = "pennylane_qiskit-0.45.0-py3-none-any.whl", hash = "sha256:f2b1a53f16e5aaef7c236c471576e0fdb5153574d86cc760ca78649a930541dc"},
+    {file = "pennylane_qiskit-0.45.1-py3-none-any.whl", hash = "sha256:0cb8b6c3d40dc5ebcb94578dd4b7227cd045ea05e9f4dbda3580d57cffeafb4e"},
 ]
 
 [package.dependencies]
 networkx = ">=2.2"
 pennylane = ">=0.44.0"
-qiskit = ">=2.0.0,<=2.3.0"
+python-dateutil = "<3"
+qiskit = ">=2.0.0,<2.7"
 qiskit-aer = ">=0.17.2,<0.18.0"
 qiskit-ibm-runtime = ">=0.45.0,<0.46.0"
 sympy = "*"
